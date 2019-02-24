@@ -44,3 +44,6 @@ captures/
 /.idea/assetWizardSettings.xml
 .DS_Store
 .externalNativeBuild
+\.idea/copyright/
+
+\.idea/misc\.xml
