@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/activity_horizontal_margin"
+    android:paddingVertical="@dimen/activity_vertical_margin"
+    tools:targetApi="o"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <cn.zhengweiyi.weiyichild.custom.view.RoundAngleImageView
+            android:id="@+id/homeImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_home_height"
+            android:scaleType="fitXY"
+            android:src="@drawable/im_default"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/activity_vertical_margin">
+
+            <ImageView
+                android:id="@+id/iconNotice"
+                android:layout_width="@dimen/image_icon_small"
+                android:layout_height="@dimen/image_icon_small"
+                android:contentDescription="@string/notice_icon"
+                android:src="@drawable/ic_notice"/>
+
+            <TextView
+                android:id="@+id/textNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_margin"
+                android:textColor="@color/colorTextDefault"
+                android:layout_toEndOf="@id/iconNotice"
+                android:textSize="@dimen/text_size_default"
+                android:hint="@string/notice_hint"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

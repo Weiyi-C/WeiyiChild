@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">维一幼儿管理</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- 描述文字 -->
+    <string name="notice_icon">公告图标</string>
+
+    <!-- 默认提示文字 -->
+    <string name="notice_hint">公告加载中或暂无公告</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
