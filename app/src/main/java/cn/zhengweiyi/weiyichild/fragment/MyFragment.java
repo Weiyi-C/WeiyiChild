@@ -75,7 +75,8 @@ public class MyFragment extends Fragment {
         }
     }
 
-    @Override
+    // TODO 实现 OnFragmentInteractionListener
+    /*@Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -84,7 +85,7 @@ public class MyFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
+    }*/
 
     @Override
     public void onDetach() {
