@@ -10,6 +10,9 @@
     <dimen name="app_bar_height">40dp</dimen>
     <dimen name="app_tab_height">48dp</dimen>
     <dimen name="view_margin">8dp</dimen>
+    <dimen name="grid_image_size">60dp</dimen>
+    <dimen name="grid_text_margin_top">6dp</dimen>
+    <dimen name="grid_columns">3</dimen>
 
     <dimen name="image_home_height">120dp</dimen>
     <dimen name="image_icon_small">20dp</dimen>

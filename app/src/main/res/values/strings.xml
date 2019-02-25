@@ -7,9 +7,11 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="grid_text">功能名称</string>
 
     <!-- 描述文字 -->
     <string name="notice_icon">公告图标</string>
+    <string name="grid_image">功能图标</string>
 
     <!-- 默认提示文字 -->
     <string name="notice_hint">公告加载中或暂无公告</string>

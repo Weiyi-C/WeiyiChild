@@ -40,4 +40,13 @@
 
     </RelativeLayout>
 
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="80dp"
+        android:stretchMode="spacingWidthUniform"
+        android:numColumns="3">
+    </GridView>
+
 </LinearLayout>
