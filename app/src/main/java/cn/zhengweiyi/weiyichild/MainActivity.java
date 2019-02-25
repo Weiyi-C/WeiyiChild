@@ -1,6 +1,5 @@
 package cn.zhengweiyi.weiyichild;
 
-import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // 初始化界面
         initViews();
         /* 设置Adapter */
         fragmentList =new ArrayList<>();
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // 初始化界面
+    /* 初始化界面 */
     private void initViews() {
         this.pager = findViewById(R.id.viewPager);
         this.tab = findViewById(R.id.tab);

@@ -42,7 +42,7 @@ public class MyFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment MyFragment.
      */
-    // TODO: Rename and change types and number of parameters
+    // TODO: 更改参数的类型和数量并重命名
     public static MyFragment newInstance(String param1, String param2) {
         MyFragment fragment = new MyFragment();
         Bundle args = new Bundle();
@@ -68,7 +68,7 @@ public class MyFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_my, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    // TODO: 重命名方法、更新参数并将方法关联到UI事件
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
