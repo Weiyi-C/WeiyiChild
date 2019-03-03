@@ -18,11 +18,11 @@ import java.util.List;
 public class GridAdapter extends BaseAdapter {
 
     private List<GridBean> gridDataList;
-    private Context context;
+    private Context mContext;
 
     GridAdapter(List<GridBean> gridDataList, Context context) {
         this.gridDataList = gridDataList;
-        this.context = context;
+        this.mContext = context;
     }
 
     @Override
@@ -42,22 +42,20 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view;
         ViewHolder viewHolder;
         if (convertView == null ) {
             // 加载子布局
-            view = LayoutInflater.from(context).inflate(R.layout.gridview_item, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.gridview_item, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.imageView = view.findViewById(R.id.gridImage);
-            viewHolder.textView = view.findViewById(R.id.gridText);
-            view.setTag(viewHolder);
+            viewHolder.imageView = convertView.findViewById(R.id.gridImage);
+            viewHolder.textView = convertView.findViewById(R.id.gridText);
+            convertView.setTag(viewHolder);
         } else {
-            view = convertView;
-            viewHolder = (ViewHolder) view.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.imageView.setImageResource(gridDataList.get(position).getIconId());
         viewHolder.textView.setText(gridDataList.get(position).getName());
-        return view;
+        return convertView;
     }
 
     private class ViewHolder {
