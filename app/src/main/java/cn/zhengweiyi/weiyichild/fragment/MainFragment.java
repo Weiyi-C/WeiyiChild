@@ -132,9 +132,9 @@ public class MainFragment extends Fragment {
 
     private void initData() {
         // 图标
-        int icon[] = { R.drawable.ic_function_anquan, R.drawable.ic_function_shipu };
+        int icon[] = { R.drawable.ic_function_anquan, R.drawable.ic_function_shipu, R.drawable.ic_function_manage_info, R.drawable.ic_function_manage_class, R.drawable.ic_function_other };
         // 功能名字
-        String name[] = { "安全接送", "每日食谱" };
+        String name[] = { "安全接送", "每日食谱","信息管理", "班级管理", "其他功能" };
         for (int i = 0; i < icon.length; i++) {
             gridBean = new GridBean(icon[i], name[i]);
             gridDataList.add(gridBean);
