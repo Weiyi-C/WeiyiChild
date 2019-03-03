@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.fragment.MainFragment;
 import cn.zhengweiyi.weiyichild.fragment.MyFragment;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimaryDark);
 
         // 初始化界面
         initViews();

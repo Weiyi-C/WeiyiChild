@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#2693FF</color>
+    <color name="colorPrimary">@android:color/transparent</color>
+    <color name="colorPrimaryDark">@android:color/transparent</color>
+    <color name="colorAccent">#00D8A0</color>
 
     <color name="colorTextDefault">#999</color>
     <color name="colorTextBlack">#222</color>
+    <color name="themePrimary">#00D8A0</color>
+    <color name="themeDark">#00AA74</color>
+
+    <color name="colorAppBarBackground">#FFF</color>
 </resources>

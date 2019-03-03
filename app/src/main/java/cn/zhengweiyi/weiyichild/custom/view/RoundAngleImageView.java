@@ -44,18 +44,18 @@ public class RoundAngleImageView extends AppCompatImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (width >= 12 && height > 12) {
+        if (width >= 24 && height > 24) {
             @SuppressLint("DrawAllocation") Path path = new Path();
             //四个圆角
-            path.moveTo(12, 0);
-            path.lineTo(width - 12, 0);
-            path.quadTo(width, 0, width, 12);
-            path.lineTo(width, height - 12);
-            path.quadTo(width, height, width - 12, height);
-            path.lineTo(12, height);
-            path.quadTo(0, height, 0, height - 12);
-            path.lineTo(0, 12);
-            path.quadTo(0, 0, 12, 0);
+            path.moveTo(24, 0);
+            path.lineTo(width - 24, 0);
+            path.quadTo(width, 0, width, 24);
+            path.lineTo(width, height - 24);
+            path.quadTo(width, height, width - 24, height);
+            path.lineTo(24, height);
+            path.quadTo(0, height, 0, height - 24);
+            path.lineTo(0, 24);
+            path.quadTo(0, 0, 24, 0);
 
             canvas.clipPath(path);
         }
