@@ -20,7 +20,7 @@ public class GridAdapter extends BaseAdapter {
     private List<GridBean> gridDataList;
     private Context mContext;
 
-    GridAdapter(List<GridBean> gridDataList, Context context) {
+    public GridAdapter(List<GridBean> gridDataList, Context context) {
         this.gridDataList = gridDataList;
         this.mContext = context;
     }

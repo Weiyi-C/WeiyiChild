@@ -3,11 +3,19 @@ package cn.zhengweiyi.weiyichild.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.zhengweiyi.weiyichild.GridAdapter;
+import cn.zhengweiyi.weiyichild.GridBean;
 import cn.zhengweiyi.weiyichild.R;
 
 /**
@@ -27,6 +35,10 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private GridView gridView;
+    private List<GridBean> gridDataList;
+    private GridBean gridBean;
+    private GridAdapter gridAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,10 +74,20 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        /* 设置功能按钮GridView */
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        gridView = view.findViewById(R.id.gridView);
+        gridDataList = new ArrayList<>();
+        // 初始化数据
+        initData();
+        // 实例化适配器
+        gridAdapter = new GridAdapter(gridDataList, getContext());
+        // 为GridView设置适配器
+        gridView.setAdapter(gridAdapter);
+        return view;
     }
 
     // TODO: 重命名方法、更新参数并将方法关联到UI事件
@@ -106,5 +128,17 @@ public class MainFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void initData() {
+        // 图标
+        int icon[] = { R.drawable.ic_function_anquan, R.drawable.ic_function_shipu };
+        // 功能名字
+        String name[] = { "安全接送", "每日食谱" };
+        for (int i = 0; i < icon.length; i++) {
+            gridBean = new GridBean(icon[i], name[i]);
+            gridDataList.add(gridBean);
+        }
+        Log.d("数组gridDataList的第一条数据", String.valueOf(gridDataList.get(0).getName()));
     }
 }

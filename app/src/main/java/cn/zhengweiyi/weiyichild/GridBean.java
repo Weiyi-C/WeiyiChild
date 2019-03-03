@@ -9,7 +9,7 @@ public class GridBean {
     private int iconId;   //图片ID
     private String name;    //功能名称
 
-    GridBean(int icon, String name) {
+    public GridBean(int icon, String name) {
         this.iconId = icon;
         this.name = name;
     }
