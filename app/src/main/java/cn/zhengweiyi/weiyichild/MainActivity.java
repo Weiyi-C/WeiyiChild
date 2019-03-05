@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
         // 初始化界面
         initViews();
         /* 设置fragment适配器TabAdapter */
-        fragmentList =new ArrayList<>();
+        fragmentList = new ArrayList<>();
         fragmentList.add(new MainFragment());
         fragmentList.add(new MyFragment());
-        pager.setAdapter(new TabAdapter(getSupportFragmentManager(),fragmentList));
+        pager.setAdapter(new TabAdapter(getSupportFragmentManager(), fragmentList));
 
         /* Tab与ViewPager绑定 */
         tab.setupWithViewPager(pager);
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 创建菜单的点击事件
+     *
      * @param item 点击的菜单
      * @return
      */
@@ -80,35 +81,38 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_scanner:
-                AndPermission.with(this).runtime().permission(Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE)
-                .onGranted(new Action<List<String>>() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
-                        ZxingConfig config = new ZxingConfig();
-                        // config.setPlayBeep(false);//是否播放扫描声音 默认为true
-                        // config.setShake(false);//是否震动  默认为true
-                        // config.setDecodeBarCode(false);//是否扫描条形码 默认为true
-                        config.setReactColor(R.color.colorAccent);//设置扫描框四个角的颜色 默认为白色
-                        // config.setFrameLineColor(R.color.colorAccent);//设置扫描框边框颜色 默认无色
-                        config.setScanLineColor(R.color.colorAccent);//设置扫描线的颜色 默认白色
-                        config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
-                        intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
-                        startActivityForResult(intent, REQUEST_CODE_SCAN);
-                    }
-                })
-                .onDenied(new Action<List<String>>() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        Uri packageURI = Uri.parse("package:" + getPackageName());
-                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                // 权限管理，判断是否有相机和读取文件存储权限，没有则申请权限
+                AndPermission.with(this)
+                        .runtime()
+                        .permission(Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE)
+                        .onGranted(new Action<List<String>>() {
+                            @Override
+                            public void onAction(List<String> permissions) {
+                                Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+                                ZxingConfig config = new ZxingConfig();
+                                // config.setPlayBeep(false);//是否播放扫描声音 默认为true
+                                // config.setShake(false);//是否震动  默认为true
+                                // config.setDecodeBarCode(false);//是否扫描条形码 默认为true
+                                config.setReactColor(R.color.colorAccent);//设置扫描框四个角的颜色 默认为白色
+                                // config.setFrameLineColor(R.color.colorAccent);//设置扫描框边框颜色 默认无色
+                                config.setScanLineColor(R.color.colorAccent);//设置扫描线的颜色 默认白色
+                                config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
+                                intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
+                                startActivityForResult(intent, REQUEST_CODE_SCAN);
+                            }
+                        })
+                        .onDenied(new Action<List<String>>() {
+                            @Override
+                            public void onAction(List<String> permissions) {
+                                Uri packageURI = Uri.parse("package:" + getPackageName());
+                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                        startActivity(intent);
+                                startActivity(intent);
 
-                        Toast.makeText(MainActivity.this, "没有权限无法扫描哟", Toast.LENGTH_SHORT).show();
-                    }
-                }).start();
+                                Toast.makeText(MainActivity.this, "没有权限无法扫描哟", Toast.LENGTH_SHORT).show();
+                            }
+                        }).start();
                 break;
             default:
                 break;
