@@ -32,7 +32,8 @@ import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.fragment.MainFragment;
 import cn.zhengweiyi.weiyichild.fragment.MyFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        MainFragment.OnFragmentInteractionListener,MyFragment.OnFragmentInteractionListener {
 
     private TabLayout tab;
     private ViewPager pager;
@@ -142,4 +143,8 @@ public class MainActivity extends AppCompatActivity {
         this.tab = findViewById(R.id.tab);
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }

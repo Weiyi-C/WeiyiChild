@@ -7,8 +7,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
     tools:ignore="UseCompoundDrawables">
 
@@ -16,6 +16,7 @@
         android:id="@+id/gridImage"
         android:layout_width="@dimen/grid_image_size"
         android:layout_height="@dimen/grid_image_size"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/im_default"
         android:contentDescription="@string/grid_image" />
 
@@ -24,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/grid_text_margin_top"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:textColor="@color/colorTextBlack"
         android:text="@string/grid_text"/>
 

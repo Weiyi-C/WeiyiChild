@@ -98,7 +98,7 @@ public class MainFragment extends Fragment {
     }
 
     // TODO 实现 OnFragmentInteractionListener
-    /*@Override
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -107,7 +107,7 @@ public class MainFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }*/
+    }
 
     @Override
     public void onDetach() {
@@ -132,7 +132,9 @@ public class MainFragment extends Fragment {
 
     private void initData() {
         // 图标
-        int icon[] = {R.drawable.ic_function_anquan, R.drawable.ic_function_shipu, R.drawable.ic_function_manage_info, R.drawable.ic_function_manage_class, R.drawable.ic_function_other};
+        int icon[] = {R.drawable.ic_function_anquan, R.drawable.ic_function_shipu,
+                R.drawable.ic_function_manage_info, R.drawable.ic_function_manage_class,
+                R.drawable.ic_function_other};
         // 功能名字
         String name[] = {"安全接送", "每日食谱", "信息管理", "班级管理", "其他功能"};
         for (int i = 0; i < icon.length; i++) {
