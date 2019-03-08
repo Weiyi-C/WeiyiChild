@@ -40,6 +40,9 @@ import cn.zhengweiyi.weiyichild.fragment.MyFragment;
 public class MainActivity extends AppCompatActivity implements
         MainFragment.OnFragmentInteractionListener,MyFragment.OnFragmentInteractionListener {
 
+    private static final String ARG_SCREEN_WIDTH = "screenWidth";
+    private static final String ARG_SCREEN_DENSITY = "screenDensity";
+
     private int mWidth;         //屏幕宽度（像素）
     private int mHeight;        //屏幕高度（像素）
     private float mDensity;     //屏幕密度（0.75 / 1.0 / 1.5）
@@ -61,15 +64,23 @@ public class MainActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
         StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimaryDark);
 
+        // 获取屏幕数据并传入fragment
         getAndroidScreenProperty();
-        MainFragment.setScreen(mWidthDp, mHeightDp);
+        MainFragment mainFragment = new MainFragment();
+        MyFragment myFragment = new MyFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SCREEN_WIDTH, mWidth);
+        args.putFloat(ARG_SCREEN_DENSITY, mDensity);
+        mainFragment.setArguments(args);
+
+        // MainFragment.setScreen(mWidthDp, mHeightDp);
 
         // 初始化界面
         initViews();
         /* 设置fragment适配器TabAdapter */
         fragmentList = new ArrayList<>();
-        fragmentList.add(new MainFragment());
-        fragmentList.add(new MyFragment());
+        fragmentList.add(mainFragment);
+        fragmentList.add(myFragment);
         pager.setAdapter(new TabAdapter(getSupportFragmentManager(), fragmentList));
 
         /* Tab与ViewPager绑定 */

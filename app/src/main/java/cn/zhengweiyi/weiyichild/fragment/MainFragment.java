@@ -23,18 +23,16 @@ import cn.zhengweiyi.weiyichild.R;
  * Activities that contain this fragment must implement the
  * {@link MainFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MainFragment#setScreen(int, int)} factory method to
- * create an instance of this fragment.
  */
 public class MainFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SCREEN_WIDTH = "screenWidth";
-    private static final String ARG_SCREEN_HEIGHT = "screenHeight";
+    private static final String ARG_SCREEN_DENSITY = "screenDensity";
 
     // TODO: Rename and change types of parameters
-    private int mScreenWidth;
-    private int mScreenHeight;
+    private int mScreenWidth;   // 屏幕宽度
+    private float mDensity;     // 屏幕密度
     private GridView gridView;
     private List<GridBean> gridDataList;
     private GridBean gridBean;
@@ -46,30 +44,14 @@ public class MainFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param mWidthDp 屏幕宽度（dp）
-     * @param mHeightDp 屏幕高度(dp)
-     */
-    public static void setScreen(int mWidthDp, int mHeightDp) {
-        MainFragment fragment = new MainFragment();
-        Bundle args = new Bundle();
-        Log.d("传入的高、宽分别是：", "高：" + String.valueOf(mHeightDp) + "，宽：" + String.valueOf(mWidthDp));
-        args.putInt(ARG_SCREEN_WIDTH, mWidthDp);
-        args.putInt(ARG_SCREEN_HEIGHT, mHeightDp);
-        fragment.setArguments(args);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("getArguments()方法的值为", String.valueOf(getArguments()));
+        // Log.d("getArguments()方法的值为", String.valueOf(getArguments()));
         if (getArguments() != null) {
             mScreenWidth = getArguments().getInt(ARG_SCREEN_WIDTH);
-            mScreenHeight = getArguments().getInt(ARG_SCREEN_HEIGHT);
-            Log.d("获取到的高和宽分别是 ", "高：" + String.valueOf(mScreenHeight) + ", 宽：" + String.valueOf(mScreenWidth));
+            mDensity = getArguments().getFloat(ARG_SCREEN_DENSITY);
+            Log.d("获取到的屏幕宽度和密度分别是 ", "宽: " + String.valueOf(mScreenWidth) + "px, 密度：" + String.valueOf(mDensity));
         }
     }
 
@@ -87,9 +69,9 @@ public class MainFragment extends Fragment {
         gridAdapter = new GridAdapter(gridDataList, getContext());
         // 为GridView设置适配器
         gridView.setAdapter(gridAdapter);
-        Log.d("屏幕的宽度为", String.valueOf(mScreenWidth));
-        Log.d("功能按钮列宽为：", String.valueOf((mScreenWidth - 40)/3));
-        //gridView.setColumnWidth((mScreenWidth - 40)/3);
+        // Log.d("屏幕的宽度为", String.valueOf(mScreenWidth));
+        Log.d("功能按钮列宽为：", String.valueOf((mScreenWidth - 40 * mDensity)/3));
+        gridView.setColumnWidth((int) ((mScreenWidth - 40 * mDensity)/3));
         return view;
     }
 
