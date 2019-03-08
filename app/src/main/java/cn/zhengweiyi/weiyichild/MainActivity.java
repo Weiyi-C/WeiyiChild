@@ -5,6 +5,7 @@
 
 package cn.zhengweiyi.weiyichild;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
@@ -14,8 +15,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.yanzhenjie.permission.Action;
@@ -27,6 +31,7 @@ import com.yzq.zxinglibrary.common.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.fragment.MainFragment;
@@ -34,6 +39,13 @@ import cn.zhengweiyi.weiyichild.fragment.MyFragment;
 
 public class MainActivity extends AppCompatActivity implements
         MainFragment.OnFragmentInteractionListener,MyFragment.OnFragmentInteractionListener {
+
+    private int mWidth;         //屏幕宽度（像素）
+    private int mHeight;        //屏幕高度（像素）
+    private float mDensity;     //屏幕密度（0.75 / 1.0 / 1.5）
+    private int mDensityDpi;    //屏幕密度dpi（120 / 160 / 240）
+    private int mWidthDp;       //屏幕宽度(dp)
+    private int mHeightDp;      //屏幕高度(dp)
 
     private TabLayout tab;
     private ViewPager pager;
@@ -48,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimaryDark);
+
+        getAndroidScreenProperty();
+        MainFragment.setScreen(mWidthDp, mHeightDp);
 
         // 初始化界面
         initViews();
@@ -141,6 +156,29 @@ public class MainActivity extends AppCompatActivity implements
     private void initViews() {
         this.pager = findViewById(R.id.viewPager);
         this.tab = findViewById(R.id.tab);
+    }
+
+    /**
+     * 获取屏幕数据
+     */
+    public void getAndroidScreenProperty() {
+        WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        Objects.requireNonNull(wm).getDefaultDisplay().getMetrics(dm);
+        mWidth = dm.widthPixels;        // 屏幕宽度（像素）
+        mHeight = dm.heightPixels;      // 屏幕高度（像素）
+        mDensity = dm.density;          // 屏幕密度（0.75 / 1.0 / 1.5）
+        mDensityDpi = dm.densityDpi;    // 屏幕密度dpi（120 / 160 / 240）
+        // 屏幕宽度算法:屏幕宽度（像素）/屏幕密度
+        mWidthDp = (int) (mWidth / mDensity);  // 屏幕宽度(dp)
+        mHeightDp = (int) (mHeight / mDensity);// 屏幕高度(dp)
+
+        Log.d("h_bl", "屏幕宽度（像素）：" + mWidth);
+        Log.d("h_bl", "屏幕高度（像素）：" + mHeight);
+        Log.d("h_bl", "屏幕密度（0.75 / 1.0 / 1.5）：" + mDensity);
+        Log.d("h_bl", "屏幕密度dpi（120 / 160 / 240）：" + mDensityDpi);
+        Log.d("h_bl", "屏幕宽度（dp）：" + mWidthDp);
+        Log.d("h_bl", "屏幕高度（dp）：" + mHeightDp);
     }
 
     @Override
