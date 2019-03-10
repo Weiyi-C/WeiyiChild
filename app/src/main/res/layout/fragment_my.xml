@@ -14,6 +14,7 @@
         tools:ignore="UselessParent">
 
         <LinearLayout
+            android:id="@+id/layoutUserInfo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_username_height"
             android:paddingStart="@dimen/activity_horizontal_margin"
@@ -27,11 +28,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="2"
+                android:duplicateParentState="true"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
                     android:text="@string/user_name"
                     android:textSize="@dimen/text_size_user_name" />
             </LinearLayout>
@@ -40,18 +44,22 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutListVerify"
             android:layout_width="match_parent"
             android:layout_height="@dimen/list_height"
             android:orientation="horizontal"
             android:paddingStart="@dimen/activity_horizontal_margin"
             android:paddingEnd="@dimen/activity_horizontal_margin"
-            android:background="@color/colorBackGroundWhite"
+            android:background="@drawable/layout_select_background"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_marginBottom="@dimen/activity_horizontal_margin">
 
             <ImageView
                 android:layout_width="@dimen/image_icon_list"
                 android:layout_height="@dimen/image_icon_list"
                 android:layout_gravity="center_vertical"
+                android:duplicateParentState="true"
                 android:contentDescription="@string/list_icon"
                 android:src="@drawable/ic_verify" />
 
@@ -61,6 +69,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/view_spacing"
                 android:layout_weight="1"
+                android:duplicateParentState="true"
                 android:text="@string/verify"
                 android:textColor="@color/colorTextBlack"
                 android:textSize="@dimen/text_size_list" />
@@ -70,6 +79,7 @@
                 android:layout_height="@dimen/image_icon_list_right"
                 android:layout_gravity="center_vertical"
                 android:contentDescription="@string/list_icon_right"
+                android:duplicateParentState="true"
                 android:src="@drawable/ic_right"
                 android:tint="@color/colorListIconRight" />
 
@@ -78,22 +88,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:background="@color/colorBackGroundWhite"
             android:orientation="vertical"
             android:showDividers="middle">
 
             <LinearLayout
+                android:id="@+id/layoutListMyChild"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_height"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:background="@drawable/layout_select_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
                     android:layout_height="@dimen/image_icon_list"
                     android:layout_gravity="center_vertical"
+                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon"
                     android:src="@drawable/ic_list_child" />
 
@@ -103,6 +117,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/view_spacing"
                     android:layout_weight="1"
+                    android:duplicateParentState="true"
                     android:text="@string/list_child"
                     android:textColor="@color/colorTextBlack"
                     android:textSize="@dimen/text_size_list" />
@@ -111,19 +126,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:duplicateParentState="true"
                     android:text="@string/list_child_value"/>
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutListPhone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_height"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:background="@drawable/layout_select_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
                     android:layout_height="@dimen/image_icon_list"
                     android:layout_gravity="center_vertical"
+                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon"
                     android:src="@drawable/ic_list_phone" />
 
@@ -133,6 +156,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/view_spacing"
                     android:layout_weight="1"
+                    android:duplicateParentState="true"
                     android:text="@string/list_phone"
                     android:textColor="@color/colorTextBlack"
                     android:textSize="@dimen/text_size_list" />
@@ -141,6 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:duplicateParentState="true"
                     android:text="@string/list_phone_value"/>
 
             </LinearLayout>
@@ -150,21 +175,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
-            android:background="@color/colorBackGroundWhite"
             android:orientation="vertical"
             android:showDividers="middle">
 
             <LinearLayout
+                android:id="@+id/layoutListSetting"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_height"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:background="@drawable/layout_select_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
                     android:layout_height="@dimen/image_icon_list"
                     android:layout_gravity="center_vertical"
+                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon"
                     android:src="@drawable/ic_list_setting" />
 
@@ -174,6 +203,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/view_spacing"
                     android:layout_weight="1"
+                    android:duplicateParentState="true"
                     android:text="@string/list_setting"
                     android:textColor="@color/colorTextBlack"
                     android:textSize="@dimen/text_size_list" />
@@ -182,6 +212,7 @@
                     android:layout_width="@dimen/image_icon_list_right"
                     android:layout_height="@dimen/image_icon_list_right"
                     android:layout_gravity="center_vertical"
+                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon_right"
                     android:src="@drawable/ic_right"
                     android:tint="@color/colorListIconRight" />
@@ -189,14 +220,21 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutListAbout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_height"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:background="@drawable/layout_select_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
                     android:layout_height="@dimen/image_icon_list"
                     android:layout_gravity="center_vertical"
+                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon"
                     android:src="@drawable/ic_list_info" />
 
@@ -206,6 +244,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/view_spacing"
                     android:layout_weight="1"
+                    android:duplicateParentState="true"
                     android:text="@string/list_about"
                     android:textColor="@color/colorTextBlack"
                     android:textSize="@dimen/text_size_list" />
@@ -214,6 +253,7 @@
                     android:layout_width="@dimen/image_icon_list_right"
                     android:layout_height="@dimen/image_icon_list_right"
                     android:layout_gravity="center_vertical"
+                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon_right"
                     android:src="@drawable/ic_right"
                     android:tint="@color/colorListIconRight" />

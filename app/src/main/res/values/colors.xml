@@ -13,4 +13,5 @@
     <color name="colorAppBarBackground">#FFF</color>
     <color name="colorBackGroundWhite">#FAFAFA</color>
     <color name="colorBackGroundGrey">#F2F2F2</color>
+    <color name="colorBackGroundFocused">#11000000</color>
 </resources>
