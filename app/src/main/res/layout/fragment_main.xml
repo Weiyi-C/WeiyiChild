@@ -37,7 +37,7 @@
             android:id="@+id/textNotice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/view_margin"
+            android:layout_marginStart="@dimen/view_spacing"
             android:textColor="@color/colorTextDefault"
             android:layout_toEndOf="@id/iconNotice"
             android:textSize="@dimen/text_size_default"

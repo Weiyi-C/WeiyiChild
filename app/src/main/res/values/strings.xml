@@ -2,14 +2,22 @@
     <string name="app_name">维一幼儿园</string>
     <string name="menu_scanner">扫一扫</string>
     <string name="grid_text">功能名称</string>
+    <string name="verify">实名认证</string>
+    <string name="list_child">我的孩子</string>
+    <string name="list_phone">我的手机</string>
+    <string name="list_setting">系统设置</string>
+    <string name="list_about">关于</string>
 
     <!-- 描述文字 -->
     <string name="notice_icon">公告图标</string>
     <string name="grid_image">功能图标</string>
+    <string name="user_name">未登录</string>
+    <string name="list_icon">列表图标</string>
+    <string name="list_icon_right">进入图标</string>
+    <string name="list_child_value">孩子姓名</string>
+    <string name="list_phone_value">手机号码</string>
 
     <!-- 默认提示文字 -->
     <string name="notice_hint">公告加载中或暂无公告</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

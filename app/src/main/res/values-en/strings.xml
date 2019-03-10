@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
+  ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
+  -->
+
+<resources>
+    <string name="app_name">Weiyi Child</string>
+    <string name="menu_scanner">Scan QR</string>
+    <string name="grid_text">Function Name</string>
+    <string name="verify">Verify</string>
+    <string name="list_child">My Child</string>
+    <string name="list_phone">My Phone Number</string>
+    <string name="list_setting">Setting</string>
+    <string name="list_about">About</string>
+    <string name="notice_icon">Notice Icon</string>
+    <string name="grid_image">Function Icon</string>
+    <string name="user_name">Username</string>
+    <string name="list_icon">Icon</string>
+    <string name="list_child_value">Child\'s Name</string>
+    <string name="list_phone_value">Phone Number</string>
+    <string name="notice_hint">Announcement Loading or no announcement</string>
+    <string name="list_icon_right">Icon Right</string>
+</resources>

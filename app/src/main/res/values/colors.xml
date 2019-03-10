@@ -6,8 +6,11 @@
 
     <color name="colorTextDefault">#999</color>
     <color name="colorTextBlack">#222</color>
+    <color name="colorListIconRight">#CCC</color>
     <color name="themePrimary">#00D8A0</color>
     <color name="themeDark">#00AA74</color>
 
     <color name="colorAppBarBackground">#FFF</color>
+    <color name="colorBackGroundWhite">#FAFAFA</color>
+    <color name="colorBackGroundGrey">#F2F2F2</color>
 </resources>
