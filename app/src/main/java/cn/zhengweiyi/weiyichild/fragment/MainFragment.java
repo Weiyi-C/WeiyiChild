@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ import cn.zhengweiyi.weiyichild.R;
  * {@link MainFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements AdapterView.OnItemClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SCREEN_WIDTH = "screenWidth";
@@ -69,9 +71,10 @@ public class MainFragment extends Fragment {
         gridAdapter = new GridAdapter(gridDataList, getContext());
         // 为GridView设置适配器
         gridView.setAdapter(gridAdapter);
+        gridView.setOnItemClickListener(this);
         // Log.d("屏幕的宽度为", String.valueOf(mScreenWidth));
-        Log.d("功能按钮列宽为：", String.valueOf((mScreenWidth - 40 * mDensity)/3));
-        gridView.setColumnWidth((int) ((mScreenWidth - 40 * mDensity)/3));
+        Log.d("功能按钮列宽为：", String.valueOf((mScreenWidth - 40 * mDensity) / 3));
+        gridView.setColumnWidth((int) ((mScreenWidth - 40 * mDensity) / 3));
         return view;
     }
 
@@ -101,6 +104,35 @@ public class MainFragment extends Fragment {
     }
 
     /**
+     * 功能按钮 GridView item 的点击事件
+     *
+     * @param position item 的位置
+     * @param id item 的编号
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                Toast.makeText(getActivity(), "点击了安全接送，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                break;
+            case 1:
+                Toast.makeText(getActivity(), "点击了每日食谱，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                break;
+            case 2:
+                Toast.makeText(getActivity(), "点击了信息管理，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                break;
+            case 3:
+                Toast.makeText(getActivity(), "点击了班级管理，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                break;
+            case 4:
+                Toast.makeText(getActivity(), "点击了其他功能，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
@@ -115,6 +147,9 @@ public class MainFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    /**
+     * 设置 GridView 显示数据
+     */
     private void initData() {
         // 图标
         int icon[] = {R.drawable.ic_function_anquan, R.drawable.ic_function_shipu,

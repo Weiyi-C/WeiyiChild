@@ -21,7 +21,11 @@
             android:paddingEnd="@dimen/activity_horizontal_margin"
             android:background="@color/colorBackGroundWhite"
             android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:onClick="onClick"
+            android:clickable="true"
+            android:focusable="true"
+            android:baselineAligned="false"
+            tools:ignore="OnClick"> <!-- TODO 解决onClick报错 -->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -53,7 +57,9 @@
             android:background="@drawable/layout_select_background"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin">
+            android:onClick="onClick"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            tools:ignore="OnClick">
 
             <ImageView
                 android:layout_width="@dimen/image_icon_list"
@@ -101,7 +107,9 @@
                 android:background="@drawable/layout_select_background"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="horizontal">
+                android:onClick="onClick"
+                android:orientation="horizontal"
+                tools:ignore="OnClick">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
@@ -140,7 +148,9 @@
                 android:background="@drawable/layout_select_background"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="horizontal">
+                android:onClick="onClick"
+                android:orientation="horizontal"
+                tools:ignore="OnClick">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
@@ -187,7 +197,9 @@
                 android:background="@drawable/layout_select_background"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="horizontal">
+                android:onClick="onClick"
+                android:orientation="horizontal"
+                tools:ignore="OnClick">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
@@ -228,7 +240,9 @@
                 android:background="@drawable/layout_select_background"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="horizontal">
+                android:onClick="onClick"
+                android:orientation="horizontal"
+                tools:ignore="OnClick">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"

@@ -19,6 +19,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -145,6 +146,33 @@ public class MainActivity extends AppCompatActivity implements
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 点击事件
+     * @param view 传入点击的组件
+     */
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.layoutUserInfo:
+                Toast.makeText(this, "点击了用户信息", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.layoutListVerify:
+                Toast.makeText(this, "点击了身份认证", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.layoutListMyChild:
+                Toast.makeText(this, "点击了我的孩子", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.layoutListPhone:
+                Toast.makeText(this, "点击了我的手机", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.layoutListSetting:
+                Toast.makeText(this, "点击了系统设置", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.layoutListAbout:
+                Toast.makeText(this, "点击了关于", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
     @Override
