@@ -5,8 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import cn.zhengweiyi.weiyichild.GridAdapter;
 import cn.zhengweiyi.weiyichild.GridBean;
@@ -49,6 +53,7 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         // Log.d("getArguments()方法的值为", String.valueOf(getArguments()));
         if (getArguments() != null) {
             mScreenWidth = getArguments().getInt(ARG_SCREEN_WIDTH);
@@ -76,6 +81,15 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
         Log.d("功能按钮列宽为：", String.valueOf((mScreenWidth - 40 * mDensity) / 3));
         gridView.setColumnWidth((int) ((mScreenWidth - 40 * mDensity) / 3));
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        Toolbar toolbar = Objects.requireNonNull(getActivity()).findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.app_name));
+        inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     // TODO: 重命名方法、更新参数并将方法关联到UI事件
