@@ -43,7 +43,7 @@ public class GridAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
-        if (convertView == null ) {
+        if (convertView == null) {
             // 加载子布局
             convertView = LayoutInflater.from(mContext).inflate(R.layout.gridview_item, parent, false);
             viewHolder = new ViewHolder();

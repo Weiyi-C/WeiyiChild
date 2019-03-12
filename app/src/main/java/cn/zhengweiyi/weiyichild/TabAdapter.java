@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TabAdapter extends FragmentPagerAdapter {
 
-    private String[] tabTitle = {"幼儿","我的"};
+    private String[] tabTitle = {"幼儿", "我的"};
     private List<Fragment> fragmentList;
 
     public TabAdapter(FragmentManager fm, List<Fragment> fragmentList) {

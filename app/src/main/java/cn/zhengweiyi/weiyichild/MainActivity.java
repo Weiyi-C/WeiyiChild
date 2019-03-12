@@ -39,7 +39,7 @@ import cn.zhengweiyi.weiyichild.fragment.MainFragment;
 import cn.zhengweiyi.weiyichild.fragment.MyFragment;
 
 public class MainActivity extends AppCompatActivity implements
-        MainFragment.OnFragmentInteractionListener,MyFragment.OnFragmentInteractionListener {
+        MainFragment.OnFragmentInteractionListener, MyFragment.OnFragmentInteractionListener {
 
     private static final String ARG_SCREEN_WIDTH = "screenWidth";
     private static final String ARG_SCREEN_DENSITY = "screenDensity";
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * 点击事件
+     *
      * @param view 传入点击的组件
      */
     public void onClick(View view) {
@@ -213,12 +214,12 @@ public class MainActivity extends AppCompatActivity implements
         mWidthDp = (int) (mWidth / mDensity);  // 屏幕宽度(dp)
         mHeightDp = (int) (mHeight / mDensity);// 屏幕高度(dp)
 
-        Log.d("h_bl", "屏幕宽度（像素）：" + mWidth);
-        Log.d("h_bl", "屏幕高度（像素）：" + mHeight);
-        Log.d("h_bl", "屏幕密度（0.75 / 1.0 / 1.5）：" + mDensity);
-        Log.d("h_bl", "屏幕密度dpi（120 / 160 / 240）：" + mDensityDpi);
-        Log.d("h_bl", "屏幕宽度（dp）：" + mWidthDp);
-        Log.d("h_bl", "屏幕高度（dp）：" + mHeightDp);
+        Log.d("Screen", "屏幕宽度（像素）：" + mWidth);
+        Log.d("Screen", "屏幕高度（像素）：" + mHeight);
+        Log.d("Screen", "屏幕密度（0.75 / 1.0 / 1.5）：" + mDensity);
+        Log.d("Screen", "屏幕密度dpi（120 / 160 / 240）：" + mDensityDpi);
+        Log.d("Screen", "屏幕宽度（dp）：" + mWidthDp);
+        Log.d("Screen", "屏幕高度（dp）：" + mHeightDp);
     }
 
     @Override

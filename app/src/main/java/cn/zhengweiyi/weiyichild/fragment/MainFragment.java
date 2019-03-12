@@ -121,25 +121,25 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
      * 功能按钮 GridView item 的点击事件
      *
      * @param position item 的位置
-     * @param id item 的编号
+     * @param id       item 的编号
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                Toast.makeText(getActivity(), "点击了安全接送，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "点击了安全接送", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
-                Toast.makeText(getActivity(), "点击了每日食谱，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "点击了每日食谱", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
-                Toast.makeText(getActivity(), "点击了信息管理，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "点击了信息管理", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                Toast.makeText(getActivity(), "点击了班级管理，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "点击了班级管理", Toast.LENGTH_SHORT).show();
                 break;
             case 4:
-                Toast.makeText(getActivity(), "点击了其他功能，是第 " + String.valueOf(position + 1) + " 个item\n\nView：" + String.valueOf(view) + "\n\nid：" + String.valueOf(id), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "敬请期待", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -166,7 +166,7 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
      */
     private void initData() {
         // 图标
-        int icon[] = {R.drawable.ic_function_anquan, R.drawable.ic_function_shipu,
+        int icon[] = {R.drawable.ic_function_pickup, R.drawable.ic_function_dietary,
                 R.drawable.ic_function_manage_info, R.drawable.ic_function_manage_class,
                 R.drawable.ic_function_other};
         // 功能名字
@@ -175,6 +175,5 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
             gridBean = new GridBean(icon[i], name[i]);
             gridDataList.add(gridBean);
         }
-        Log.d("数组gridDataList的第一条数据", String.valueOf(gridDataList.get(0).getName()));
     }
 }
