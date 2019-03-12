@@ -1,5 +1,11 @@
 <resources>
+    <!-- 软件基本信息 -->
     <string name="app_name">维一幼儿园</string>
+    <string name="app_version" translatable="false">Version 0.0.23</string>
+    <string name="app_copyright" translatable="false">&#37073;&#32500;&#19968; &#29256;&#26435;&#25152;&#26377;\nCopyright &#169; 2018-2019 zhengweiyi.cn\nAll Rights Reserved</string>
+    <string name="app_powered_by" translatable="false">Icon by &#23567;&#33651; &#38; &#31481;&#23572;</string>
+
+    <!-- 显示文本 -->
     <string name="menu_scanner">扫一扫</string>
     <string name="grid_text">功能名称</string>
     <string name="verify">实名认证</string>
@@ -9,6 +15,7 @@
     <string name="list_about">关于</string>
 
     <!-- 描述文字 -->
+    <string name="app_logo" translatable="false">LOGO</string>
     <string name="notice_icon">公告图标</string>
     <string name="grid_image">功能图标</string>
     <string name="user_name">未登录</string>

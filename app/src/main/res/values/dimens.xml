@@ -11,6 +11,7 @@
     <dimen name="app_bar_height">40dp</dimen>
     <dimen name="app_tab_height">48dp</dimen>
     <dimen name="view_spacing">8dp</dimen>
+    <dimen name="view_spacing_large">24dp</dimen>
     <dimen name="grid_columns">3</dimen>
     <dimen name="grid_vertical_spacing">20dp</dimen>
     <dimen name="grid_image_size">60dp</dimen>
@@ -27,5 +28,6 @@
     <dimen name="text_size_default">16sp</dimen>
     <dimen name="text_size_user_name">24sp</dimen>
     <dimen name="text_size_list">18sp</dimen>
+    <dimen name="text_size_about_app_name">32sp</dimen>
 
 </resources>

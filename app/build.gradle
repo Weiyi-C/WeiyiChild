@@ -26,9 +26,12 @@ dependencies {
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'android.arch.lifecycle:extensions:1.1.1'
-    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'   //引入 SystemBarTint 库，实现状态栏文字、图标颜色 （https://www.jianshu.com/p/3042bf7d72e3）
-    implementation 'com.github.yuzhiqiang1993:zxing:2.2.5'                      //引入 Zxing 库 （https://github.com/yuzhiqiang1993/zxing）
-    implementation 'com.yanzhenjie.permission:support:2.0.1'                    //引入 AndPermission 进行权限管理
+    //引入 SystemBarTint 库，实现状态栏文字、图标颜色 （https://www.jianshu.com/p/3042bf7d72e3）
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    //引入 Zxing 库 （https://github.com/yuzhiqiang1993/zxing）
+    implementation 'com.github.yuzhiqiang1993:zxing:2.2.5'
+    //引入 AndPermission 进行权限管理
+    implementation 'com.yanzhenjie.permission:support:2.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

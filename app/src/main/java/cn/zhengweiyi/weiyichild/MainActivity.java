@@ -170,7 +170,8 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(this, "点击了系统设置", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.layoutListAbout:
-                Toast.makeText(this, "点击了关于", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
                 break;
         }
     }
