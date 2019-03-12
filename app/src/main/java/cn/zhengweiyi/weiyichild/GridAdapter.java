@@ -54,6 +54,7 @@ public class GridAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.imageView.setImageResource(gridDataList.get(position).getIconId());
+        viewHolder.imageView.setContentDescription(gridDataList.get(position).getName());
         viewHolder.textView.setText(gridDataList.get(position).getName());
         return convertView;
     }
