@@ -19,3 +19,16 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class cn.zhengweiyi.weiyichild.MonthView {
+    public <init>(android.content.Context);
+}
+-keep class cn.zhengweiyi.weiyichild.WeekBar {
+    public <init>(android.content.Context);
+}
+-keep class cn.zhengweiyi.weiyichild.WeekView {
+    public <init>(android.content.Context);
+}
+-keep cn.zhengweiyi.weiyichild.YearView {
+    public <init>(android.content.Context);
+}
