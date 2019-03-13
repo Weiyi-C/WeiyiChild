@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // 设置状态栏透明
         StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimaryDark);
 
         // 获取屏幕数据并传入fragment

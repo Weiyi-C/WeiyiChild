@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
+  ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
+  -->
+
+<resources>
+
+    <declare-styleable name="CalendarView">
+
+        <attr name="calendar_padding" format="dimension" /><!--日历内部左右padding-->
+
+        <attr name="month_view" format="color" /> <!--自定义类日历月视图路径-->
+        <attr name="week_view" format="string" /> <!--自定义类周视图路径-->
+        <attr name="week_bar_height" format="dimension" /> <!--星期栏的高度-->
+        <attr name="week_bar_view" format="color" /> <!--自定义类周栏路径，通过自定义则 week_text_color week_background xml设置无效，当仍可java api设置-->
+        <attr name="week_line_margin" format="dimension" /><!--线条margin-->
+
+        <attr name="week_line_background" format="color" /><!--线条颜色-->
+        <attr name="week_background" format="color" /> <!--星期栏的背景-->
+        <attr name="week_text_color" format="color" /> <!--星期栏文本颜色-->
+        <attr name="week_text_size" format="dimension" /><!--星期栏文本大小-->
+
+        <attr name="current_day_text_color" format="color" /> <!--今天的文本颜色-->
+        <attr name="current_day_lunar_text_color" format="color" /><!--今天的农历文本颜色-->
+
+        <attr name="calendar_height" format="string" /> <!--日历每项的高度，56dp-->
+        <attr name="day_text_size" format="string" /> <!--天数文本大小-->
+        <attr name="lunar_text_size" format="string" /> <!--农历文本大小-->
+
+        <attr name="scheme_text" format="string" /> <!--标记文本-->
+        <attr name="scheme_text_color" format="color" /> <!--标记文本颜色-->
+        <attr name="scheme_month_text_color" format="color" /> <!--标记天数文本颜色-->
+        <attr name="scheme_lunar_text_color" format="color" /> <!--标记农历文本颜色-->
+
+        <attr name="scheme_theme_color" format="color" /> <!--标记的颜色-->
+
+        <attr name="selected_theme_color" format="color" /> <!--选中颜色-->
+        <attr name="selected_text_color" format="color" /> <!--选中文本颜色-->
+        <attr name="selected_lunar_text_color" format="color" /> <!--选中农历文本颜色-->
+
+        <attr name="current_month_text_color" format="color" /> <!--当前月份的字体颜色-->
+        <attr name="other_month_text_color" format="color" /> <!--其它月份的字体颜色-->
+
+        <attr name="current_month_lunar_text_color" format="color" /> <!--当前月份农历节假日颜色-->
+        <attr name="other_month_lunar_text_color" format="color" /> <!--其它月份农历节假日颜色-->
+
+        <!-- 年视图相关 -->
+        <attr name="year_view_month_text_size" format="dimension" /> <!-- 年视图月份字体大小 -->
+        <attr name="year_view_day_text_size" format="dimension" /> <!-- 年视图月份日期字体大小 -->
+        <attr name="year_view_month_text_color" format="color" /> <!-- 年视图月份字体颜色 -->
+        <attr name="year_view_day_text_color" format="color" /> <!-- 年视图日期字体颜色 -->
+        <attr name="year_view_scheme_color" format="color" /> <!-- 年视图标记颜色 -->
+
+        <attr name="min_year" format="integer" />  <!--最小年份1900-->
+        <attr name="max_year" format="integer" />  <!--最大年份2099-->
+        <attr name="min_year_month" format="integer" /> <!--最小年份对应月份-->
+        <attr name="max_year_month" format="integer" /> <!--最大年份对应月份-->
+
+        <!--月视图是否可滚动-->
+        <attr name="month_view_scrollable" format="boolean" />
+        <!--周视图是否可滚动-->
+        <attr name="week_view_scrollable" format="boolean" />
+        <!--年视图是否可滚动-->
+        <attr name="year_view_scrollable" format="boolean" />
+
+        <!--配置你喜欢的月视图显示模式模式-->
+        <attr name="month_view_show_mode">
+            <enum name="mode_all" value="0" /> <!--全部显示-->
+            <enum name="mode_only_current" value="1" /> <!--仅显示当前月份-->
+            <enum name="mode_fix" value="2" /> <!--自适应显示，不会多出一行，但是会自动填充-->
+        </attr>
+
+        <!-- 自定义周起始 -->
+        <attr name="week_start_with">
+            <enum name="sun" value="1" />
+            <enum name="mon" value="2" />
+            <enum name="sat" value="7" />
+        </attr>
+
+        <!-- 自定义选择模式 -->
+        <attr name="select_mode">
+            <enum name="default_mode" value="0" />
+            <enum name="single_mode" value="1" />
+            <enum name="range_mode" value="2" />
+        </attr>
+
+        <!-- 当 select_mode=range_mode -->
+        <attr name="min_select_range" format="integer" />
+        <attr name="max_select_range" format="integer" />
+    </declare-styleable>
+
+</resources>

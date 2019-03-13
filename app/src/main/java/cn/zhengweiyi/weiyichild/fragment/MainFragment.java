@@ -1,6 +1,7 @@
 package cn.zhengweiyi.weiyichild.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import cn.zhengweiyi.weiyichild.DietaryActivity;
 import cn.zhengweiyi.weiyichild.GridAdapter;
 import cn.zhengweiyi.weiyichild.GridBean;
 import cn.zhengweiyi.weiyichild.R;
@@ -131,6 +133,8 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
                 break;
             case 1:
                 Toast.makeText(getActivity(), "点击了每日食谱", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DietaryActivity.class);
+                startActivity(intent);
                 break;
             case 2:
                 Toast.makeText(getActivity(), "点击了信息管理", Toast.LENGTH_SHORT).show();
