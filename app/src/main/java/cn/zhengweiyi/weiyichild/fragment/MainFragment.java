@@ -170,9 +170,11 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
                 R.drawable.ic_function_manage_info, R.drawable.ic_function_manage_class,
                 R.drawable.ic_function_other};
         // 功能名字
-        String name[] = {"安全接送", "每日食谱", "信息管理", "班级管理", "其他功能"};
+        int name[] = {R.string.function_pickup, R.string.function_dietary,
+                R.string.function_manage_info, R.string.function_manage_class,
+                R.string.function_other};
         for (int i = 0; i < icon.length; i++) {
-            gridBean = new GridBean(icon[i], name[i]);
+            gridBean = new GridBean(icon[i], getResources().getString(name[i]));
             gridDataList.add(gridBean);
         }
     }

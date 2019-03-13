@@ -8,6 +8,13 @@
     <!-- 显示文本 -->
     <string name="menu_scanner">扫一扫</string>
     <string name="grid_text">功能名称</string>
+    <string name="tab_home">幼儿</string>
+    <string name="tab_me">我的</string>
+    <string name="function_pickup">安全接送</string>
+    <string name="function_dietary">每日食谱</string>
+    <string name="function_manage_info">信息管理</string>
+    <string name="function_manage_class">班级管理</string>
+    <string name="function_other">其他功能</string>
     <string name="verify">实名认证</string>
     <string name="list_child">我的孩子</string>
     <string name="list_phone">我的手机</string>

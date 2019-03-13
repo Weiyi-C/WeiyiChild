@@ -21,4 +21,11 @@
     <string name="list_phone_value">Phone Number</string>
     <string name="notice_hint">Loading or no announcement</string>
     <string name="list_icon_right">Icon Right</string>
+    <string name="function_dietary">Dietary</string>
+    <string name="function_pickup">Pickup</string>
+    <string name="function_manage_info">Info Manage</string>
+    <string name="function_manage_class">Class Manage</string>
+    <string name="function_other">Other</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_me">Me</string>
 </resources>

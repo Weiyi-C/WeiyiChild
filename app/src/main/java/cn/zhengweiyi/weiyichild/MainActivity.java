@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements
     private int mHeightDp;      //屏幕高度(dp)
 
     private TabLayout tab;
+    private String[] tabTitle;
     private ViewPager pager;
     private List<Fragment> fragmentList;
     private int REQUEST_CODE_SCAN = 111;
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements
         args.putFloat(ARG_SCREEN_DENSITY, mDensity);
         mainFragment.setArguments(args);
 
-        // MainFragment.setScreen(mWidthDp, mHeightDp);
+        // 初始化数据
+        initData();
 
         // 初始化界面
         initViews();
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements
         fragmentList = new ArrayList<>();
         fragmentList.add(mainFragment);
         fragmentList.add(myFragment);
-        pager.setAdapter(new TabAdapter(getSupportFragmentManager(), fragmentList));
+        pager.setAdapter(new TabAdapter(getSupportFragmentManager(), fragmentList, tabTitle));
 
         /* Tab与ViewPager绑定 */
         tab.setupWithViewPager(pager);
@@ -188,6 +190,14 @@ public class MainActivity extends AppCompatActivity implements
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
                 Toast.makeText(this, "扫描结果：" + content, Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    private void initData() {
+        int tab[] = {R.string.tab_home, R.string.tab_me};
+        tabTitle = new String[tab.length];
+        for (int i = 0; i < tab.length; i++) {
+            tabTitle[i] = getResources().getString(tab[i]);
         }
     }
 
