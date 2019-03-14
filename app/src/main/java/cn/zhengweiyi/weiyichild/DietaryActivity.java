@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarLayout;
@@ -97,11 +98,9 @@ public class DietaryActivity extends AppCompatActivity implements
         mTextYear.setText(String.valueOf(mCalendarView.getCurYear()) + " \u25bc");
         mYear = mCalendarView.getCurYear();
         mTextMonth.setText(mCalendarView.getCurMonth() + "月");  //  + mCalendarView.getCurDay() + "日"
+        mCalendarView.scrollToCurrent();                         // 默认选中“今天”
         mTextLunar.setText("今日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
-
-        // 默认选中“今天”
-        mCalendarView.scrollToCurrent();
     }
 
     @Override
@@ -145,11 +144,16 @@ public class DietaryActivity extends AppCompatActivity implements
 
     @Override
     public void onYearChange(int year) {
+        Toast.makeText(this, "您已经切换到了 "
+                + String.valueOf(year) + " 年", Toast.LENGTH_SHORT).show();
         mTextMonth.setText(String.valueOf(year));
     }
 
     @Override
     public void onMonthChange(int year, int month) {
-
+        Toast.makeText(this, "您已经切换到了 "
+                + String.valueOf(month) + " 月", Toast.LENGTH_SHORT).show();
+        mTextMonth.setText(String.valueOf(month));
+        mTextYear.setText(String.valueOf(year));
     }
 }
