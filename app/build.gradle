@@ -32,8 +32,8 @@ dependencies {
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.5'
     //引入 AndPermission 进行权限管理
     implementation 'com.yanzhenjie.permission:support:2.0.1'
-    // 引入 CalendarView 日历控件
-    implementation 'com.haibin:calendarview:3.2.9'
+    // 引入 CalendarView 日历控件 (https://juejin.im/post/5a6743836fb9a01caa20aefc)
+    implementation 'com.haibin:calendarview:3.5.5'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

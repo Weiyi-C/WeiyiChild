@@ -12,6 +12,8 @@ import android.graphics.Paint;
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.WeekView;
 
+import cn.zhengweiyi.weiyichild.R;
+
 public class MyWeekView extends WeekView {
 
     // 自定义文本画笔
@@ -54,8 +56,11 @@ public class MyWeekView extends WeekView {
     @Override
     protected boolean onDrawSelected(Canvas canvas, Calendar calendar, int x, boolean hasScheme) {
         mSelectedPaint.setStyle(Paint.Style.FILL);
-        mSelectedPaint.setColor(0x80cfcfcf);
-        canvas.drawRect(x + mPadding, mPadding, x + mItemWidth - mPadding, mItemHeight - mPadding, mSelectedPaint);
+        mSelectedPaint.setColor(getResources().getColor(R.color.colorAccent));
+        // 矩形选中状态 canvas.drawRect(x + mPadding, mPadding, x + mItemWidth - mPadding, mItemHeight - mPadding, mSelectedPaint);
+        int cx = x +mItemWidth / 2;
+        int cy = mItemHeight / 2;
+        canvas.drawCircle(cx, cy, (mItemHeight - mPadding) / 2, mSelectedPaint);
         return true;
     }
 
@@ -79,7 +84,6 @@ public class MyWeekView extends WeekView {
      * @param canvas     canvas
      * @param calendar   日历calendar
      * @param x          日历Card x起点坐标
-     * @param y          日历Card y起点坐标
      * @param hasScheme  是否是标记的日期
      * @param isSelected 是否选中
      */

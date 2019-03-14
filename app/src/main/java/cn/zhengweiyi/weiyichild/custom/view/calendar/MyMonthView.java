@@ -12,6 +12,8 @@ import android.graphics.Paint;
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.MonthView;
 
+import cn.zhengweiyi.weiyichild.R;
+
 public class MyMonthView extends MonthView {
 
     // 自定义文本画笔
@@ -54,8 +56,11 @@ public class MyMonthView extends MonthView {
     @Override
     protected boolean onDrawSelected(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme) {
         mSelectedPaint.setStyle(Paint.Style.FILL);
-        mSelectedPaint.setColor(0x80cfcfcf);
-        canvas.drawRect(x + mPadding, y + mPadding, x + mItemWidth - mPadding, y + mItemHeight - mPadding, mSelectedPaint);
+        mSelectedPaint.setColor(getResources().getColor(R.color.colorAccent));
+        // 矩形选中状态 canvas.drawRect(x + mPadding, y + mPadding, x + mItemWidth - mPadding, y + mItemHeight - mPadding, mSelectedPaint);
+        int cx = x  + mItemWidth / 2;
+        int cy = y + mItemHeight / 2;
+        canvas.drawCircle(cx, cy, (mItemHeight - mPadding) / 2, mSelectedPaint);
         return true;
     }
 
