@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:duplicateParentState="true"
                     android:text="@string/user_name"
-                    android:textSize="@dimen/text_size_user_name" />
+                    android:textSize="@dimen/text_size_title_large" />
             </LinearLayout>
 
 

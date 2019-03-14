@@ -19,29 +19,39 @@
     <RelativeLayout
         android:id="@+id/rl_tool"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="@dimen/app_bar_height"
         android:background="@color/colorPrimary">
 
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_left"
+            android:layout_centerVertical="true"
+            tools:ignore="ContentDescription" />
+
         <TextView
-            android:id="@+id/tv_month_day"
+            android:id="@+id/tv_month"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/view_spacing"
+            android:layout_toRightOf="@id/ic_back"
             android:gravity="center_vertical"
-            android:paddingLeft="16dp"
-            android:textColor="#000000"
-            android:textSize="26sp"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="@dimen/text_size_title_large"
             android:textStyle="bold"
             tools:ignore="RtlSymmetry" />
 
         <LinearLayout
+            android:id="@+id/tv_layout_year_lunar"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/tv_month_day"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_month"
+            android:layout_centerVertical="true"
             android:orientation="vertical"
-            android:paddingBottom="12dp"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
-            android:paddingTop="12dp"
             tools:ignore="RelativeOverlap">
 
             <TextView
@@ -50,8 +60,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="10sp" />
+                android:textColor="@color/colorTextBlack"
+                android:textSize="@dimen/text_size_small_x" />
 
             <TextView
                 android:id="@+id/tv_lunar"
@@ -59,10 +69,20 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="10sp"
-                tools:ignore="SmallSp" />
+                android:textColor="@color/colorTextBlack"
+                android:textSize="@dimen/text_size_small_x" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/fl_current"
+            android:layout_marginEnd="@dimen/view_spacing_large"
+            android:text="@string/function_dietary"
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@color/colorTextBlack"/>
 
         <FrameLayout
             android:id="@+id/fl_current"
@@ -91,7 +111,7 @@
                 android:layout_marginTop="3dp"
                 android:gravity="center"
                 android:text="13"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/themeDark"
                 android:textSize="12sp" />
         </FrameLayout>
     </RelativeLayout>
@@ -135,8 +155,6 @@
             app:week_start_with="sun"
             app:week_text_color="@color/colorTextBlack"
             app:week_view_scrollable="true" />
-        <!--
-        -->
 
         <LinearLayout
             android:id="@+id/linearLayout"

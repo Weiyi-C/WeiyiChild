@@ -9,6 +9,7 @@
 
     <!-- 尺寸大小 -->
     <dimen name="app_bar_height">40dp</dimen>
+    <dimen name="app_bar_height_large">48dp</dimen>
     <dimen name="app_tab_height">48dp</dimen>
     <dimen name="view_spacing">8dp</dimen>
     <dimen name="view_spacing_large">24dp</dimen>
@@ -26,7 +27,10 @@
 
     <!-- 文字大小 -->
     <dimen name="text_size_default">16sp</dimen>
-    <dimen name="text_size_user_name">24sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_small_x">10sp</dimen>
+    <dimen name="text_size_title">20sp</dimen>
+    <dimen name="text_size_title_large">24sp</dimen>
     <dimen name="text_size_list">18sp</dimen>
     <dimen name="text_size_about_app_name">32sp</dimen>
 

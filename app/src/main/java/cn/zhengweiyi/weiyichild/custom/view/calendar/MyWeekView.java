@@ -6,8 +6,10 @@
 package cn.zhengweiyi.weiyichild.custom.view.calendar;
 
 import android.content.Context;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.View;
 
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.WeekView;
@@ -15,6 +17,9 @@ import com.haibin.calendarview.WeekView;
 import cn.zhengweiyi.weiyichild.R;
 
 public class MyWeekView extends WeekView {
+
+    // 选中日期圆形背景半径
+    private int mRadius;
 
     // 自定义文本画笔
     private Paint mTextPaint = new Paint();
@@ -42,6 +47,16 @@ public class MyWeekView extends WeekView {
         mPadding = dipToPx(getContext(), 4);
         Paint.FontMetrics metrics = mSchemeBasicPaint.getFontMetrics();
         mSchemeBaseLine = mRadio - metrics.descent + (metrics.bottom - metrics.top) / 2 + dipToPx(getContext(), 1);
+
+        //兼容硬件加速无效的代码
+        setLayerType(View.LAYER_TYPE_SOFTWARE, mSelectedPaint);
+        //4.0以上硬件加速会导致无效
+        mSelectedPaint.setMaskFilter(new BlurMaskFilter(20, BlurMaskFilter.Blur.SOLID));
+    }
+
+    @Override
+    protected void onPreviewHook() {
+        mRadius = Math.min(mItemWidth, mItemHeight) / 11 * 5;
     }
 
     /**
@@ -60,7 +75,7 @@ public class MyWeekView extends WeekView {
         // 矩形选中状态 canvas.drawRect(x + mPadding, mPadding, x + mItemWidth - mPadding, mItemHeight - mPadding, mSelectedPaint);
         int cx = x +mItemWidth / 2;
         int cy = mItemHeight / 2;
-        canvas.drawCircle(cx, cy, (mItemHeight - mPadding) / 2, mSelectedPaint);
+        canvas.drawCircle(cx, cy, mRadius, mSelectedPaint);
         return true;
     }
 
