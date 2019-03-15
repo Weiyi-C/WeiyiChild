@@ -19,7 +19,12 @@ import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
+import cn.zhengweiyi.weiyichild.greenDao.DietaryLab;
 
 public class DietaryActivity extends AppCompatActivity implements
         CalendarView.OnCalendarSelectListener,
@@ -42,6 +47,9 @@ public class DietaryActivity extends AppCompatActivity implements
     private int mYear;
     CalendarLayout mCalendarLayout;
 
+    DietaryLab dietaryLab;
+    List mDietaryList = new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +57,22 @@ public class DietaryActivity extends AppCompatActivity implements
 
         StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimary);
 
+        try {
+            initData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         initView();
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData() throws ParseException {
+        MyApplication app = (MyApplication) getApplication();
+        app.initData();
+        dietaryLab = new DietaryLab(app.getDaoSession().getDietaryDao());
+        Log.d("读取数据库", "dietaryDao[1]：" + dietaryLab.getDietaryById(1L));
     }
 
     private void initView() {
@@ -98,7 +121,7 @@ public class DietaryActivity extends AppCompatActivity implements
         mTextYear.setText(String.valueOf(mCalendarView.getCurYear()) + " \u25bc");
         mYear = mCalendarView.getCurYear();
         mTextMonth.setText(mCalendarView.getCurMonth() + "月");  //  + mCalendarView.getCurDay() + "日"
-        mCalendarView.scrollToCurrent();                         // 默认选中“今天”
+        // mCalendarView.scrollToCurrent();                         // 默认选中“今天”
         mTextLunar.setText("今日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
     }
@@ -136,10 +159,13 @@ public class DietaryActivity extends AppCompatActivity implements
         mTextLunar.setText(calendar.getLunar());
         mYear = calendar.getYear();
 
-        Log.e("onDateSelected", "  -- " + calendar.getYear() +
-                "  --  " + calendar.getMonth() +
-                "  -- " + calendar.getDay() +
-                "  --  " + isClick + "  --   " + calendar.getScheme());
+        String selectDate = calendar.getYear() + "-" + calendar.getMonth() + "-" + calendar.getDay();
+        mDietaryList = dietaryLab.getDietaryByDate(selectDate);
+
+        Log.i("onDateSelected", calendar.getYear() +
+                "-" + calendar.getMonth() + "-" + calendar.getDay() +
+                " -- 点击：" + isClick + " -- 事件：" + calendar.getScheme() +
+                " -- 食谱大小：" + mDietaryList.size());
     }
 
     @Override
