@@ -3,7 +3,7 @@
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
-package cn.zhengweiyi.weiyichild;
+package cn.zhengweiyi.weiyichild.bean;
 
 public class GridBean {
     private int iconId;   //图片ID

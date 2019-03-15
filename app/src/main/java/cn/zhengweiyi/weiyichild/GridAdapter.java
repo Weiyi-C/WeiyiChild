@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cn.zhengweiyi.weiyichild.bean.GridBean;
+
 public class GridAdapter extends BaseAdapter {
 
     private List<GridBean> gridDataList;

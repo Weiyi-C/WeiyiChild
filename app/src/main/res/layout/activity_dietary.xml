@@ -82,7 +82,8 @@
             android:layout_marginEnd="@dimen/view_spacing_large"
             android:text="@string/function_dietary"
             android:textSize="@dimen/text_size_title"
-            android:textColor="@color/colorTextBlack"/>
+            android:textColor="@color/colorTextBlack"
+            tools:ignore="RelativeOverlap" />
 
         <FrameLayout
             android:id="@+id/fl_current"

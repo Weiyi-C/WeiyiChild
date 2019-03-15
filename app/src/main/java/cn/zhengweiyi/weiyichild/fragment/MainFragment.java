@@ -23,7 +23,7 @@ import java.util.Objects;
 
 import cn.zhengweiyi.weiyichild.DietaryActivity;
 import cn.zhengweiyi.weiyichild.GridAdapter;
-import cn.zhengweiyi.weiyichild.GridBean;
+import cn.zhengweiyi.weiyichild.bean.GridBean;
 import cn.zhengweiyi.weiyichild.R;
 
 /**
