@@ -62,6 +62,14 @@ public class DietaryActivity extends AppCompatActivity implements
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        View back = findViewById(R.id.ic_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         initView();
     }
 
@@ -128,7 +136,6 @@ public class DietaryActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View v) {
-
     }
 
     private Calendar getSchemeCalendar(int year, int month, int day, int color, String text) {
@@ -149,13 +156,19 @@ public class DietaryActivity extends AppCompatActivity implements
 
     }
 
+    /**
+     * 日历日期选择
+     *
+     * @param calendar calendar
+     * @param isClick  是否被点击
+     */
     @SuppressLint("SetTextI18n")
     @Override
     public void onCalendarSelect(Calendar calendar, boolean isClick) {
         mTextLunar.setVisibility(View.VISIBLE);
         mTextYear.setVisibility(View.VISIBLE);
         mTextMonth.setText(calendar.getMonth() + "月");  // + calendar.getDay() + "日"
-        mTextYear.setText(String.valueOf(calendar.getYear()) + "\u25bc");
+        mTextYear.setText(String.valueOf(calendar.getYear()) + " \u25bc");
         mTextLunar.setText(calendar.getLunar());
         mYear = calendar.getYear();
 

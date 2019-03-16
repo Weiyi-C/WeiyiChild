@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
   ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
   -->
@@ -26,9 +25,9 @@
             android:id="@+id/ic_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_left"
-            android:layout_centerVertical="true"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -47,8 +46,8 @@
             android:id="@+id/tv_layout_year_lunar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_month"
             android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_month"
             android:orientation="vertical"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
@@ -59,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:duplicateParentState="true"
                 android:gravity="center"
                 android:textColor="@color/colorTextBlack"
                 android:textSize="@dimen/text_size_small_x" />
@@ -68,6 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:duplicateParentState="true"
                 android:gravity="center"
                 android:textColor="@color/colorTextBlack"
                 android:textSize="@dimen/text_size_small_x" />
@@ -78,11 +79,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/fl_current"
             android:layout_marginEnd="@dimen/view_spacing_large"
+            android:layout_toLeftOf="@id/fl_current"
             android:text="@string/function_dietary"
-            android:textSize="@dimen/text_size_title"
             android:textColor="@color/colorTextBlack"
+            android:textSize="@dimen/text_size_title"
             tools:ignore="RelativeOverlap" />
 
         <FrameLayout
@@ -123,8 +124,8 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
-        app:default_status="shrink"
-        app:calendar_content_view_id="@+id/linearLayout">
+        app:calendar_content_view_id="@+id/linearLayout"
+        app:default_status="shrink">
 
         <com.haibin.calendarview.CalendarView
             android:id="@+id/calendarView"
@@ -133,10 +134,10 @@
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_vertical_margin"
             android:background="@color/colorPrimary"
-            app:current_month_lunar_text_color="@color/colorTextDefault"
-            app:current_month_text_color="@color/colorTextBlack"
             app:current_day_lunar_text_color="@color/colorTextDefault"
             app:current_day_text_color="@color/themePrimary"
+            app:current_month_lunar_text_color="@color/colorTextDefault"
+            app:current_month_text_color="@color/colorTextBlack"
             app:max_year="2020"
             app:min_year="2019"
             app:month_view="cn.zhengweiyi.weiyichild.custom.view.calendar.MyMonthView"
@@ -146,32 +147,32 @@
             app:scheme_text="假"
             app:scheme_text_color="@color/colorTextLight"
             app:scheme_theme_color="@color/colorBackGroundFocused"
+            app:select_mode="single_mode"
             app:selected_lunar_text_color="@color/colorTextLight"
             app:selected_text_color="@color/colorTextLight"
             app:selected_theme_color="@color/themePrimary"
-            app:select_mode="single_mode"
-            app:week_view="cn.zhengweiyi.weiyichild.custom.view.calendar.MyWeekView"
             app:week_background="@color/colorBackGroundWhite"
             app:week_line_background="@color/colorTextDisable"
             app:week_start_with="sun"
             app:week_text_color="@color/colorTextBlack"
+            app:week_view="cn.zhengweiyi.weiyichild.custom.view.calendar.MyWeekView"
             app:week_view_scrollable="true" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:orientation="vertical"
-            android:elevation="0dp"
-            android:background="@color/colorBackGroundWhite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorBackGroundWhite"
+            android:elevation="0dp"
+            android:orientation="vertical"
             tools:ignore="UnusedAttribute">
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabLayout"
-                app:tabIndicatorColor="#00333333"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:background="@color/colorBackGroundWhite"
+                app:tabIndicatorColor="#00333333"
                 app:tabMode="scrollable"
                 app:tabSelectedTextColor="#333333"
                 app:tabTextColor="#CFCFCF" />
