@@ -16,5 +16,7 @@
     <color name="colorBackGroundWhite">#FAFAFA</color>
     <color name="colorBackGroundGrey">#F2F2F2</color>
     <color name="colorBackGroundFocused">#11000000</color>
+    <color name="colorItemBackGroundWhite">#FFF</color>
+
     <color name="ic_launcher_background">#D2DD23</color>
 </resources>

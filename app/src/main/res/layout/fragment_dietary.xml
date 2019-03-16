@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
+  ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.DietaryFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dietary_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</FrameLayout>

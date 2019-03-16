@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
+  ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/view_spacing_large"
+    android:background="@drawable/im_bg_round_corner"
+    android:minHeight="80dp"
+    android:orientation="horizontal"
+    android:padding="@dimen/view_spacing_large">
+
+    <TextView
+        android:id="@+id/dietary_text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:ems="4"
+        android:gravity="center"
+        android:paddingStart="@dimen/view_spacing"
+        android:paddingEnd="@dimen/view_spacing_large"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="@dimen/text_size_default" />
+
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorTextDisable" />
+
+    <TextView
+        android:id="@+id/dietary_text_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/view_spacing_large"
+        android:layout_weight="5"
+        android:textColor="@color/colorTextBlack" />
+
+</LinearLayout>

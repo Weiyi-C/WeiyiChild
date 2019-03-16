@@ -71,7 +71,7 @@ public class MyApplication extends Application {
         DietaryDao dietaryDao = getDaoSession().getDietaryDao();
         if (dietaryDao.load(1L) == null) {  //判断数据库是否有数据
             // 初始化测试数据
-            String stringDate = "2019-03-15";
+            String stringDate = DateFormatUtil.DateToStr(new Date());
             Date dateNow = DateFormatUtil.StrToDate(stringDate);
             Dietary dietary0 = new Dietary(dateNow, 0, "早餐", "奶黄包、豆浆");
             Dietary dietary1 = new Dietary(dateNow, 1, "上午点心", "香蕉、哈密瓜");

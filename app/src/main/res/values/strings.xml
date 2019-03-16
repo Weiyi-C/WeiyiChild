@@ -20,6 +20,7 @@
     <string name="list_phone">我的手机</string>
     <string name="list_setting">系统设置</string>
     <string name="list_about">关于</string>
+    <string name="dietary_list">食谱</string>
 
     <!-- 描述文字 -->
     <string name="app_logo" translatable="false">LOGO</string>

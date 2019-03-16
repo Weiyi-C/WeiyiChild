@@ -17,15 +17,16 @@
             android:id="@+id/layoutUserInfo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_username_height"
-            android:paddingStart="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
             android:background="@color/colorBackGroundWhite"
-            android:orientation="horizontal"
-            android:onClick="onClick"
+            android:baselineAligned="false"
             android:clickable="true"
             android:focusable="true"
-            android:baselineAligned="false"
-            tools:ignore="OnClick"> <!-- TODO 解决onClick报错 -->
+            android:onClick="onClick"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            tools:ignore="OnClick">
+            <!-- TODO 解决onClick报错 android:onClick="@{onClick}-->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -51,22 +52,22 @@
             android:id="@+id/layoutListVerify"
             android:layout_width="match_parent"
             android:layout_height="@dimen/list_height"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
             android:background="@drawable/layout_select_background"
             android:clickable="true"
             android:focusable="true"
             android:onClick="onClick"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
             tools:ignore="OnClick">
 
             <ImageView
                 android:layout_width="@dimen/image_icon_list"
                 android:layout_height="@dimen/image_icon_list"
                 android:layout_gravity="center_vertical"
-                android:duplicateParentState="true"
                 android:contentDescription="@string/list_icon"
+                android:duplicateParentState="true"
                 android:src="@drawable/ic_verify" />
 
             <TextView
@@ -102,21 +103,21 @@
                 android:id="@+id/layoutListMyChild"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_height"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:background="@drawable/layout_select_background"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onClick"
                 android:orientation="horizontal"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
                 tools:ignore="OnClick">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
                     android:layout_height="@dimen/image_icon_list"
                     android:layout_gravity="center_vertical"
-                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon"
+                    android:duplicateParentState="true"
                     android:src="@drawable/ic_list_child" />
 
                 <TextView
@@ -135,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:duplicateParentState="true"
-                    android:text="@string/list_child_value"/>
+                    android:text="@string/list_child_value" />
 
             </LinearLayout>
 
@@ -143,21 +144,21 @@
                 android:id="@+id/layoutListPhone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_height"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:background="@drawable/layout_select_background"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onClick"
                 android:orientation="horizontal"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
                 tools:ignore="OnClick">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
                     android:layout_height="@dimen/image_icon_list"
                     android:layout_gravity="center_vertical"
-                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon"
+                    android:duplicateParentState="true"
                     android:src="@drawable/ic_list_phone" />
 
                 <TextView
@@ -176,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:duplicateParentState="true"
-                    android:text="@string/list_phone_value"/>
+                    android:text="@string/list_phone_value" />
 
             </LinearLayout>
 
@@ -192,21 +193,21 @@
                 android:id="@+id/layoutListSetting"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_height"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:background="@drawable/layout_select_background"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onClick"
                 android:orientation="horizontal"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
                 tools:ignore="OnClick">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
                     android:layout_height="@dimen/image_icon_list"
                     android:layout_gravity="center_vertical"
-                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon"
+                    android:duplicateParentState="true"
                     android:src="@drawable/ic_list_setting" />
 
                 <TextView
@@ -224,8 +225,8 @@
                     android:layout_width="@dimen/image_icon_list_right"
                     android:layout_height="@dimen/image_icon_list_right"
                     android:layout_gravity="center_vertical"
-                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon_right"
+                    android:duplicateParentState="true"
                     android:src="@drawable/ic_right"
                     android:tint="@color/colorListIconRight" />
 
@@ -235,21 +236,21 @@
                 android:id="@+id/layoutListAbout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_height"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:background="@drawable/layout_select_background"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="onClick"
                 android:orientation="horizontal"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
                 tools:ignore="OnClick">
 
                 <ImageView
                     android:layout_width="@dimen/image_icon_list"
                     android:layout_height="@dimen/image_icon_list"
                     android:layout_gravity="center_vertical"
-                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon"
+                    android:duplicateParentState="true"
                     android:src="@drawable/ic_list_info" />
 
                 <TextView
@@ -267,8 +268,8 @@
                     android:layout_width="@dimen/image_icon_list_right"
                     android:layout_height="@dimen/image_icon_list_right"
                     android:layout_gravity="center_vertical"
-                    android:duplicateParentState="true"
                     android:contentDescription="@string/list_icon_right"
+                    android:duplicateParentState="true"
                     android:src="@drawable/ic_right"
                     android:tint="@color/colorListIconRight" />
 

@@ -7,6 +7,9 @@ package cn.zhengweiyi.weiyichild;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
+import cn.zhengweiyi.weiyichild.fragment.DietaryFragment;
 import cn.zhengweiyi.weiyichild.greenDao.DietaryLab;
 
 public class DietaryActivity extends AppCompatActivity implements
@@ -31,24 +35,27 @@ public class DietaryActivity extends AppCompatActivity implements
         CalendarView.OnYearChangeListener,
         CalendarView.OnMonthChangeListener, View.OnClickListener {
 
-    TextView mTextMonth;
-
-    TextView mTextYear;
-
-    TextView mTextLunar;
+    TextView mTextMonth;                    // 顶部月份
+    TextView mTextYear;                     // 顶部年份
+    TextView mTextLunar;                    // 顶部阴历文本
 
     TextView mTextCurrentDay;
 
-    CalendarView mCalendarView;
+    CalendarView mCalendarView;             // 日历View
 
     RelativeLayout mRelativeTool;
 
     LinearLayout mLinearLayout;
     private int mYear;
-    CalendarLayout mCalendarLayout;
+    CalendarLayout mCalendarLayout;         // 日历布局
 
-    DietaryLab dietaryLab;
-    List mDietaryList = new ArrayList();
+    DietaryLab dietaryLab;                  // 食谱数据库操作类
+    List mDietaryList = new ArrayList();    // 食谱数据
+
+    private TabLayout tab;
+    private String[] tabTitle;
+    private ViewPager pager;
+    private List<Fragment> fragmentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +70,7 @@ public class DietaryActivity extends AppCompatActivity implements
             e.printStackTrace();
         }
 
+        // 绑定返回按钮事件
         View back = findViewById(R.id.ic_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,13 +85,23 @@ public class DietaryActivity extends AppCompatActivity implements
      * 初始化数据
      */
     private void initData() throws ParseException {
+        // 设置TabLayout标题
+        int tab[] = {R.string.dietary_list};
+        tabTitle = new String[tab.length];
+        for (int i = 0; i < tab.length; i++) {
+            tabTitle[i] = getResources().getString(tab[i]);
+        }
+
+        // 读取食谱数据库
         MyApplication app = (MyApplication) getApplication();
         app.initData();
         dietaryLab = new DietaryLab(app.getDaoSession().getDietaryDao());
         Log.d("读取数据库", "dietaryDao[1]：" + dietaryLab.getDietaryById(1L));
     }
 
+    @SuppressLint("SetTextI18n")
     private void initView() {
+        // 绘制日历
         mTextMonth = findViewById(R.id.tv_month);
         mTextYear = findViewById(R.id.tv_year);
         mTextLunar = findViewById(R.id.tv_lunar);
@@ -126,12 +144,24 @@ public class DietaryActivity extends AppCompatActivity implements
         mCalendarLayout = findViewById(R.id.calendarLayout);
         mCalendarView.setOnCalendarSelectListener(this);
         mCalendarView.setOnYearChangeListener(this);
+        mCalendarView.setOnMonthChangeListener(this);
         mTextYear.setText(String.valueOf(mCalendarView.getCurYear()) + " \u25bc");
         mYear = mCalendarView.getCurYear();
         mTextMonth.setText(mCalendarView.getCurMonth() + "月");  //  + mCalendarView.getCurDay() + "日"
         // mCalendarView.scrollToCurrent();                         // 默认选中“今天”
         mTextLunar.setText("今日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
+
+        this.pager = findViewById(R.id.viewPager);
+        this.tab = findViewById(R.id.tabLayout);
+
+        /* 设置fragment适配器TabAdapter */
+        fragmentList = new ArrayList<>();
+        fragmentList.add(new DietaryFragment());
+        pager.setAdapter(new TabAdapter(getSupportFragmentManager(), fragmentList, tabTitle));
+
+        /* Tab与ViewPager绑定 */
+        tab.setupWithViewPager(pager);
     }
 
     @Override
@@ -183,16 +213,13 @@ public class DietaryActivity extends AppCompatActivity implements
 
     @Override
     public void onYearChange(int year) {
-        Toast.makeText(this, "您已经切换到了 "
-                + String.valueOf(year) + " 年", Toast.LENGTH_SHORT).show();
         mTextMonth.setText(String.valueOf(year));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onMonthChange(int year, int month) {
-        Toast.makeText(this, "您已经切换到了 "
-                + String.valueOf(month) + " 月", Toast.LENGTH_SHORT).show();
-        mTextMonth.setText(String.valueOf(month));
-        mTextYear.setText(String.valueOf(year));
+        mTextMonth.setText(String.valueOf(month) + "月");
+        mTextYear.setText(String.valueOf(year) + " \u25bc");
     }
 }

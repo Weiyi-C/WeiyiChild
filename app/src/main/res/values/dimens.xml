@@ -12,7 +12,8 @@
     <dimen name="app_bar_height_large">48dp</dimen>
     <dimen name="app_tab_height">48dp</dimen>
     <dimen name="view_spacing">8dp</dimen>
-    <dimen name="view_spacing_large">24dp</dimen>
+    <dimen name="view_spacing_large">16dp</dimen>
+    <dimen name="view_spacing_largest">24dp</dimen>
     <dimen name="grid_columns">3</dimen>
     <dimen name="grid_vertical_spacing">20dp</dimen>
     <dimen name="grid_image_size">60dp</dimen>

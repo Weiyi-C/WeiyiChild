@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
   ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
   -->
@@ -22,37 +21,37 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
             app:navigationIcon="@drawable/ic_left"
-            app:title=""/>
+            app:title="" />
 
     </android.support.design.widget.AppBarLayout>
 
-        <cn.zhengweiyi.weiyichild.custom.view.RoundAngleImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/view_spacing_large"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@id/app_name"
-            android:src="@mipmap/ic_launcher_round"
-            android:contentDescription="@string/app_logo" />
+    <cn.zhengweiyi.weiyichild.custom.view.RoundAngleImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/app_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/view_spacing_largest"
+        android:contentDescription="@string/app_logo"
+        android:src="@mipmap/ic_launcher_round" />
 
-        <TextView
-            android:id="@+id/app_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/view_spacing"
-            android:layout_centerInParent="true"
-            android:textSize="@dimen/text_size_about_app_name"
-            android:textColor="@color/colorTextBlack"
-            android:text="@string/app_name"/>
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/view_spacing"
+        android:text="@string/app_name"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="@dimen/text_size_about_app_name" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/app_name"
-            android:layout_centerHorizontal="true"
-            android:textSize="@dimen/text_size_default"
-            android:textColor="@color/colorTextBlack"
-            android:text="@string/app_version"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_name"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_version"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="@dimen/text_size_default" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,17 +59,17 @@
         android:layout_above="@id/textCopyright"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/view_spacing"
-        android:textSize="@dimen/text_size_default"
-        android:text="@string/app_powered_by"/>
+        android:text="@string/app_powered_by"
+        android:textSize="@dimen/text_size_default" />
 
     <TextView
         android:id="@+id/textCopyright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/view_spacing_large"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/view_spacing_largest"
         android:gravity="center_horizontal"
-        android:text="@string/app_copyright"/>
+        android:text="@string/app_copyright" />
 
 </RelativeLayout>
