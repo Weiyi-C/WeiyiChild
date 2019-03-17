@@ -221,5 +221,6 @@ public class DietaryActivity extends AppCompatActivity implements
     public void onMonthChange(int year, int month) {
         mTextMonth.setText(String.valueOf(month) + "月");
         mTextYear.setText(String.valueOf(year) + " \u25bc");
+        mTextLunar.setText("");
     }
 }

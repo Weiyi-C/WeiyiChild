@@ -138,7 +138,6 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
                 Toast.makeText(getActivity(), "点击了安全接送", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
-                Toast.makeText(getActivity(), "点击了每日食谱", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), DietaryActivity.class);
                 startActivity(intent);
                 break;

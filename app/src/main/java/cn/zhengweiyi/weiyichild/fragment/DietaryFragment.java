@@ -32,6 +32,7 @@ import cn.zhengweiyi.weiyichild.greenDao.DietaryLab;
 public class DietaryFragment extends Fragment {
 
     private List<Dietary> dietaryList;
+    private RecyclerView mRecyclerView;
 
     public DietaryFragment() {
         // Required empty public constructor
@@ -47,13 +48,17 @@ public class DietaryFragment extends Fragment {
         final DietaryLab dietaryLab = new DietaryLab(app.getDaoSession().getDietaryDao());
         dietaryList = dietaryLab.getDietaryByDate(DateFormatUtil.DateToStr(new Date()));
         // 显示食谱
-        RecyclerView recyclerView = view.findViewById(R.id.dietary_recycler);
+        mRecyclerView = view.findViewById(R.id.dietary_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
         final DietaryRecyclerAdapter adapter = new DietaryRecyclerAdapter(dietaryList);
-        recyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
         // Inflate the layout for this fragment
         return view;
+    }
+
+    public boolean isScrollTop() {
+        return mRecyclerView != null && mRecyclerView.computeVerticalScrollOffset() == 0;
     }
 
 }

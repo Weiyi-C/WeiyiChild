@@ -158,7 +158,7 @@
             app:week_view="cn.zhengweiyi.weiyichild.custom.view.calendar.MyWeekView"
             app:week_view_scrollable="true" />
 
-        <LinearLayout
+        <cn.zhengweiyi.weiyichild.custom.layout.DietaryCalendarLinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -185,7 +185,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/colorBackGroundWhite" />
 
-        </LinearLayout>
+        </cn.zhengweiyi.weiyichild.custom.layout.DietaryCalendarLinearLayout>
     </com.haibin.calendarview.CalendarLayout>
 
 

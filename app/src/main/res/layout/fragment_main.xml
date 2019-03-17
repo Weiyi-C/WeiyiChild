@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
   ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
   -->
@@ -11,15 +10,15 @@
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/activity_horizontal_margin"
     android:paddingVertical="@dimen/activity_vertical_margin"
-    tools:targetApi="o"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:targetApi="o">
 
     <cn.zhengweiyi.weiyichild.custom.view.RoundAngleImageView
         android:id="@+id/homeImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_home_height"
         android:scaleType="fitXY"
-        android:src="@drawable/im_default"/>
+        android:src="@drawable/im_default" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,17 +30,19 @@
             android:layout_width="@dimen/image_icon_small"
             android:layout_height="@dimen/image_icon_small"
             android:contentDescription="@string/notice_icon"
-            android:src="@drawable/ic_notice"/>
+            android:src="@drawable/ic_notice" />
 
         <TextView
             android:id="@+id/textNotice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/view_spacing"
-            android:textColor="@color/colorTextDefault"
             android:layout_toEndOf="@id/iconNotice"
-            android:textSize="@dimen/text_size_default"
-            android:hint="@string/notice_hint"/>
+            android:ellipsize="end"
+            android:hint="@string/notice_hint"
+            android:lines="1"
+            android:textColor="@color/colorTextDefault"
+            android:textSize="@dimen/text_size_default" />
 
     </RelativeLayout>
 
@@ -50,10 +51,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnWidth="80dp"
-        android:verticalSpacing="@dimen/grid_vertical_spacing"
-        android:stretchMode="spacingWidthUniform"
+        android:fadeScrollbars="true"
         android:numColumns="3"
-        android:fadeScrollbars="true">
-    </GridView>
+        android:stretchMode="spacingWidthUniform"
+        android:verticalSpacing="@dimen/grid_vertical_spacing" />
 
 </LinearLayout>
