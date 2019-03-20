@@ -20,6 +20,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    
+    <style name="MyToolbarThemePrimary" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorControlNormal">@color/colorTextLight</item>
+        <item name="android:textColor">@color/colorTextLight</item>
+    </style>
 
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">?attr/colorAccent</item>

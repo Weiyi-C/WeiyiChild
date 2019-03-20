@@ -20,6 +20,8 @@
     <string name="list_phone">我的手机</string>
     <string name="list_setting">系统设置</string>
     <string name="list_about">关于</string>
+    <string name="pickup_pick_up">接孩子</string>
+    <string name="pickup_send">送孩子</string>
     <string name="dietary_list">食谱</string>
 
     <!-- 描述文字 -->

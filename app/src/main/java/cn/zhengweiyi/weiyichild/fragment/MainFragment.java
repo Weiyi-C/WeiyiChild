@@ -29,6 +29,7 @@ import java.util.Objects;
 import cn.zhengweiyi.weiyichild.DietaryActivity;
 import cn.zhengweiyi.weiyichild.GridAdapter;
 import cn.zhengweiyi.weiyichild.MainActivity;
+import cn.zhengweiyi.weiyichild.PickupActivity;
 import cn.zhengweiyi.weiyichild.bean.GridBean;
 import cn.zhengweiyi.weiyichild.R;
 
@@ -135,11 +136,13 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                Toast.makeText(getActivity(), "点击了安全接送", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getActivity(), "点击了安全接送", Toast.LENGTH_SHORT).show();
+                Intent intentPickup = new Intent(getActivity(), PickupActivity.class);
+                startActivity(intentPickup);
                 break;
             case 1:
-                Intent intent = new Intent(getActivity(), DietaryActivity.class);
-                startActivity(intent);
+                Intent intentDietary = new Intent(getActivity(), DietaryActivity.class);
+                startActivity(intentDietary);
                 break;
             case 2:
                 Toast.makeText(getActivity(), "点击了信息管理", Toast.LENGTH_SHORT).show();

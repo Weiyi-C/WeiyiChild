@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DietaryActivity"></activity>
+        <activity android:name=".PickupActivity"></activity>
+        <activity android:name=".DietaryActivity" />
         <activity android:name=".AboutActivity" />
         <activity
             android:name=".MainActivity"

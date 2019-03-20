@@ -29,4 +29,6 @@
     <string name="tab_home">Home</string>
     <string name="tab_me">Me</string>
     <string name="dietary_list">Dietary List</string>
+    <string name="pickup_pick_up">Pick Up</string>
+    <string name="pickup_send">Send</string>
 </resources>
