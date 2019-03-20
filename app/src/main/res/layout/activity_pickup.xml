@@ -18,7 +18,7 @@
         app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_pickup"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
             app:contentInsetStartWithNavigation="@dimen/view_spacing"
