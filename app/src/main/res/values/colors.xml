@@ -18,5 +18,7 @@
     <color name="colorBackGroundFocused">#11000000</color>
     <color name="colorItemBackGroundWhite">#FFF</color>
 
+    <color name="colorIconDisable">#e1e1e1</color>
+
     <color name="ic_launcher_background">#D2DD23</color>
 </resources>

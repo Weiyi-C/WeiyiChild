@@ -97,7 +97,19 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/view_spacing_large"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/view_spacing"
+        android:text="@string/pickup_history"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="@dimen/text_size_default" />
+
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/pickupRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

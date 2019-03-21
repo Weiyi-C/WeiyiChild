@@ -23,10 +23,13 @@
     <dimen name="layout_pickup_button_height">128dp</dimen>
     <dimen name="layout_pickup_button_image">72dp</dimen>
 
+    <!-- 图片大小 -->
     <dimen name="image_home_height">120dp</dimen>
     <dimen name="image_icon_small">20dp</dimen>
+    <dimen name="image_icon_pickup_history">24dp</dimen>
     <dimen name="image_icon_list">24dp</dimen>
     <dimen name="image_icon_list_right">20dp</dimen>
+    <dimen name="image_icon_recycler_null">88dp</dimen>
 
     <!-- 文字大小 -->
     <dimen name="text_size_default">16sp</dimen>
@@ -36,5 +39,11 @@
     <dimen name="text_size_title_large">24sp</dimen>
     <dimen name="text_size_list">18sp</dimen>
     <dimen name="text_size_about_app_name">32sp</dimen>
+    <dimen name="text_size_disable_hint">24sp</dimen>
+
+    <!-- 线条粗细 -->
+    <dimen name="linear_thickness_light">0.5dp</dimen>
+    <dimen name="linear_thickness_default">1dp</dimen>
+    <dimen name="linear_thickness_bold">2dp</dimen>
 
 </resources>

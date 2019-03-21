@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
+  ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:maxHeight="@dimen/list_height"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/view_spacing"
+    android:paddingEnd="@dimen/view_spacing">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/view_spacing_large"
+        android:layout_marginEnd="@dimen/view_spacing_large"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/view_spacing_large">
+
+        <ImageView
+            android:layout_width="@dimen/image_icon_pickup_history"
+            android:layout_height="@dimen/image_icon_pickup_history"
+            android:src="@drawable/ic_down_circle_fill"
+            android:tint="@color/themeDark"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:layout_width="@dimen/linear_thickness_bold"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="@color/themeDark"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/view_spacing_large"
+        android:paddingBottom="@dimen/view_spacing_large">
+
+        <TextView
+            android:id="@+id/textPickupTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="@dimen/text_size_default" />
+
+        <TextView
+            android:id="@+id/textPickupTeacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_spacing"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/colorTextDefault"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+
+</LinearLayout>

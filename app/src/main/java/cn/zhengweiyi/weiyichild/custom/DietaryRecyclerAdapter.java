@@ -8,6 +8,7 @@ package cn.zhengweiyi.weiyichild.custom;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +19,18 @@ import java.util.List;
 import cn.zhengweiyi.weiyichild.R;
 import cn.zhengweiyi.weiyichild.bean.Dietary;
 
-public class DietaryRecyclerAdapter extends RecyclerView.Adapter<DietaryRecyclerAdapter.ViewHolder> {
+public class DietaryRecyclerAdapter extends RecyclerView.Adapter<DietaryRecyclerAdapter.DietaryViewHolder> {
 
     private List<Dietary> mDietaryList;
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class DietaryViewHolder extends RecyclerView.ViewHolder {
 
         View dietaryView;
         TextView dietaryName;
         TextView dietaryContent;
         Context context;
 
-        public ViewHolder(@NonNull View itemView) {
+        public DietaryViewHolder(@NonNull View itemView) {
             super(itemView);
             dietaryView = itemView;
             dietaryName = itemView.findViewById(R.id.dietary_text_name);
@@ -44,14 +45,16 @@ public class DietaryRecyclerAdapter extends RecyclerView.Adapter<DietaryRecycler
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public DietaryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        Log.d("RecyclerView", "onCreateViewHolder方法运行");
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.recycler_item_dietary, viewGroup, false);
-        return new ViewHolder(view);
+        return new DietaryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull DietaryViewHolder viewHolder, int position) {
+        Log.d("RecyclerView", "onBindViewHolder方法运行");
         final Dietary dietary = mDietaryList.get(position);
         viewHolder.dietaryName.setText(dietary.getName());
         viewHolder.dietaryContent.setText(dietary.getFoods());

@@ -11,14 +11,17 @@ import android.util.Log;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import cn.zhengweiyi.weiyichild.bean.Dietary;
+import cn.zhengweiyi.weiyichild.bean.PickupHistory;
 import cn.zhengweiyi.weiyichild.custom.DateFormatUtil;
 import cn.zhengweiyi.weiyichild.greenDao.db.DaoMaster;
 import cn.zhengweiyi.weiyichild.greenDao.db.DaoSession;
 import cn.zhengweiyi.weiyichild.greenDao.db.DietaryDao;
+import cn.zhengweiyi.weiyichild.greenDao.db.PickupHistoryDao;
 
 public class MyApplication extends Application {
     private DaoMaster.DevOpenHelper mHelper;
@@ -26,6 +29,7 @@ public class MyApplication extends Application {
     private DaoMaster mDaoMaster;
     private DaoSession mDaoSession;
     private List<Dietary> dietaryList = new ArrayList<>();
+    private List<PickupHistory> pickupHistoryList = new ArrayList<>();
 
     // 静态单例
     public static MyApplication instance;
@@ -91,6 +95,27 @@ public class MyApplication extends Application {
             dietaryDao.saveInTx(dietaryList);
             Log.d("写入数据库", "dietaryDao[1].date：" + String.valueOf(dietaryDao.load(1L).getDate()));
             Log.d("写入数据库", "dietaryDao[2].date：" + String.valueOf(dietaryDao.load(2L).getDate()));
+        }
+    }
+
+    /**
+     * 写入接送记录测试数据
+     */
+    public void initTestDataPickup() {
+        PickupHistoryDao pickupHistoryDao = getDaoSession().getPickupHistoryDao();
+        Date dateNow = new Date();
+        for (int i = 0; i < 3; i++) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dateNow);
+            calendar.add(Calendar.DATE, -i);
+            Date date = calendar.getTime();
+            PickupHistory pickupHistoryPickup = new PickupHistory(date, PickupHistory.PICK_UP, "家长名字", "贾老师");
+            calendar.add(Calendar.HOUR_OF_DAY, -6);
+            date = calendar.getTime();
+            PickupHistory pickupHistorySend = new PickupHistory(date, PickupHistory.SEND, "家长姓名", "甄老师");
+            pickupHistoryList.add(pickupHistoryPickup);
+            pickupHistoryList.add(pickupHistorySend);
+            pickupHistoryDao.saveInTx(pickupHistoryList);
         }
     }
 }

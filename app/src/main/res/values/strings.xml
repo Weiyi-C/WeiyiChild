@@ -22,7 +22,13 @@
     <string name="list_about">关于</string>
     <string name="pickup_pick_up">接孩子</string>
     <string name="pickup_send">送孩子</string>
+    <string name="pickup_history">接送记录</string>
+    <string name="pickup_pick_up_time">接孩子时间</string>
+    <string name="pickup_send_time">送孩子时间</string>
     <string name="dietary_list">食谱</string>
+    <string name="recycler_null">没有获取到数据</string>
+    <string name="recycler_null_error">数据有误</string>
+    <string name="button_insert_test_data">添加测试数据</string>
 
     <!-- 描述文字 -->
     <string name="app_logo" translatable="false">LOGO</string>

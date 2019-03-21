@@ -13,7 +13,7 @@ import cn.zhengweiyi.weiyichild.custom.DateFormatUtil;
 import cn.zhengweiyi.weiyichild.greenDao.db.DietaryDao;
 
 /**
- * 数据库操作
+ * 每日菜谱数据库操作类
  */
 public class DietaryLab {
     private DietaryDao dietaryDao;
@@ -24,7 +24,8 @@ public class DietaryLab {
 
     /**
      * 获取全部食谱
-     * @return  返回全部食谱
+     *
+     * @return 返回全部食谱
      */
     public List<Dietary> getAllDietary() {
         return dietaryDao.loadAll();
@@ -32,8 +33,9 @@ public class DietaryLab {
 
     /**
      * 根据日期获取食谱
-     * @param str   日期
-     * @return      返回指定日期的食谱
+     *
+     * @param str 日期
+     * @return 返回指定日期的食谱
      */
     public List<Dietary> getDietaryByDate(String str) {
         Date date = DateFormatUtil.StrToDate(str);

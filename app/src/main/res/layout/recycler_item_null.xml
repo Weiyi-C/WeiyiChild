@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
+  ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/recyclerNullContentLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables,UselessParent">
+
+        <ImageView
+            android:id="@+id/recyclerNullIcon"
+            android:layout_width="@dimen/image_icon_recycler_null"
+            android:layout_height="@dimen/image_icon_recycler_null"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_alert"
+            android:tint="@color/colorIconDisable"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/recyclerNullTextHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/view_spacing"
+            android:text="@string/recycler_null"
+            android:textColor="@color/colorTextDisable"
+            android:textSize="@dimen/text_size_disable_hint" />
+    </LinearLayout>
+
+</RelativeLayout>

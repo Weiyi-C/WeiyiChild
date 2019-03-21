@@ -31,4 +31,10 @@
     <string name="dietary_list">Dietary List</string>
     <string name="pickup_pick_up">Pick Up</string>
     <string name="pickup_send">Send</string>
+    <string name="recycler_null">No Data</string>
+    <string name="pickup_pick_up_time">Time to pick up children</string>
+    <string name="pickup_send_time">Time to send children</string>
+    <string name="button_insert_test_data">Insert Test Data</string>
+    <string name="recycler_null_error">Data Error</string>
+    <string name="pickup_history">Pickup History</string>
 </resources>
