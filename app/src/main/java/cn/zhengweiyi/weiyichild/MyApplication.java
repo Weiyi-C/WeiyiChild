@@ -9,6 +9,7 @@ import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.net.URI;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,6 +25,10 @@ import cn.zhengweiyi.weiyichild.greenDao.db.DietaryDao;
 import cn.zhengweiyi.weiyichild.greenDao.db.PickupHistoryDao;
 
 public class MyApplication extends Application {
+
+    public final String ROOT_HOST = "weiyihost";
+    public final String API_SEND_CHILD = ":8080/sendChild?";
+
     private DaoMaster.DevOpenHelper mHelper;
     private SQLiteDatabase db;
     private DaoMaster mDaoMaster;

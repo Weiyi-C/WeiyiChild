@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PickupActivity"></activity>
+        <activity android:name=".CodeActivity"/>
+        <activity android:name=".PickupActivity" />
         <activity android:name=".DietaryActivity" />
         <activity android:name=".AboutActivity" />
         <activity
@@ -18,7 +19,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

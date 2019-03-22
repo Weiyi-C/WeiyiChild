@@ -4,13 +4,19 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/activity_vertical_margin"
+    android:layout_marginTop="2dp"
+    android:layout_marginEnd="@dimen/activity_vertical_margin"
     android:layout_marginBottom="@dimen/view_spacing_large"
     android:background="@drawable/im_bg_round_corner"
+    android:elevation="@dimen/elevation_default"
     android:minHeight="80dp"
     android:orientation="horizontal"
-    android:padding="@dimen/view_spacing_large">
+    android:padding="@dimen/view_spacing_large"
+    tools:targetApi="lollipop">
 
     <TextView
         android:id="@+id/dietary_text_name"

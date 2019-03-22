@@ -11,6 +11,7 @@
     <dimen name="app_bar_height">40dp</dimen>
     <dimen name="app_bar_height_large">48dp</dimen>
     <dimen name="app_tab_height">48dp</dimen>
+    <dimen name="elevation_default">4dp</dimen>
     <dimen name="grid_columns">3</dimen>
     <dimen name="grid_vertical_spacing">20dp</dimen>
     <dimen name="grid_image_size">60dp</dimen>
@@ -19,11 +20,13 @@
     <dimen name="layout_verify_height">56</dimen>
     <dimen name="layout_pickup_button_height">128dp</dimen>
     <dimen name="layout_pickup_button_image">72dp</dimen>
+    <dimen name="layout_pickup_send_code_layout_width">280dp</dimen>
     <dimen name="view_spacing">8dp</dimen>
     <dimen name="view_spacing_large">16dp</dimen>
     <dimen name="view_spacing_largest">24dp</dimen>
 
     <!-- 图片大小 -->
+    <dimen name="image_code_largest">260dp</dimen>
     <dimen name="image_home_height">120dp</dimen>
     <dimen name="image_icon_small">20dp</dimen>
     <dimen name="image_icon_pickup_history">24dp</dimen>

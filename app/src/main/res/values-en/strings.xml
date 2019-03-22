@@ -6,6 +6,7 @@
 
 <resources>
     <string name="app_name">Weiyi Child</string>
+    <string name="activity_code_title">Code</string>
     <string name="button_insert_test_data">Insert Test Data</string>
     <string name="dietary_list">Dietary List</string>
     <string name="function_pickup">Pickup</string>

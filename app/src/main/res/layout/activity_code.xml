@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
+  ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/themeDark"
+    tools:context=".CodeActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/themeDark"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            app:contentInsetStartWithNavigation="@dimen/view_spacing"
+            app:navigationIcon="@drawable/ic_left_light"
+            app:theme="@style/MyToolbarThemePrimary"
+            app:title="@string/activity_code_title">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/layout_pickup_send_code_layout_width"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/im_bg_round_corner"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/view_spacing_large"
+        android:paddingBottom="@dimen/view_spacing_large">
+
+        <ImageView
+            android:id="@+id/imageCode"
+            android:layout_width="@dimen/image_code_largest"
+            android:layout_height="@dimen/image_code_largest"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/activity_code_title" />
+
+    </LinearLayout>
+
+</RelativeLayout>
