@@ -6,39 +6,39 @@
     <string name="app_powered_by" translatable="false">Icon by &#23567;&#33651; &#38; &#31481;&#23572;</string>
 
     <!-- 显示文本 -->
-    <string name="menu_scanner">扫一扫</string>
-    <string name="grid_text">功能名称</string>
-    <string name="tab_home">幼儿</string>
-    <string name="tab_me">我的</string>
+    <string name="button_insert_test_data">添加测试数据</string>
+    <string name="dietary_list">食谱</string>
     <string name="function_pickup">安全接送</string>
     <string name="function_dietary">每日食谱</string>
     <string name="function_manage_info">信息管理</string>
     <string name="function_manage_class">班级管理</string>
     <string name="function_other">其他功能</string>
-    <string name="verify">实名认证</string>
+    <string name="grid_text">功能名称</string>
     <string name="list_child">我的孩子</string>
     <string name="list_phone">我的手机</string>
     <string name="list_setting">系统设置</string>
     <string name="list_about">关于</string>
+    <string name="menu_scanner">扫一扫</string>
     <string name="pickup_pick_up">接孩子</string>
     <string name="pickup_send">送孩子</string>
     <string name="pickup_history">接送记录</string>
     <string name="pickup_pick_up_time">接孩子时间</string>
     <string name="pickup_send_time">送孩子时间</string>
-    <string name="dietary_list">食谱</string>
     <string name="recycler_null">没有获取到数据</string>
     <string name="recycler_null_error">数据有误</string>
-    <string name="button_insert_test_data">添加测试数据</string>
+    <string name="tab_home">幼儿</string>
+    <string name="tab_me">我的</string>
+    <string name="verify">实名认证</string>
 
     <!-- 描述文字 -->
     <string name="app_logo" translatable="false">LOGO</string>
-    <string name="notice_icon">公告图标</string>
     <string name="grid_image">功能图标</string>
-    <string name="user_name">未登录</string>
     <string name="list_icon">列表图标</string>
     <string name="list_icon_right">进入图标</string>
     <string name="list_child_value">孩子姓名</string>
     <string name="list_phone_value">手机号码</string>
+    <string name="notice_icon">公告图标</string>
+    <string name="user_name">未登录</string>
 
     <!-- 默认提示文字 -->
     <string name="notice_hint">公告加载中或暂无公告</string>
