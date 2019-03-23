@@ -8,6 +8,7 @@
     <!-- 显示文本 -->
     <string name="activity_code_title">二维码</string>
     <string name="button_insert_test_data">添加测试数据</string>
+    <string name="calendar_today">今天</string>
     <string name="dietary_list">食谱</string>
     <string name="function_pickup">安全接送</string>
     <string name="function_dietary">每日食谱</string>

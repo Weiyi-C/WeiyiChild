@@ -21,6 +21,9 @@ public class MyWeekView extends WeekView {
     // 选中日期圆形背景半径
     private int mRadius;
 
+    // 今天的背景
+    private Paint mCurrentDayPaint = new Paint();
+
     // 自定义文本画笔
     private Paint mTextPaint = new Paint();
 
@@ -37,6 +40,10 @@ public class MyWeekView extends WeekView {
         mTextPaint.setColor(0xffffffff);
         mTextPaint.setAntiAlias(true);
         mTextPaint.setFakeBoldText(true);
+
+        mCurrentDayPaint.setAntiAlias(true);
+        mCurrentDayPaint.setStyle(Paint.Style.STROKE);
+        mCurrentDayPaint.setColor(getResources().getColor(R.color.themePrimary));
 
         mSchemeBasicPaint.setAntiAlias(true);
         mSchemeBasicPaint.setStyle(Paint.Style.FILL);
@@ -105,7 +112,22 @@ public class MyWeekView extends WeekView {
     @Override
     protected void onDrawText(Canvas canvas, Calendar calendar, int x, boolean hasScheme, boolean isSelected) {
         int cx = x + mItemWidth / 2;
+        int cy = mItemHeight / 2;
         int top = - mItemHeight / 6;
+
+        // 今天的背景
+        if (calendar.isCurrentDay() && !isSelected) {
+            canvas.drawCircle(cx, cy, mRadius, mCurrentDayPaint);
+        }
+
+        // 周末的颜色
+        if (calendar.isWeekend() && calendar.isCurrentMonth()) {
+            mCurMonthTextPaint.setColor(getResources().getColor(R.color.themeDark));
+            mCurMonthLunarTextPaint.setColor(getResources().getColor(R.color.themeDark));
+        } else {
+            mCurMonthTextPaint.setColor(getResources().getColor(R.color.colorTextBlack));
+            mCurMonthLunarTextPaint.setColor(getResources().getColor(R.color.colorTextDefault));
+        }
 
         if (isSelected) {
             canvas.drawText(String.valueOf(calendar.getDay()), cx, mTextBaseLine + top,

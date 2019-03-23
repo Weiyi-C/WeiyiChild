@@ -21,6 +21,9 @@ public class MyMonthView extends MonthView {
     // 选中日期圆形背景半径
     private int mRadius;
 
+    // 今天的背景
+    private Paint mCurrentDayPaint = new Paint();
+
     // 自定义文本画笔
     private Paint mTextPaint = new Paint();
 
@@ -37,6 +40,10 @@ public class MyMonthView extends MonthView {
         mTextPaint.setColor(0xffffffff);
         mTextPaint.setAntiAlias(true);
         mTextPaint.setFakeBoldText(true);
+
+        mCurrentDayPaint.setAntiAlias(true);
+        mCurrentDayPaint.setStyle(Paint.Style.STROKE);
+        mCurrentDayPaint.setColor(getResources().getColor(R.color.themePrimary));
 
         mSchemeBasicPaint.setAntiAlias(true);
         mSchemeBasicPaint.setStyle(Paint.Style.FILL);
@@ -107,18 +114,33 @@ public class MyMonthView extends MonthView {
     @Override
     protected void onDrawText(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme, boolean isSelected) {
         int cx = x + mItemWidth / 2;
+        int cy = y + mItemHeight / 2;
         int top = y - mItemHeight / 6;
 
-        if (isSelected) {//优先绘制选择的
+        // 今天的背景
+        if (calendar.isCurrentDay() && !isSelected) {
+            canvas.drawCircle(cx, cy, mRadius, mCurrentDayPaint);
+        }
+
+        // 周末的颜色
+        if (calendar.isWeekend() && calendar.isCurrentMonth()) {
+            mCurMonthTextPaint.setColor(getResources().getColor(R.color.themeDark));
+            mCurMonthLunarTextPaint.setColor(getResources().getColor(R.color.themeDark));
+        } else {
+            mCurMonthTextPaint.setColor(getResources().getColor(R.color.colorTextBlack));
+            mCurMonthLunarTextPaint.setColor(getResources().getColor(R.color.colorTextDefault));
+        }
+
+        if (isSelected) {           //优先绘制选择的
             canvas.drawText(String.valueOf(calendar.getDay()), cx, mTextBaseLine + top,
                     mSelectTextPaint);
             canvas.drawText(calendar.getLunar(), cx, mTextBaseLine + y + mItemHeight / 10, mSelectedLunarTextPaint);
-        } else if (hasScheme) {//否则绘制具有标记的
+        } else if (hasScheme) {     //否则绘制具有标记的
             canvas.drawText(String.valueOf(calendar.getDay()), cx, mTextBaseLine + top,
                     calendar.isCurrentMonth() ? mSchemeTextPaint : mOtherMonthTextPaint);
 
             canvas.drawText(calendar.getLunar(), cx, mTextBaseLine + y + mItemHeight / 10, mCurMonthLunarTextPaint);
-        } else {//最好绘制普通文本
+        } else {                    //最后绘制普通文本
             canvas.drawText(String.valueOf(calendar.getDay()), cx, mTextBaseLine + top,
                     calendar.isCurrentDay() ? mCurDayTextPaint :
                             calendar.isCurrentMonth() ? mCurMonthTextPaint : mOtherMonthTextPaint);

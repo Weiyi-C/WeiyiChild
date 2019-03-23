@@ -162,7 +162,7 @@ public class DietaryActivity extends AppCompatActivity implements
         mYear = mCalendarView.getCurYear();
         mTextMonth.setText(mCalendarView.getCurMonth() + "月");  //  + mCalendarView.getCurDay() + "日"
         // mCalendarView.scrollToCurrent();                         // 默认选中“今天”
-        mTextLunar.setText("今日");
+        mTextLunar.setText(R.string.calendar_today);
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
 
         this.pager = findViewById(R.id.viewPager);
@@ -230,7 +230,7 @@ public class DietaryActivity extends AppCompatActivity implements
         mTextMonth.setText(calendar.getMonth() + "月");  // + calendar.getDay() + "日"
         mTextYear.setText(String.valueOf(calendar.getYear()) + " \u25bc");
         if (Objects.equals(selectDate, DateFormatUtil.DateToStr(new Date()))) {
-            mTextLunar.setText("今日");
+            mTextLunar.setText(R.string.calendar_today);
         } else {
             mTextLunar.setText(calendar.getLunar());
         }

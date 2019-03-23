@@ -134,7 +134,7 @@
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_vertical_margin"
             android:background="@color/colorPrimary"
-            app:current_day_lunar_text_color="@color/colorTextDefault"
+            app:current_day_lunar_text_color="@color/themePrimary"
             app:current_day_text_color="@color/themePrimary"
             app:current_month_lunar_text_color="@color/colorTextDefault"
             app:current_month_text_color="@color/colorTextBlack"
