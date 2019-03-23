@@ -44,4 +44,7 @@
     <!-- 默认提示文字 -->
     <string name="notice_hint">公告加载中或暂无公告</string>
 
+    <!-- 弹出提示文本 -->
+    <string name="click_calendar_month">再次点击进入年视图</string>
+
 </resources>

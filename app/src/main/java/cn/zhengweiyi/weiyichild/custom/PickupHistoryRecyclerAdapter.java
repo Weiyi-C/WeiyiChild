@@ -35,9 +35,6 @@ public class PickupHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
     private OnEmptyViewButtonClickListener listener;
 
     public PickupHistoryRecyclerAdapter(List<PickupHistory> pickupHistoryList, Context context) {
-        Log.d("RecyclerView",
-                "传入 pickupHistoryList 大小：" + pickupHistoryList.size()
-                        + "\n开始创建Adapter");
         mPickupHistoryList = pickupHistoryList;
         mContext = context;
     }

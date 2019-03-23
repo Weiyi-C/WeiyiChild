@@ -6,7 +6,9 @@
 package cn.zhengweiyi.weiyichild;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -24,8 +26,11 @@ import com.haibin.calendarview.CalendarView;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
+import cn.zhengweiyi.weiyichild.custom.DateFormatUtil;
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.fragment.DietaryFragment;
 import cn.zhengweiyi.weiyichild.greenDao.DietaryLab;
@@ -33,7 +38,9 @@ import cn.zhengweiyi.weiyichild.greenDao.DietaryLab;
 public class DietaryActivity extends AppCompatActivity implements
         CalendarView.OnCalendarSelectListener,
         CalendarView.OnYearChangeListener,
-        CalendarView.OnMonthChangeListener, View.OnClickListener {
+        CalendarView.OnMonthChangeListener,
+        // DietaryFragment.OnSelectDateChangeListener,
+        View.OnClickListener {
 
     TextView mTextMonth;                    // 顶部月份
     TextView mTextYear;                     // 顶部年份
@@ -49,13 +56,15 @@ public class DietaryActivity extends AppCompatActivity implements
     private int mYear;
     CalendarLayout mCalendarLayout;         // 日历布局
 
+    private String selectDate;              // 当前选中日期
+
     DietaryLab dietaryLab;                  // 食谱数据库操作类
-    List mDietaryList = new ArrayList();    // 食谱数据
 
     private TabLayout tab;
     private String[] tabTitle;
     private ViewPager pager;
     private List<Fragment> fragmentList;
+    private DietaryFragment dietaryFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +87,8 @@ public class DietaryActivity extends AppCompatActivity implements
                 finish();
             }
         });
+
+        // 创建视图
         initView();
     }
 
@@ -92,9 +103,9 @@ public class DietaryActivity extends AppCompatActivity implements
             tabTitle[i] = getResources().getString(tab[i]);
         }
 
-        // 读取食谱数据库
+        // 实例化数据库操作类
         MyApplication app = (MyApplication) getApplication();
-        app.initData();
+        // app.initData();
         dietaryLab = new DietaryLab(app.getDaoSession().getDietaryDao());
         Log.d("读取数据库", "dietaryDao[1]：" + dietaryLab.getDietaryById(1L));
     }
@@ -127,6 +138,8 @@ public class DietaryActivity extends AppCompatActivity implements
             public void onClick(View v) {
                 if (!mCalendarLayout.isExpand()) {
                     mCalendarLayout.expand();
+                    Toast.makeText(getApplicationContext(), R.string.click_calendar_month,
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
                 mCalendarView.showYearSelectLayout(mYear);
@@ -156,8 +169,9 @@ public class DietaryActivity extends AppCompatActivity implements
         this.tab = findViewById(R.id.tabLayout);
 
         /* 设置fragment适配器TabAdapter */
+        dietaryFragment = new DietaryFragment();
         fragmentList = new ArrayList<>();
-        fragmentList.add(new DietaryFragment());
+        fragmentList.add(dietaryFragment);
         pager.setAdapter(new TabAdapter(getSupportFragmentManager(), fragmentList, tabTitle));
 
         /* Tab与ViewPager绑定 */
@@ -195,20 +209,37 @@ public class DietaryActivity extends AppCompatActivity implements
     @SuppressLint("SetTextI18n")
     @Override
     public void onCalendarSelect(Calendar calendar, boolean isClick) {
+        // 格式化选择日期
+        String selectMonth;
+        String selectDay;
+        if (calendar.getMonth() < 10) {
+            selectMonth = "0" + calendar.getMonth();
+        } else {
+            selectMonth = String.valueOf(calendar.getMonth());
+        }
+        if (calendar.getDay() < 10) {
+            selectDay = "0" + calendar.getDay();
+        } else {
+            selectDay = String.valueOf(calendar.getDay());
+        }
+        selectDate = calendar.getYear() + "-" + selectMonth + "-" + selectDay;
+
+        // 设置头部日期显示
         mTextLunar.setVisibility(View.VISIBLE);
         mTextYear.setVisibility(View.VISIBLE);
         mTextMonth.setText(calendar.getMonth() + "月");  // + calendar.getDay() + "日"
         mTextYear.setText(String.valueOf(calendar.getYear()) + " \u25bc");
-        mTextLunar.setText(calendar.getLunar());
+        if (Objects.equals(selectDate, DateFormatUtil.DateToStr(new Date()))) {
+            mTextLunar.setText("今日");
+        } else {
+            mTextLunar.setText(calendar.getLunar());
+        }
         mYear = calendar.getYear();
 
-        String selectDate = calendar.getYear() + "-" + calendar.getMonth() + "-" + calendar.getDay();
-        mDietaryList = dietaryLab.getDietaryByDate(selectDate);
+        dietaryFragment.changeDate(selectDate);
 
-        Log.i("onDateSelected", calendar.getYear() +
-                "-" + calendar.getMonth() + "-" + calendar.getDay() +
-                " -- 点击：" + isClick + " -- 事件：" + calendar.getScheme() +
-                " -- 食谱大小：" + mDietaryList.size());
+        Log.i("onDateSelected", selectDate +
+                " -- 点击：" + isClick + " -- 事件：" + calendar.getScheme());
     }
 
     @Override
