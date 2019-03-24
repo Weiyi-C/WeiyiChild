@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bravin.btoast.BToast;
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
@@ -125,6 +126,12 @@ public class DietaryActivity extends AppCompatActivity implements
             public void onClick(View v) {
                 if (!mCalendarLayout.isExpand()) {
                     mCalendarLayout.expand();
+                    // 提示点击进入年视图
+                    BToast.normal(DietaryActivity.this)
+                            .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_LEFT)
+                            .target(mLinearLayout).layoutGravity(BToast.LAYOUT_GRAVITY_RIGHT)
+                            .text(R.string.click_calendar_month)
+                            .show();
                     return;
                 }
                 mCalendarView.showYearSelectLayout(mYear);
@@ -138,8 +145,11 @@ public class DietaryActivity extends AppCompatActivity implements
             public void onClick(View v) {
                 if (!mCalendarLayout.isExpand()) {
                     mCalendarLayout.expand();
-                    Toast.makeText(getApplicationContext(), R.string.click_calendar_month,
-                            Toast.LENGTH_SHORT).show();
+                    BToast.normal(DietaryActivity.this)
+                            .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_LEFT)
+                            .target(mLinearLayout).layoutGravity(BToast.LAYOUT_GRAVITY_RIGHT)
+                            .text(R.string.click_calendar_month)
+                            .show();
                     return;
                 }
                 mCalendarView.showYearSelectLayout(mYear);

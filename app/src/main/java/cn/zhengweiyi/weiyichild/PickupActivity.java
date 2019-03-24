@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bravin.btoast.BToast;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -142,6 +143,23 @@ public class PickupActivity extends AppCompatActivity implements PickupHistoryRe
             }
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // 扫描二维码/条码回传
+        if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
+            if (data != null) {
+
+                String content = data.getStringExtra(Constant.CODED_CONTENT);
+                BToast.success(this)
+                        .text(content)
+                        .duration(BToast.DURATION_LONG)
+                        .show();
+            }
+        }
+    }
 
     public PickupHistoryRecyclerAdapter.OnEmptyViewButtonClickListener emptyViewButtonClickListener
             = new PickupHistoryRecyclerAdapter.OnEmptyViewButtonClickListener() {

@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bravin.btoast.BToast;
+
 import java.util.List;
 
 import cn.zhengweiyi.weiyichild.R;
@@ -109,12 +111,11 @@ public class DietaryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
      */
     @Override
     public int getItemViewType(int position) {
-        Log.i("DietaryRecycler", "判断第" + position + "项的视图类型");
         if (mDietaryList.size() == 0) {
-            Log.i("DietaryRecycler", "返回空视图类型");
+            Log.i("DietaryRecycler", "第" + position + "项为空视图类型");
             return EMPTY_BUTTON_VIEW;
         } else {
-            Log.i("DietaryRecycler", "返回正常视图类型");
+            Log.i("DietaryRecycler", "第" + position + "项位正常视图类型");
             return DIETARY_VIEW;
         }
     }
@@ -196,5 +197,8 @@ public class DietaryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         mDietaryList = dietaryList;
         Log.i("DietaryRecycler", "通知数据更新");
         notifyDataSetChanged();
+        BToast.success(mContext)
+                .text("页面已更新")
+                .show();
     }
 }
