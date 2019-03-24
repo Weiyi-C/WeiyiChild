@@ -40,32 +40,26 @@ public class DietaryActivity extends AppCompatActivity implements
         CalendarView.OnCalendarSelectListener,
         CalendarView.OnYearChangeListener,
         CalendarView.OnMonthChangeListener,
-        // DietaryFragment.OnSelectDateChangeListener,
         View.OnClickListener {
 
     TextView mTextMonth;                    // 顶部月份
     TextView mTextYear;                     // 顶部年份
     TextView mTextLunar;                    // 顶部阴历文本
-
-    TextView mTextCurrentDay;
-
+    TextView mTextCurrentDay;               // 顶部“今天”
     CalendarView mCalendarView;             // 日历View
-
-    RelativeLayout mRelativeTool;
-
-    LinearLayout mLinearLayout;
-    private int mYear;
+    RelativeLayout mRelativeTool;           // 顶部工具栏
+    LinearLayout mLinearLayout;             // 顶部年、阴历布局
     CalendarLayout mCalendarLayout;         // 日历布局
+    private int mYear;                      // 年份
 
     private String selectDate;              // 当前选中日期
-
     DietaryLab dietaryLab;                  // 食谱数据库操作类
 
-    private TabLayout tab;
-    private String[] tabTitle;
-    private ViewPager pager;
-    private List<Fragment> fragmentList;
-    private DietaryFragment dietaryFragment;
+    private TabLayout tab;                  // Tab布局
+    private String[] tabTitle;              // Tab标题
+    private ViewPager pager;                // TabView Pager
+    private List<Fragment> fragmentList;    // Fragment列表
+    private DietaryFragment dietaryFragment;// 食谱 Fragment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +68,8 @@ public class DietaryActivity extends AppCompatActivity implements
 
         StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimary);
 
-        try {
-            initData();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
+        initData();
 
         // 绑定返回按钮事件
         View back = findViewById(R.id.ic_back);
@@ -96,7 +87,7 @@ public class DietaryActivity extends AppCompatActivity implements
     /**
      * 初始化数据
      */
-    private void initData() throws ParseException {
+    private void initData() {
         // 设置TabLayout标题
         int tab[] = {R.string.dietary_list};
         tabTitle = new String[tab.length];
@@ -170,8 +161,7 @@ public class DietaryActivity extends AppCompatActivity implements
         mCalendarView.setOnMonthChangeListener(this);
         mTextYear.setText(String.valueOf(mCalendarView.getCurYear()) + " \u25bc");
         mYear = mCalendarView.getCurYear();
-        mTextMonth.setText(mCalendarView.getCurMonth() + "月");  //  + mCalendarView.getCurDay() + "日"
-        // mCalendarView.scrollToCurrent();                         // 默认选中“今天”
+        mTextMonth.setText(mCalendarView.getCurMonth() + "月");
         mTextLunar.setText(R.string.calendar_today);
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
 

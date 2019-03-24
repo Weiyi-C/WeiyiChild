@@ -38,15 +38,16 @@ public class OSUtil {
 
     /**
      * 是否是Flyme系统
-     * @return
+     *
+     * @return Flyme判断结果
      */
     public static boolean isFlyme() {
-        if(isPropertiesExist(KEY_FLYME_ICON_FALG, KEY_FLYME_SETUP_FALG, KEY_FLYME_PUBLISH_FALG)) {
+        if (isPropertiesExist(KEY_FLYME_ICON_FALG, KEY_FLYME_SETUP_FALG, KEY_FLYME_PUBLISH_FALG)) {
             return true;
         }
         try {
             BuildProperties buildProperties = BuildProperties.newInstance();
-            if(buildProperties.containsKey(KEY_FLYME_ID_FALG_KEY)) {
+            if (buildProperties.containsKey(KEY_FLYME_ID_FALG_KEY)) {
                 String romName = buildProperties.getProperty(KEY_FLYME_ID_FALG_KEY);
                 if (!TextUtils.isEmpty(romName) && romName.contains(KEY_FLYME_ID_FALG_VALUE_KEYWORD)) {
                     return true;
@@ -60,7 +61,8 @@ public class OSUtil {
 
     /**
      * 是否是EMUI系统
-     * @return
+     *
+     * @return EMUI判断结果
      */
     public static boolean isEMUI() {
         return isPropertiesExist(KEY_EMUI_VERSION_CODE, KEY_EMUI_API_LEVEL,
@@ -69,7 +71,8 @@ public class OSUtil {
 
     /**
      * 是否是MIUI系统
-     * @return
+     *
+     * @return MIUI判断结果
      */
     public static boolean isMIUI() {
         return isPropertiesExist(KEY_MIUI_VERSION_CODE, KEY_MIUI_VERSION_NAME,

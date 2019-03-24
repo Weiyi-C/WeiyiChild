@@ -13,6 +13,7 @@ import org.greenrobot.greendao.annotation.Keep;
 import org.greenrobot.greendao.annotation.Transient;
 
 import java.util.Date;
+
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
@@ -74,7 +75,7 @@ public class PickupHistory {
 
     @Generated(hash = 185550921)
     public PickupHistory(Long id, Date date, String type, String parent,
-            String teacher) {
+                         String teacher) {
         this.id = id;
         this.date = date;
         this.type = type;

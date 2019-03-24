@@ -39,8 +39,7 @@ import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.fragment.MainFragment;
 import cn.zhengweiyi.weiyichild.fragment.MyFragment;
 
-public class MainActivity extends AppCompatActivity implements
-        MainFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity {
 
     private static final String ARG_SCREEN_WIDTH = "screenWidth";
     private static final String ARG_SCREEN_DENSITY = "screenDensity";
@@ -206,10 +205,5 @@ public class MainActivity extends AppCompatActivity implements
         Log.d("Screen", "屏幕密度dpi（120 / 160 / 240）：" + mDensityDpi);
         Log.d("Screen", "屏幕宽度（dp）：" + mWidthDp);
         Log.d("Screen", "屏幕高度（dp）：" + mHeightDp);
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 }

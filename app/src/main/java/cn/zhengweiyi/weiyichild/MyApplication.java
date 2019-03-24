@@ -8,12 +8,9 @@ package cn.zhengweiyi.weiyichild;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.bravin.btoast.BToast;
 
-import java.net.URI;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -108,7 +105,7 @@ public class MyApplication extends Application {
      * 初始化数据
      * TODO 实现服务器读取后修改该方法
      */
-    public void initData() throws ParseException {
+    public void initData() {
         DietaryDao dietaryDao = getDaoSession().getDietaryDao();
         if (dietaryDao.load(1L) == null) {  //判断数据库是否有数据
 

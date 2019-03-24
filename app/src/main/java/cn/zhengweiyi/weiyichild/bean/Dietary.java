@@ -12,7 +12,7 @@ import org.greenrobot.greendao.annotation.Keep;
 
 import java.util.Date;
 
-@Entity (nameInDb = "dietary_list")
+@Entity(nameInDb = "dietary_list")
 public class Dietary {
     @Id(autoincrement = true)
     private Long id;        // id

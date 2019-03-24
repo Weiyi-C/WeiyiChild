@@ -12,7 +12,7 @@ import android.view.View;
 public class RoundAngleImageView extends AppCompatImageView {
 
     float width, height;
-    
+
     public RoundAngleImageView(Context context) {
         super(context);
         init(context, null);

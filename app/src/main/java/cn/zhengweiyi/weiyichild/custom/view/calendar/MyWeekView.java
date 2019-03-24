@@ -68,19 +68,20 @@ public class MyWeekView extends WeekView {
 
     /**
      * 绘制选中的日子
+     *
      * @param canvas    canvas
      * @param calendar  日历Calendar
      * @param x         日历Card x起点坐标
      * @param hasScheme hasScheme 非标记的日期
-     * @return          返回true  则会继续绘制onDrawScheme，因为这里背景色不是互斥的，所以返回true;
-     *                   返回false 则点击scheme标记的日子，不继续绘制onDrawScheme，自行选择即可
+     * @return 返回true  则会继续绘制onDrawScheme，因为这里背景色不是互斥的，所以返回true;
+     * 返回false 则点击scheme标记的日子，不继续绘制onDrawScheme，自行选择即可
      */
     @Override
     protected boolean onDrawSelected(Canvas canvas, Calendar calendar, int x, boolean hasScheme) {
         mSelectedPaint.setStyle(Paint.Style.FILL);
         mSelectedPaint.setColor(getResources().getColor(R.color.colorAccent));
         // 矩形选中状态 canvas.drawRect(x + mPadding, mPadding, x + mItemWidth - mPadding, mItemHeight - mPadding, mSelectedPaint);
-        int cx = x +mItemWidth / 2;
+        int cx = x + mItemWidth / 2;
         int cy = mItemHeight / 2;
         canvas.drawCircle(cx, cy, mRadius, mSelectedPaint);
         return true;
@@ -88,9 +89,10 @@ public class MyWeekView extends WeekView {
 
     /**
      * 绘制标记事件的日子
-     * @param canvas    canvas
-     * @param calendar  日历calendar
-     * @param x         日历card x起点坐标
+     *
+     * @param canvas   canvas
+     * @param calendar 日历calendar
+     * @param x        日历card x起点坐标
      */
     @Override
     protected void onDrawScheme(Canvas canvas, Calendar calendar, int x) {
@@ -103,6 +105,7 @@ public class MyWeekView extends WeekView {
 
     /**
      * 绘制文本
+     *
      * @param canvas     canvas
      * @param calendar   日历calendar
      * @param x          日历Card x起点坐标
@@ -113,7 +116,7 @@ public class MyWeekView extends WeekView {
     protected void onDrawText(Canvas canvas, Calendar calendar, int x, boolean hasScheme, boolean isSelected) {
         int cx = x + mItemWidth / 2;
         int cy = mItemHeight / 2;
-        int top = - mItemHeight / 6;
+        int top = -mItemHeight / 6;
 
         // 今天的背景
         if (calendar.isCurrentDay() && !isSelected) {

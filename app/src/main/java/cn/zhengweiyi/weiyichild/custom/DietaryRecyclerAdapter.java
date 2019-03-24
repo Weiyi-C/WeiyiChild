@@ -112,7 +112,7 @@ public class DietaryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public int getItemViewType(int position) {
         if (mDietaryList.size() == 0) {
-            Log.i("DietaryRecycler", "第" + position + "项为空视图类型");
+            Log.i("DietaryRecycler", "第" + position + "项为空视图");
             return EMPTY_BUTTON_VIEW;
         } else {
             Log.i("DietaryRecycler", "第" + position + "项位正常视图类型");

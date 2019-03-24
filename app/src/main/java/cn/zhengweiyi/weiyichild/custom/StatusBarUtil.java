@@ -23,6 +23,7 @@ public class StatusBarUtil {
 
     /**
      * 设置状态栏为透明
+     *
      * @param activity
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -42,6 +43,7 @@ public class StatusBarUtil {
 
     /**
      * 修改状态栏颜色，支持4.4以上版本
+     *
      * @param activity
      * @param colorId
      */
@@ -64,9 +66,10 @@ public class StatusBarUtil {
 
     /**
      * 设置状态栏模式
+     *
      * @param activity
      * @param isTextDark 文字、图标是否为黑色 （false为默认的白色）
-     * @param colorId 状态栏颜色
+     * @param colorId    状态栏颜色
      */
     public static void setStatusBarMode(Activity activity, boolean isTextDark, int colorId) {
 
@@ -99,8 +102,9 @@ public class StatusBarUtil {
 
     /**
      * 设置Flyme系统状态栏的文字图标颜色
-     * @param activity
-     * @param isDark 状态栏文字及图标是否为深色
+     *
+     * @param activity activity
+     * @param isDark   状态栏文字及图标是否为深色
      * @return
      */
     public static boolean setFlymeStatusBarTextMode(Activity activity, boolean isDark) {
@@ -135,8 +139,9 @@ public class StatusBarUtil {
 
     /**
      * 设置MIUI系统状态栏的文字图标颜色（MIUI6以上）
+     *
      * @param activity
-     * @param isDark 状态栏文字及图标是否为黑色
+     * @param isDark   状态栏文字及图标是否为黑色
      * @return
      */
     public static boolean setMIUIStatusBarTextMode(Activity activity, boolean isDark) {
