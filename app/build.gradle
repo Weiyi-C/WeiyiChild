@@ -37,7 +37,7 @@ dependencies {
     implementation 'com.haibin:calendarview:3.5.5'
     // add GreenDao library
     implementation 'org.greenrobot:greendao:3.2.2'
-    // Toast 管理包
+    // Toast 管理包 (https://blog.csdn.net/tingfengzheshuo/article/details/81183705)
     implementation 'com.bravin.btoast:BToast:1.0.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
