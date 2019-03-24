@@ -46,6 +46,8 @@
     <string name="notice_hint">公告加载中或暂无公告</string>
 
     <!-- 弹出提示文本 -->
+    <string name="click">点击了</string>
     <string name="click_calendar_month">再次点击进入年视图</string>
+    <string name="coming_soon">敬请期待</string>
 
 </resources>

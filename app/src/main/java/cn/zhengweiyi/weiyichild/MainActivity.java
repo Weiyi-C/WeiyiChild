@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.bravin.btoast.BToast;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -39,7 +40,7 @@ import cn.zhengweiyi.weiyichild.fragment.MainFragment;
 import cn.zhengweiyi.weiyichild.fragment.MyFragment;
 
 public class MainActivity extends AppCompatActivity implements
-        MainFragment.OnFragmentInteractionListener, MyFragment.OnFragmentInteractionListener {
+        MainFragment.OnFragmentInteractionListener {
 
     private static final String ARG_SCREEN_WIDTH = "screenWidth";
     private static final String ARG_SCREEN_DENSITY = "screenDensity";
@@ -151,35 +152,6 @@ public class MainActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * 点击事件
-     *
-     * @param view 传入点击的组件
-     */
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.layoutUserInfo:
-                Toast.makeText(this, "点击了用户信息", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.layoutListVerify:
-                Toast.makeText(this, "点击了身份认证", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.layoutListMyChild:
-                Toast.makeText(this, "点击了我的孩子", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.layoutListPhone:
-                Toast.makeText(this, "点击了我的手机", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.layoutListSetting:
-                Toast.makeText(this, "点击了系统设置", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.layoutListAbout:
-                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -189,7 +161,10 @@ public class MainActivity extends AppCompatActivity implements
             if (data != null) {
 
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
-                Toast.makeText(this, "扫描结果：" + content, Toast.LENGTH_LONG).show();
+                BToast.success(this)
+                        .text(content)
+                        .duration(BToast.DURATION_LONG)
+                        .show();
             }
         }
     }

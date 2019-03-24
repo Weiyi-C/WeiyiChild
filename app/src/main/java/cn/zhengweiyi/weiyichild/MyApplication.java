@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.bravin.btoast.BToast;
+
 import java.net.URI;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ public class MyApplication extends Application {
     public final String ROOT_HOST = "weiyihost";
     public final String API_SEND_CHILD = ":8080/sendChild?";
 
+    public static final int CLICK_MESSAGE = 1;
+
     private DaoMaster.DevOpenHelper mHelper;
     private SQLiteDatabase db;
     private DaoMaster mDaoMaster;
@@ -45,6 +49,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        setBToast();
         setDatabase();
     }
 
@@ -74,6 +79,28 @@ public class MyApplication extends Application {
         return db;
     }
 
+    private void setBToast() {
+        BToast.Config.getInstance()
+//                .setAnimate()               // 是否开启动画 默认为 false;
+                .setAnimationDuration(200)     // 动画时长 默认为 800毫秒
+                .setAnimationGravity(BToast.ANIMATION_GRAVITY_BOTTOM)      // 动画从哪个边进入 默认为 BToast.ANIMATION_GRAVITY_TOP
+                .setDuration(BToast.DURATION_SHORT)              // 持续时间 BToast.DURATION_SHORT or BToast.DURATION_LONG
+//                .setTextColor()             // 文字颜色， 默认为 white
+//                .setErrorColor()            // 错误类型背景颜色 默认为 red
+                .setInfoColor(0xEE2665D3)             // 通知类型背景颜色 默认为 blue
+//                .setSuccessColor()          // 成功类型背景颜色 默认为 green
+//                .setWarningColor()          // 警告类型背景颜色 默认为 orange
+//                .setLayoutGravity()         // 指定Toast在target的位置 默认在target的底部 BToast.LAYOUT_GRAVITY_BOTTOM
+//                .setLongDurationMillis()    // LONG类型对应的时长，默认为4500毫秒
+//                .setRadius()                // 设置四个角的弧度，默认是高度的一半，可以设置一个非负值
+//                .setRelativeGravity()       // 指定toast的内容相对于toast自身在内部的位置, 默认为 BToast.RELATIVE_GRAVITY_CENTER
+//                .setSameLength()            // 是否和target同宽（高） 如果toast在target的上方或下方，sameLength代表同宽，在target左右则代表同高
+//                .setShortDurationMillis()   // SHORT类型对应的时长，默认为3000毫秒
+//                .setShowIcon()              // 是否显示icon 默认显示
+                .setTextSize(12)              // 文字大小，单位是sp
+                .apply(this);               // must call
+    }
+
     /**
      * 初始化数据
      * TODO 实现服务器读取后修改该方法
@@ -81,27 +108,9 @@ public class MyApplication extends Application {
     public void initData() throws ParseException {
         DietaryDao dietaryDao = getDaoSession().getDietaryDao();
         if (dietaryDao.load(1L) == null) {  //判断数据库是否有数据
-            // 初始化测试数据
-            String stringDate = DateFormatUtil.DateToStr(new Date());
-            Date dateNow = DateFormatUtil.StrToDate(stringDate);
-            Dietary dietary0 = new Dietary(dateNow, 0, "早餐", "奶黄包、豆浆");
-            Dietary dietary1 = new Dietary(dateNow, 1, "上午点心", "香蕉、哈密瓜");
-            Dietary dietary2 = new Dietary(dateNow, 2, "午餐", "土豆鸡块、番茄炒蛋、清炒包菜、冬瓜虾皮汤");
-            Dietary dietary3 = new Dietary(dateNow, 3, "下午点心", "蒸南瓜、红豆汤");
-            Dietary dietary4 = new Dietary(dateNow, 4, "过敏儿童", "白菜粉丝汤");
-            Dietary dietary5 = new Dietary(dateNow, 5, "病号餐", "青菜肉丝面");
-            dietaryList.add(dietary0);
-            dietaryList.add(dietary1);
-            dietaryList.add(dietary2);
-            dietaryList.add(dietary3);
-            dietaryList.add(dietary4);
-            dietaryList.add(dietary5);
-            Log.d("临时数组", "dietaryList：" + String.valueOf(dietaryList));
 
             // 写入数据到数据库
             dietaryDao.saveInTx(dietaryList);
-            Log.d("写入数据库", "dietaryDao[1].date：" + String.valueOf(dietaryDao.load(1L).getDate()));
-            Log.d("写入数据库", "dietaryDao[2].date：" + String.valueOf(dietaryDao.load(2L).getDate()));
         }
     }
 
@@ -126,6 +135,9 @@ public class MyApplication extends Application {
         }
     }
 
+    /**
+     * 写入每日食谱测试数据
+     */
     public void initTestDataDietary(String date) {
         Log.i("DietaryDAO", "插入日期" + date + "的测试数据");
         DietaryDao dietaryDao = getDaoSession().getDietaryDao();
@@ -137,7 +149,9 @@ public class MyApplication extends Application {
             int i = calendar.get(Calendar.DAY_OF_WEEK);
             switch (i) {
                 case 1:
-                    Toast.makeText(this, "星期天没有食谱，周末孩子都不上幼儿园的哦！", Toast.LENGTH_LONG).show();
+                    BToast.info(this)
+                            .text("星期天没有食谱，周末孩子都不上幼儿园的哦！")
+                            .show();
                     break;
                 case 2:
                     Dietary dietary10 = new Dietary(mDate, 0, "早餐", "奶黄包、豆浆");
@@ -211,10 +225,14 @@ public class MyApplication extends Application {
                     dietaryDao.saveInTx(dietaryList);
                     break;
                 case 7:
-                    Toast.makeText(this, "星期六没有食谱，周末孩子都不上幼儿园的哦！", Toast.LENGTH_LONG).show();
+                    BToast.info(this)
+                            .text("星期六没有食谱，周末孩子都不上幼儿园的哦！")
+                            .show();
                     break;
                 default:
-                    Toast.makeText(this, "星期八的菜谱？大概是程序出错了！", Toast.LENGTH_LONG).show();
+                    BToast.error(this)
+                            .text("星期八的菜谱？大概是程序出错了！")
+                            .show();
                     break;
             }
 

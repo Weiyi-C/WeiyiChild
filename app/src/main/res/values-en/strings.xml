@@ -34,10 +34,12 @@
     <string name="grid_image">Function Icon</string>
     <string name="list_icon">Icon</string>
     <string name="list_icon_right">Icon Right</string>
-    <string name="list_child_value">Child\\\'s Name</string>
+    <string name="list_child_value">Child\'s Name</string>
     <string name="list_phone_value">Phone Number</string>
     <string name="notice_icon">Notice Icon</string>
-    <string name="user_name">Username</string>
-    <string name="notice_hint">Notice Icon</string>
+    <string name="user_name">Not Logged In</string>
+    <string name="notice_hint">Loading or no announcement</string>
+    <string name="click">Click</string>
     <string name="click_calendar_month">Click again to enter the year view</string>
+    <string name="coming_soon">Coming soon</string>
 </resources>

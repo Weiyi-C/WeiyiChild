@@ -18,9 +18,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.yanzhenjie.permission.Action;
-import com.yanzhenjie.permission.AndPermission;
-import com.yanzhenjie.permission.runtime.Permission;
+import com.bravin.btoast.BToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,7 @@ import java.util.Objects;
 
 import cn.zhengweiyi.weiyichild.DietaryActivity;
 import cn.zhengweiyi.weiyichild.GridAdapter;
-import cn.zhengweiyi.weiyichild.MainActivity;
+import cn.zhengweiyi.weiyichild.MyApplication;
 import cn.zhengweiyi.weiyichild.PickupActivity;
 import cn.zhengweiyi.weiyichild.bean.GridBean;
 import cn.zhengweiyi.weiyichild.R;
@@ -101,13 +99,6 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    // TODO: 重命名方法、更新参数并将方法关联到UI事件
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     // TODO 实现 OnFragmentInteractionListener
     @Override
     public void onAttach(Context context) {
@@ -136,7 +127,6 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                // Toast.makeText(getActivity(), "点击了安全接送", Toast.LENGTH_SHORT).show();
                 Intent intentPickup = new Intent(getActivity(), PickupActivity.class);
                 startActivity(intentPickup);
                 break;
@@ -145,13 +135,30 @@ public class MainFragment extends Fragment implements AdapterView.OnItemClickLis
                 startActivity(intentDietary);
                 break;
             case 2:
-                Toast.makeText(getActivity(), "点击了信息管理", Toast.LENGTH_SHORT).show();
+                BToast.normal(view.getContext())
+                        .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
+                        .duration(BToast.DURATION_SHORT)
+                        .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
+                        .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.function_manage_info))
+                        .show();
+                // Toast.makeText(getActivity(), "点击了信息管理", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                Toast.makeText(getActivity(), "点击了班级管理", Toast.LENGTH_SHORT).show();
+                BToast.normal(view.getContext())
+                        .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
+                        .duration(BToast.DURATION_SHORT)
+                        .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
+                        .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.function_manage_class))
+                        .show();
+                // Toast.makeText(getActivity(), "点击了班级管理", Toast.LENGTH_SHORT).show();
                 break;
             case 4:
-                Toast.makeText(getActivity(), "敬请期待", Toast.LENGTH_SHORT).show();
+                BToast.info(view.getContext())
+                        .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
+                        .duration(BToast.DURATION_SHORT)
+                        .target(parent.getChildAt(position)).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
+                        .text(R.string.coming_soon)
+                        .show();
                 break;
             default:
                 break;
