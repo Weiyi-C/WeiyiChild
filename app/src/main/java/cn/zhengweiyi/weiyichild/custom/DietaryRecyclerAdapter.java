@@ -198,7 +198,7 @@ public class DietaryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         Log.i("DietaryRecycler", "通知数据更新");
         notifyDataSetChanged();
         BToast.success(mContext)
-                .text("页面已更新")
+                .text(R.string.page_updated)
                 .show();
     }
 }

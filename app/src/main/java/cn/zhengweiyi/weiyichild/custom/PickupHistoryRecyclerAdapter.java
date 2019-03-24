@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bravin.btoast.BToast;
+
 import java.util.List;
 
 import cn.zhengweiyi.weiyichild.R;
@@ -228,5 +230,8 @@ public class PickupHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
         mPickupHistoryList.clear();
         mPickupHistoryList = pickupHistoryList;
         notifyDataSetChanged();
+        BToast.success(mContext)
+                .text(R.string.page_updated)
+                .show();
     }
 }

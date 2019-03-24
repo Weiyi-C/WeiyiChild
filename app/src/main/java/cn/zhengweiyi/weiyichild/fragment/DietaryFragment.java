@@ -87,10 +87,11 @@ public class DietaryFragment extends Fragment implements DietaryRecyclerAdapter.
                 selectDate = DateFormatUtil.DateToStr(new Date());
             }
             Log.i("DietaryRecycler", "当前日期为" + selectDate);
-            app.initTestDataDietary(selectDate);
-            dietaryList.clear();
-            dietaryList = dietaryLab.getDietaryByDate(selectDate);
-            adapter.refreshData(dietaryList);
+            if (app.initTestDataDietary(selectDate)) {
+                dietaryList.clear();
+                dietaryList = dietaryLab.getDietaryByDate(selectDate);
+                adapter.refreshData(dietaryList);
+            }
         }
     };
 

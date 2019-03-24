@@ -79,6 +79,9 @@ public class MyApplication extends Application {
         return db;
     }
 
+    /**
+     * 配置 BToast
+     */
     private void setBToast() {
         BToast.Config.getInstance()
 //                .setAnimate()               // 是否开启动画 默认为 false;
@@ -88,7 +91,7 @@ public class MyApplication extends Application {
 //                .setTextColor()             // 文字颜色， 默认为 white
 //                .setErrorColor()            // 错误类型背景颜色 默认为 red
                 .setInfoColor(0xEE2665D3)             // 通知类型背景颜色 默认为 blue
-//                .setSuccessColor()          // 成功类型背景颜色 默认为 green
+                .setSuccessColor(0xFF00AA74)          // 成功类型背景颜色 默认为 green
 //                .setWarningColor()          // 警告类型背景颜色 默认为 orange
 //                .setLayoutGravity()         // 指定Toast在target的位置 默认在target的底部 BToast.LAYOUT_GRAVITY_BOTTOM
 //                .setLongDurationMillis()    // LONG类型对应的时长，默认为4500毫秒
@@ -138,7 +141,8 @@ public class MyApplication extends Application {
     /**
      * 写入每日食谱测试数据
      */
-    public void initTestDataDietary(String date) {
+    public boolean initTestDataDietary(String date) {
+        boolean re = false;
         Log.i("DietaryDAO", "插入日期" + date + "的测试数据");
         DietaryDao dietaryDao = getDaoSession().getDietaryDao();
         DietaryLab dietaryLab = new DietaryLab(dietaryDao);
@@ -152,6 +156,7 @@ public class MyApplication extends Application {
                     BToast.info(this)
                             .text("星期天没有食谱，周末孩子都不上幼儿园的哦！")
                             .show();
+                    re = false;
                     break;
                 case 2:
                     Dietary dietary10 = new Dietary(mDate, 0, "早餐", "奶黄包、豆浆");
@@ -167,6 +172,7 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary14);
                     dietaryList.add(dietary15);
                     dietaryDao.saveInTx(dietaryList);
+                    re = true;
                     break;
                 case 3:
                     Dietary dietary20 = new Dietary(mDate, 0, "早餐", "水煮蛋、青菜瘦肉粥");
@@ -180,6 +186,7 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary23);
                     dietaryList.add(dietary25);
                     dietaryDao.saveInTx(dietaryList);
+                    re = true;
                     break;
                 case 4:
                     Dietary dietary30 = new Dietary(mDate, 0, "早餐", "肉丝面");
@@ -195,6 +202,7 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary34);
                     dietaryList.add(dietary35);
                     dietaryDao.saveInTx(dietaryList);
+                    re = true;
                     break;
                 case 5:
                     Dietary dietary40 = new Dietary(mDate, 0, "早餐", "鲜肉小馄饨");
@@ -210,6 +218,7 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary44);
                     dietaryList.add(dietary45);
                     dietaryDao.saveInTx(dietaryList);
+                    re = true;
                     break;
                 case 6:
                     Dietary dietary50 = new Dietary(mDate, 0, "早餐", "酸奶、小米糕");
@@ -223,22 +232,23 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary53);
                     dietaryList.add(dietary55);
                     dietaryDao.saveInTx(dietaryList);
+                    re = true;
                     break;
                 case 7:
                     BToast.info(this)
                             .text("星期六没有食谱，周末孩子都不上幼儿园的哦！")
                             .show();
+                    re = false;
                     break;
                 default:
                     BToast.error(this)
                             .text("星期八的菜谱？大概是程序出错了！")
                             .show();
+                    re = false;
                     break;
             }
-
-            // 写入数据到数据库
-
             Log.d("DietaryDAO", "插入测试数据后数据库大小为" + dietaryLab.getAllDietary().size());
         }
+        return re;
     }
 }
