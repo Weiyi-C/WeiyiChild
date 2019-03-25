@@ -49,6 +49,9 @@ public class CodeActivity extends AppCompatActivity {
         int brightness = 255;
         changeAppBrightness(brightness);
 
+        // 防御屏幕录制
+        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+
         // 获取传入数据
         getData();
 
