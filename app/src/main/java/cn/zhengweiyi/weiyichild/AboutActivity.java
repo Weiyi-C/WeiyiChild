@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
 
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
+import cn.zhengweiyi.weiyichild.custom.VersionCodeUtil;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -33,5 +35,9 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
         StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimaryDark);
+
+        TextView textVersion = findViewById(R.id.app_version);
+        String version = getResources().getString(R.string.app_version) + " " + VersionCodeUtil.getVerName(this);
+        textVersion.setText(version);
     }
 }

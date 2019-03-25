@@ -45,6 +45,7 @@
         android:textSize="@dimen/text_size_about_app_name" />
 
     <TextView
+        android:id="@+id/app_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/app_name"
