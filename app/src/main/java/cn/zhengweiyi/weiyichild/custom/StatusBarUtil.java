@@ -51,7 +51,7 @@ public class StatusBarUtil {
     public static void setStatusBarColor(Activity activity, int colorId) {
 
         // Android6.0（API 23）以上，系统方法
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             Window window = activity.getWindow();
             window.setStatusBarColor(activity.getResources().getColor(colorId, activity.getTheme()));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
