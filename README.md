@@ -3,7 +3,9 @@
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/13568810905/WeiyiChild/latest.svg)
 ![GitHub issues](https://img.shields.io/github/issues/13568810905/WeiyiChild.svg)
 ![GitHub](https://img.shields.io/github/license/13568810905/WeiyiChild.svg)
-![GitHub All Releases](https://img.shields.io/github/downloads/13568810905/WeiyiChild/total.svg)  
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+![GitHub All Releases](https://img.shields.io/github/downloads/13568810905/WeiyiChild/total.svg)
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
   基于Android的幼儿园管理系统,脱机Demo  
 ## 设计细节
 * `TabLayout + ViewPager` 主页面切换
