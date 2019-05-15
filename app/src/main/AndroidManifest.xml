@@ -10,7 +10,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CodeActivity"/>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.zhengweiyi.weiyichild.MainActivity" />
+        </activity>
+        <activity android:name=".CodeActivity" />
         <activity android:name=".PickupActivity" />
         <activity android:name=".DietaryActivity" />
         <activity android:name=".AboutActivity" />
@@ -20,6 +28,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
