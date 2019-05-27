@@ -10,6 +10,7 @@
     <string name="button_insert_test_data">添加测试数据</string>
     <string name="calendar_today">今天</string>
     <string name="dietary_list">食谱</string>
+    <string name="dietary_list_edit">编辑食谱</string>
     <string name="function_pickup">安全接送</string>
     <string name="function_dietary">每日食谱</string>
     <string name="function_manage_info">信息管理</string>
@@ -50,5 +51,8 @@
     <string name="click_calendar_month">再次点击进入年视图</string>
     <string name="coming_soon">敬请期待</string>
     <string name="page_updated">页面已更新</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
 </resources>

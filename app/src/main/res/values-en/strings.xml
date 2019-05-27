@@ -10,6 +10,7 @@
     <string name="button_insert_test_data">Insert Test Data</string>
     <string name="calendar_today">Today</string>
     <string name="dietary_list">Dietary List</string>
+    <string name="dietary_list_edit">Dietary Edit</string>
     <string name="function_pickup">Pick-up</string>
     <string name="function_dietary">Dietary</string>
     <string name="function_manage_info">Info Manage</string>

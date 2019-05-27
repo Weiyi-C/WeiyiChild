@@ -10,6 +10,7 @@
     <string name="button_insert_test_data">添加测试数据</string>
     <string name="calendar_today">今天</string>
     <string name="dietary_list">食谱</string>
+    <string name="dietary_list_edit">编辑食谱</string>
     <string name="function_pickup">安全接送</string>
     <string name="function_dietary">每日食谱</string>
     <string name="function_manage_info">信息管理</string>
