@@ -27,6 +27,8 @@ import android.support.v4.app.NavUtils;
 
 import java.util.List;
 
+import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
+
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
  * handset devices, settings are presented as a single list. On tablets,
@@ -41,8 +43,7 @@ import java.util.List;
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
     /**
-     * A preference value change listener that updates the preference's summary
-     * to reflect its new value.
+     * A preference value change listener 修改监听器，该监听器更新首选项的摘要以反映其新值。
      */
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -50,12 +51,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             String stringValue = value.toString();
 
             if (preference instanceof ListPreference) {
-                // For list preferences, look up the correct display value in
-                // the preference's 'entries' list.
+                // 有关列表首选项，请在首选项的“entries”列表中查找正确的显示值。
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
 
-                // Set the summary to reflect the new value.
+                // 设置摘要以反映新值。
                 preference.setSummary(
                         index >= 0
                                 ? listPreference.getEntries()[index]
@@ -95,6 +95,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     /**
      * Helper method to determine if the device has an extra-large screen. For
      * example, 10" tablets are extra-large.
+     * Helper方法确定设备是否具有超大屏幕。例如，10英寸的平板电脑是超大型的。
      */
     private static boolean isXLargeTablet(Context context) {
         return (context.getResources().getConfiguration().screenLayout
@@ -102,11 +103,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     /**
-     * Binds a preference's summary to its value. More specifically, when the
-     * preference's value is changed, its summary (line of text below the
-     * preference title) is updated to reflect the value. The summary is also
-     * immediately updated upon calling this method. The exact display format is
-     * dependent on the type of preference.
+     * 将首选项的摘要绑定到其值。更具体地说，当更改首选项的值时，
+     * 更新其摘要(首选项标题下方的一行文本)以反映该值。
+     * 在调用此方法时，会立即更新摘要。精确的显示格式取决于首选项的类型。
      *
      * @see #sBindPreferenceSummaryToValueListener
      */
@@ -125,6 +124,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimaryDark);
         setupActionBar();
     }
 
@@ -160,6 +160,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     /**
+     * 加载header文件
      * {@inheritDoc}
      */
     @Override
@@ -169,6 +170,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     /**
+     * 此方法阻止了恶意应用程序中的片段注入。确保在这里拒绝任何未知的片段。
      * This method stops fragment injection in malicious applications.
      * Make sure to deny any unknown fragments here.
      */
@@ -180,6 +182,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     /**
+     * 创建activity的默认设置项-常规设置
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
      */
@@ -195,6 +198,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
+            bindPreferenceSummaryToValue(findPreference("language_list"));
             bindPreferenceSummaryToValue(findPreference("example_text"));
             bindPreferenceSummaryToValue(findPreference("example_list"));
         }
@@ -211,6 +215,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     /**
+     * 创建activity的默认设置项-通知
      * This fragment shows notification preferences only. It is used when the
      * activity is showing a two-pane settings UI.
      */
@@ -241,6 +246,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     /**
+     * 创建activity的默认设置项-数据更新
      * This fragment shows data and sync preferences only. It is used when the
      * activity is showing a two-pane settings UI.
      */
