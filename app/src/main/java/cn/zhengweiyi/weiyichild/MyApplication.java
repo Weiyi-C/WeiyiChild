@@ -6,7 +6,12 @@
 package cn.zhengweiyi.weiyichild;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.bravin.btoast.BToast;
@@ -15,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cn.zhengweiyi.weiyichild.bean.Dietary;
 import cn.zhengweiyi.weiyichild.bean.PickupHistory;
@@ -99,6 +105,35 @@ public class MyApplication extends Application {
 //                .setShowIcon()              // 是否显示icon 默认显示
                 .setTextSize(12)              // 文字大小，单位是sp
                 .apply(this);               // must call
+    }
+
+    public void setAppLanguage() {
+        Resources resources = getResources();
+        final SharedPreferences languageSettings = getSharedPreferences("language_list", Context.MODE_PRIVATE);
+        int languageId = languageSettings.getInt("language_list", -1);
+        // 获取设置语言
+        Locale mLocale;
+        switch (languageId) {
+            case -1:
+                mLocale = Locale.getDefault();
+                break;
+            case 0:
+                mLocale = Locale.CHINESE;
+                break;
+            case 1:
+                mLocale = Locale.ENGLISH;
+                break;
+            default:
+                mLocale = Locale.getDefault();
+                break;
+        }
+        // 判断当前语言，如与设置不同则修改当前语言以匹配设置语言
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        Configuration configuration = resources.getConfiguration();
+        if (mLocale == configuration.locale) {
+            configuration.setLocale(mLocale);
+            resources.updateConfiguration(configuration, displayMetrics);
+        }
     }
 
     /**

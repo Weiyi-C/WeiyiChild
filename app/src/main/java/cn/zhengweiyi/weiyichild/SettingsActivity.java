@@ -6,9 +6,12 @@
 package cn.zhengweiyi.weiyichild;
 
 import android.annotation.TargetApi;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -22,10 +25,12 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
 import java.util.List;
+import java.util.Locale;
 
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 
@@ -41,6 +46,8 @@ import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
+    private Resources resources;
+    private Application app;
 
     /**
      * A preference value change listener 修改监听器，该监听器更新首选项的摘要以反映其新值。
@@ -92,6 +99,45 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     };
 
+    private Preference.OnPreferenceChangeListener onPreferenceChangeListener = new Preference.OnPreferenceChangeListener() {
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+            if (preference instanceof ListPreference) {
+                ListPreference listPreference = (ListPreference) preference;
+
+                // 设置语言
+                if (listPreference.getKey().equals("language_list")) {
+                    final SharedPreferences languageSettings = getSharedPreferences("language_list", Context.MODE_PRIVATE);
+                    int languageId = languageSettings.getInt("language_list", -1);
+                    // 获取设置语言
+                    Locale mLocale;
+                    switch (languageId) {
+                        case -1:
+                            mLocale = Locale.getDefault();
+                            break;
+                        case 0:
+                            mLocale = Locale.CHINESE;
+                            break;
+                        case 1:
+                            mLocale = Locale.ENGLISH;
+                            break;
+                        default:
+                            mLocale = Locale.getDefault();
+                            break;
+                    }
+                    // 判断当前语言，如与设置不同则修改当前语言以匹配设置语言
+                    DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+                    Configuration configuration = resources.getConfiguration();
+                    if (mLocale == configuration.locale) {
+                        configuration.setLocale(mLocale);
+                        resources.updateConfiguration(configuration, displayMetrics);
+                    }
+                }
+            }
+            return false;
+        }
+    };
+
     /**
      * Helper method to determine if the device has an extra-large screen. For
      * example, 10" tablets are extra-large.
@@ -121,11 +167,22 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         .getString(preference.getKey(), ""));
     }
 
+    private void setAppLanguage(Preference preference) {
+        // 设置listener
+        preference.setOnPreferenceChangeListener(onPreferenceChangeListener);
+
+        onPreferenceChangeListener.onPreferenceChange(preference, PreferenceManager
+                .getDefaultSharedPreferences(preference.getContext())
+                .getInt(preference.getKey(), -1));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimaryDark);
         setupActionBar();
+        app = getApplication();
+        resources = getResources();
     }
 
     /**
