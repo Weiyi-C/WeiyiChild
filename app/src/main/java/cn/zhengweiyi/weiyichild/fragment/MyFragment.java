@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -49,7 +49,7 @@ public class MyFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        Toolbar toolbar = Objects.requireNonNull(getActivity()).findViewById(R.id.toolbar);
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("");
         inflater.inflate(R.menu.menu_main, menu);
         super.onCreateOptionsMenu(menu, inflater);
@@ -85,46 +85,40 @@ public class MyFragment extends Fragment {
     public View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.layoutUserInfo:
-                    BToast.error(view.getContext())
-                            .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
-                            .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM)
-                            .text(R.string.user_name)
-                            .show();
-                    break;
-                case R.id.layoutListVerify:
-                    BToast.normal(view.getContext())
-                            .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
-                            .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
-                            .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.verify))
-                            .show();
-                    break;
-                case R.id.layoutListMyChild:
-                    BToast.normal(view.getContext())
-                            .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
-                            .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
-                            .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.list_child))
-                            .show();
-                    break;
-                case R.id.layoutListPhone:
-                    BToast.normal(view.getContext())
-                            .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
-                            .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
-                            .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.list_phone))
-                            .show();
-                    break;
-                case R.id.layoutListSetting:
-                    BToast.normal(view.getContext())
-                            .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
-                            .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
-                            .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.list_setting))
-                            .show();
-                    break;
-                case R.id.layoutListAbout:
-                    Intent intent = new Intent(getContext(), AboutActivity.class);
-                    startActivity(intent);
-                    break;
+            int id = view.getId();
+            if (id == R.id.layoutUserInfo) {
+                BToast.error(view.getContext())
+                        .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
+                        .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM)
+                        .text(R.string.user_name)
+                        .show();
+            } else if (id == R.id.layoutListVerify) {
+                BToast.normal(view.getContext())
+                        .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
+                        .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
+                        .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.verify))
+                        .show();
+            } else if (id == R.id.layoutListMyChild) {
+                BToast.normal(view.getContext())
+                        .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
+                        .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
+                        .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.list_child))
+                        .show();
+            } else if (id == R.id.layoutListPhone) {
+                BToast.normal(view.getContext())
+                        .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
+                        .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
+                        .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.list_phone))
+                        .show();
+            } else if (id == R.id.layoutListSetting) {
+                BToast.normal(view.getContext())
+                        .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
+                        .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
+                        .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.list_setting))
+                        .show();
+            } else if (id == R.id.layoutListAbout) {
+                Intent intent = new Intent(getContext(), AboutActivity.class);
+                startActivity(intent);
             }
         }
     };

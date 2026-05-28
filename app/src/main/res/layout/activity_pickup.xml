@@ -11,13 +11,13 @@
     android:orientation="vertical"
     tools:context=".PickupActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/themeDark"
         app:elevation="0dp">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_pickup"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
@@ -26,8 +26,8 @@
             app:theme="@style/MyToolbarThemePrimary"
             app:title="@string/function_pickup">
 
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                 android:contentDescription="@string/pickup_pick_up"
                 android:duplicateParentState="true"
                 android:src="@drawable/ic_scanner"
-                android:tint="@color/colorTextLight" />
+                app:tint="@color/colorTextLight" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
                 android:contentDescription="@string/pickup_send"
                 android:duplicateParentState="true"
                 android:src="@drawable/ic_qrcode"
-                android:tint="@color/colorTextLight" />
+                app:tint="@color/colorTextLight" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -108,11 +108,11 @@
         android:textColor="@color/colorTextBlack"
         android:textSize="@dimen/text_size_default" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pickupRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

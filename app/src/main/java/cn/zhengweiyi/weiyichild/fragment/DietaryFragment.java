@@ -7,10 +7,10 @@ package cn.zhengweiyi.weiyichild.fragment;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +49,7 @@ public class DietaryFragment extends Fragment implements DietaryRecyclerAdapter.
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dietary, container, false);
         // 获取 Application
-        app = (MyApplication) Objects.requireNonNull(getActivity()).getApplication();
+        app = (MyApplication) requireActivity().getApplication();
         // 读取食谱
         dietaryLab = new DietaryLab(app.getDaoSession().getDietaryDao());
         dietaryList = dietaryLab.getDietaryByDate(DateFormatUtil.DateToStr(new Date()));

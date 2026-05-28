@@ -10,12 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CodeActivity"/>
-        <activity android:name=".PickupActivity" />
-        <activity android:name=".DietaryActivity" />
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".CodeActivity" android:exported="false" />
+        <activity android:name=".PickupActivity" android:exported="false" />
+        <activity android:name=".DietaryActivity" android:exported="false" />
+        <activity android:name=".AboutActivity" android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
