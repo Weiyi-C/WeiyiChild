@@ -5,6 +5,7 @@
 
 package cn.zhengweiyi.weiyichild.bean;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -37,6 +38,15 @@ public interface DietaryDao {
      */
     @Query("SELECT * FROM dietary_list WHERE DATE = :date ORDER BY SEQUENCE ASC")
     List<Dietary> loadByDate(Date date);
+
+    /**
+     * 根据日期查询食谱（LiveData 版本，数据变化时自动通知）
+     *
+     * @param date 日期（时间戳）
+     * @return 指定日期的食谱列表 LiveData
+     */
+    @Query("SELECT * FROM dietary_list WHERE DATE = :date ORDER BY SEQUENCE ASC")
+    LiveData<List<Dietary>> loadByDateLive(Date date);
 
     /**
      * 查询全部食谱

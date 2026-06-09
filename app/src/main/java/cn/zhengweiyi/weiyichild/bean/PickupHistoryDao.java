@@ -5,6 +5,7 @@
 
 package cn.zhengweiyi.weiyichild.bean;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -26,6 +27,14 @@ public interface PickupHistoryDao {
      */
     @Query("SELECT * FROM PICKUP_HISTORY")
     List<PickupHistory> loadAll();
+
+    /**
+     * 查询全部接送记录（LiveData 版本，数据变化时自动通知）
+     *
+     * @return 所有接送记录的 LiveData
+     */
+    @Query("SELECT * FROM PICKUP_HISTORY")
+    LiveData<List<PickupHistory>> loadAllLive();
 
     /**
      * 批量插入接送记录（冲突时替换）

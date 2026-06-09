@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,7 @@ import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -33,7 +35,7 @@ import cn.zhengweiyi.weiyichild.bean.PickupHistory;
 import cn.zhengweiyi.weiyichild.custom.DateFormatUtil;
 import cn.zhengweiyi.weiyichild.custom.PickupHistoryRecyclerAdapter;
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
-import cn.zhengweiyi.weiyichild.greenDao.PickupHistoryLab;
+import cn.zhengweiyi.weiyichild.viewmodel.PickupViewModel;
 
 public class PickupActivity extends AppCompatActivity implements PickupHistoryRecyclerAdapter.OnEmptyViewButtonClickListener {
 
@@ -41,10 +43,9 @@ public class PickupActivity extends AppCompatActivity implements PickupHistoryRe
     private static final String CODE_KEY = "codeString";
 
     MyApplication app;
-    PickupHistoryLab pickupHistoryLab;
+    PickupViewModel pickupViewModel;
     PickupHistoryRecyclerAdapter recyclerAdapter;
 
-    private List<PickupHistory> pickupHistoryList;
     private RecyclerView recyclerView;
 
     @Override
@@ -73,19 +74,26 @@ public class PickupActivity extends AppCompatActivity implements PickupHistoryRe
 
         // 获取 Application
         app = (MyApplication) this.getApplication();
-        // 读取接送记录
-        pickupHistoryLab = new PickupHistoryLab(app.getAppDatabase().pickupHistoryDao());
-        pickupHistoryList = pickupHistoryLab.getAllPickupHistory();
-        Log.d("PickupHistory", "获取到的接送记录" + pickupHistoryList);
-        // 显示接送记录
+
+        // 初始化 ViewModel
+        pickupViewModel = new ViewModelProvider(this).get(PickupViewModel.class);
+
+        // 设置 RecyclerView
         recyclerView = findViewById(R.id.pickupRecycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter = new PickupHistoryRecyclerAdapter(pickupHistoryList, this);
-        // 设置空数据提示按钮点击监听接口
+        recyclerAdapter = new PickupHistoryRecyclerAdapter(new ArrayList<>(), this);
         recyclerAdapter.setOnEmptyViewButtonClickListener(emptyViewButtonClickListener);
-        Log.d("PickupHistory", "设置适配器recyclerAdapter：" + recyclerAdapter);
         recyclerView.setAdapter(recyclerAdapter);
+
+        // 观察 LiveData
+        pickupViewModel.getPickupHistoryLiveData().observe(this, pickupHistoryList -> {
+            Log.d("PickupHistory", "获取到的接送记录" + pickupHistoryList);
+            recyclerAdapter.refreshData(pickupHistoryList);
+        });
+
+        // 加载数据
+        pickupViewModel.loadAll();
     }
 
     public View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -102,11 +110,7 @@ public class PickupActivity extends AppCompatActivity implements PickupHistoryRe
                             public void onAction(List<String> permissions) {
                                 Intent intentScan = new Intent(PickupActivity.this, CaptureActivity.class);
                                 ZxingConfig config = new ZxingConfig();
-                                // config.setPlayBeep(false);//是否播放扫描声音 默认为true
-                                // config.setShake(false);//是否震动  默认为true
-                                // config.setDecodeBarCode(false);//是否扫描条形码 默认为true
                                 config.setReactColor(R.color.colorAccent);//设置扫描框四个角的颜色 默认为白色
-                                // config.setFrameLineColor(R.color.colorAccent);//设置扫描框边框颜色 默认无色
                                 config.setScanLineColor(R.color.colorAccent);//设置扫描线的颜色 默认白色
                                 config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
                                 intentScan.putExtra(Constant.INTENT_ZXING_CONFIG, config);
@@ -161,10 +165,7 @@ public class PickupActivity extends AppCompatActivity implements PickupHistoryRe
             = new PickupHistoryRecyclerAdapter.OnEmptyViewButtonClickListener() {
         @Override
         public void onEmptyViewButtonClick() {
-            app.initTestDataPickup();
-            pickupHistoryList.clear();
-            pickupHistoryList = pickupHistoryLab.getAllPickupHistory();
-            recyclerAdapter.refreshData(pickupHistoryList);
+            pickupViewModel.initTestDataPickup();
         }
     };
 

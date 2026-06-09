@@ -9,6 +9,7 @@ package cn.zhengweiyi.weiyichild.fragment;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -16,26 +17,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 
-import cn.zhengweiyi.weiyichild.MyApplication;
 import cn.zhengweiyi.weiyichild.R;
-import cn.zhengweiyi.weiyichild.bean.Dietary;
 import cn.zhengweiyi.weiyichild.custom.DateFormatUtil;
 import cn.zhengweiyi.weiyichild.custom.DietaryRecyclerAdapter;
-import cn.zhengweiyi.weiyichild.greenDao.DietaryLab;
+import cn.zhengweiyi.weiyichild.viewmodel.DietaryViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DietaryFragment extends Fragment implements DietaryRecyclerAdapter.OnEmptyViewButtonClickListener {
 
-    private List<Dietary> dietaryList;
     private RecyclerView mRecyclerView;
-    private MyApplication app;
-    private DietaryLab dietaryLab;
+    private DietaryViewModel viewModel;
     private DietaryRecyclerAdapter adapter;
 
     private String selectDate;
@@ -48,19 +44,26 @@ public class DietaryFragment extends Fragment implements DietaryRecyclerAdapter.
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dietary, container, false);
-        // 获取 Application
-        app = (MyApplication) requireActivity().getApplication();
-        // 读取食谱
-        dietaryLab = new DietaryLab(app.getAppDatabase().dietaryDao());
-        dietaryList = dietaryLab.getDietaryByDate(DateFormatUtil.DateToStr(new Date()));
-        // 显示食谱
+
+        viewModel = new ViewModelProvider(requireActivity()).get(DietaryViewModel.class);
+
         mRecyclerView = view.findViewById(R.id.dietary_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
-        adapter = new DietaryRecyclerAdapter(dietaryList, getContext());
+        adapter = new DietaryRecyclerAdapter(new ArrayList<>(), getContext());
         adapter.setOnEmptyViewButtonClickListener(emptyViewButtonClickListener);
         mRecyclerView.setAdapter(adapter);
-        // Inflate the layout for this fragment
+
+        // 观察 LiveData
+        viewModel.getDietaryLiveData().observe(getViewLifecycleOwner(), dietaryList -> {
+            Log.d("DietaryRecycler", "食谱列表大小为" + dietaryList.size());
+            adapter.refreshData(dietaryList);
+        });
+
+        // 加载今日数据
+        selectDate = DateFormatUtil.DateToStr(new Date());
+        viewModel.loadByDate(selectDate);
+
         return view;
     }
 
@@ -70,28 +73,19 @@ public class DietaryFragment extends Fragment implements DietaryRecyclerAdapter.
 
     public void changeDate(String date) {
         selectDate = date;
-        if (dietaryList.size() > 0) {
-            dietaryList.clear();
-        }
-        dietaryList = dietaryLab.getDietaryByDate(date);
-        Log.d("DietaryRecycler", date + "的食谱列表大小为" + dietaryList.size());
-        adapter.refreshData(dietaryList);
+        viewModel.loadByDate(date);
     }
 
     public DietaryRecyclerAdapter.OnEmptyViewButtonClickListener emptyViewButtonClickListener
             = new DietaryRecyclerAdapter.OnEmptyViewButtonClickListener() {
         @Override
         public void onEmptyViewButtonClick() {
-            Log.i("DietaryRecycler", "点击“插入测试数据按钮”");
+            Log.i("DietaryRecycler", "点击插入测试数据按钮");
             if (selectDate == null) {
                 selectDate = DateFormatUtil.DateToStr(new Date());
             }
             Log.i("DietaryRecycler", "当前日期为" + selectDate);
-            if (app.initTestDataDietary(selectDate)) {
-                dietaryList.clear();
-                dietaryList = dietaryLab.getDietaryByDate(selectDate);
-                adapter.refreshData(dietaryList);
-            }
+            viewModel.initTestDataDietary(selectDate);
         }
     };
 

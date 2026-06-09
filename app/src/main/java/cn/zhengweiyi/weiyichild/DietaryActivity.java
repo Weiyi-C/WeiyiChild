@@ -34,7 +34,6 @@ import java.util.Objects;
 import cn.zhengweiyi.weiyichild.custom.DateFormatUtil;
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.fragment.DietaryFragment;
-import cn.zhengweiyi.weiyichild.greenDao.DietaryLab;
 
 public class DietaryActivity extends AppCompatActivity implements
         CalendarView.OnCalendarSelectListener,
@@ -53,7 +52,6 @@ public class DietaryActivity extends AppCompatActivity implements
     private int mYear;                      // 年份
 
     private String selectDate;              // 当前选中日期
-    DietaryLab dietaryLab;                  // 食谱数据库操作类
 
     private TabLayout tab;                  // Tab布局
     private String[] tabTitle;              // Tab标题
@@ -94,12 +92,6 @@ public class DietaryActivity extends AppCompatActivity implements
         for (int i = 0; i < tab.length; i++) {
             tabTitle[i] = getResources().getString(tab[i]);
         }
-
-        // 实例化数据库操作类
-        MyApplication app = (MyApplication) getApplication();
-        // app.initData();
-        dietaryLab = new DietaryLab(app.getAppDatabase().dietaryDao());
-        Log.d("读取数据库", "dietaryDao[1]：" + dietaryLab.getDietaryById(1L));
     }
 
     @SuppressLint("SetTextI18n")
