@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. zhengweiyi.cn all rights reserved
+ * Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
@@ -7,84 +7,80 @@ package cn.zhengweiyi.weiyichild.bean;
 
 import android.util.Log;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Keep;
-import org.greenrobot.greendao.annotation.Transient;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-import org.greenrobot.greendao.annotation.Generated;
-
-@Entity
+/**
+ * 安全接送记录实体类
+ * 对应数据库表 PICKUP_HISTORY
+ */
+@Entity(tableName = "PICKUP_HISTORY")
 public class PickupHistory {
 
-    @Transient
+    /** 接孩子 */
+    @Ignore
     public static final String PICK_UP = "PICKUP";
-    @Transient
+
+    /** 送孩子 */
+    @Ignore
     public static final String SEND = "SEND";
 
-    @Id(autoincrement = true)
+    /** 主键，自增 */
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "_id")
     private Long id;
+
+    /** 日期（存储为时间戳） */
+    @ColumnInfo(name = "DATE")
     private Date date;
+
+    /** 类型：PICKUP（接）或 SEND（送） */
+    @ColumnInfo(name = "TYPE")
     private String type;
+
+    /** 家长姓名 */
+    @ColumnInfo(name = "PARENT")
     private String parent;
+
+    /** 老师姓名 */
+    @ColumnInfo(name = "TEACHER")
     private String teacher;
 
-    @Keep
+    @Ignore
     public PickupHistory(Date date, String type, String parent, String teacher) {
-        switch (type) {
-            case PICK_UP:
-                this.date = date;
-                this.type = type;
-                this.parent = parent;
-                this.teacher = teacher;
-                break;
-            case SEND:
-                this.date = date;
-                this.type = type;
-                this.parent = parent;
-                this.teacher = teacher;
-                break;
-            default:
-                Log.e("Database", "安全接送数据类型定义错误，无法写入数据");
-                break;
+        if (PICK_UP.equals(type) || SEND.equals(type)) {
+            this.date = date;
+            this.type = type;
+            this.parent = parent;
+            this.teacher = teacher;
+        } else {
+            Log.e("Database", "安全接送数据类型定义错误，无法写入数据");
         }
     }
 
-    @Keep
+    @Ignore
     public PickupHistory(String type, String parent, String teacher) {
-        switch (type) {
-            case PICK_UP:
-                this.date = new Date();
-                this.type = type;
-                this.parent = parent;
-                this.teacher = teacher;
-                break;
-            case SEND:
-                this.date = new Date();
-                this.type = type;
-                this.parent = parent;
-                this.teacher = teacher;
-                break;
-            default:
-                Log.e("Database", "安全接送数据类型定义错误，无法写入数据");
-                break;
+        if (PICK_UP.equals(type) || SEND.equals(type)) {
+            this.date = new Date();
+            this.type = type;
+            this.parent = parent;
+            this.teacher = teacher;
+        } else {
+            Log.e("Database", "安全接送数据类型定义错误，无法写入数据");
         }
     }
 
-    @Generated(hash = 185550921)
-    public PickupHistory(Long id, Date date, String type, String parent,
-                         String teacher) {
+    /** Room 使用的全参构造函数 */
+    public PickupHistory(Long id, Date date, String type, String parent, String teacher) {
         this.id = id;
         this.date = date;
         this.type = type;
         this.parent = parent;
         this.teacher = teacher;
-    }
-
-    @Generated(hash = 1751476635)
-    public PickupHistory() {
     }
 
     public Long getId() {

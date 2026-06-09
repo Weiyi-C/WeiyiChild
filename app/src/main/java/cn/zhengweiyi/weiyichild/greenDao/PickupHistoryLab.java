@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. zhengweiyi.cn all rights reserved
+ * Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
@@ -8,10 +8,11 @@ package cn.zhengweiyi.weiyichild.greenDao;
 import java.util.List;
 
 import cn.zhengweiyi.weiyichild.bean.PickupHistory;
-import cn.zhengweiyi.weiyichild.greenDao.db.PickupHistoryDao;
+import cn.zhengweiyi.weiyichild.bean.PickupHistoryDao;
 
 /**
  * 安全接送历史记录数据库操作类
+ * 封装 PickupHistoryDao 的常用查询方法
  */
 public class PickupHistoryLab {
 
