@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao' //引用GreenDao插件
 
 android {
     namespace 'cn.zhengweiyi.weiyichild'
@@ -40,18 +39,11 @@ dependencies {
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.7'
     implementation 'com.yanzhenjie:permission:2.0.2'    //引入 AndPermission 进行权限管理
     implementation project(':calendarview')             //引入 CalendarView 日历控件（https://github.com/huanghaibin-dev/CalendarView）
-    implementation 'org.greenrobot:greendao:3.3.0'      //引入 GreenDao
+    implementation 'androidx.room:room-runtime:2.6.1'   //引入 Room 数据库
+    annotationProcessor 'androidx.room:room-compiler:2.6.1'  //Room 注解处理器
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-}
-
-greendao {
-    schemaVersion 1                                     //数据库版本号
-    daoPackage 'cn.zhengweiyi.weiyichild.greenDao.db'   // GreenDao 自动生成的代码保存的包名
-    targetGenDir 'src/main/java'                        // DaoMaster、DaoSession、Dao目录
-    generateTests false
-    targetGenDirTests 'src/main/java'
 }

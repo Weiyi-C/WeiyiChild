@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. zhengweiyi.cn all rights reserved
+ * Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
@@ -74,7 +74,7 @@ public class PickupActivity extends AppCompatActivity implements PickupHistoryRe
         // 获取 Application
         app = (MyApplication) this.getApplication();
         // 读取接送记录
-        pickupHistoryLab = new PickupHistoryLab(app.getDaoSession().getPickupHistoryDao());
+        pickupHistoryLab = new PickupHistoryLab(app.getAppDatabase().pickupHistoryDao());
         pickupHistoryList = pickupHistoryLab.getAllPickupHistory();
         Log.d("PickupHistory", "获取到的接送记录" + pickupHistoryList);
         // 显示接送记录

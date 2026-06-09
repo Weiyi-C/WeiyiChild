@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. zhengweiyi.cn all rights reserved
+ * Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
@@ -51,7 +51,7 @@ public class DietaryFragment extends Fragment implements DietaryRecyclerAdapter.
         // 获取 Application
         app = (MyApplication) requireActivity().getApplication();
         // 读取食谱
-        dietaryLab = new DietaryLab(app.getDaoSession().getDietaryDao());
+        dietaryLab = new DietaryLab(app.getAppDatabase().dietaryDao());
         dietaryList = dietaryLab.getDietaryByDate(DateFormatUtil.DateToStr(new Date()));
         // 显示食谱
         mRecyclerView = view.findViewById(R.id.dietary_recycler);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. zhengweiyi.cn all rights reserved
+ * Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
@@ -98,7 +98,7 @@ public class DietaryActivity extends AppCompatActivity implements
         // 实例化数据库操作类
         MyApplication app = (MyApplication) getApplication();
         // app.initData();
-        dietaryLab = new DietaryLab(app.getDaoSession().getDietaryDao());
+        dietaryLab = new DietaryLab(app.getAppDatabase().dietaryDao());
         Log.d("读取数据库", "dietaryDao[1]：" + dietaryLab.getDietaryById(1L));
     }
 
