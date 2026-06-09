@@ -138,7 +138,7 @@
             app:current_day_text_color="@color/themePrimary"
             app:current_month_lunar_text_color="@color/colorTextDefault"
             app:current_month_text_color="@color/colorTextBlack"
-            app:max_year="2020"
+            app:max_year="2030"
             app:min_year="2019"
             app:month_view="cn.zhengweiyi.weiyichild.custom.view.calendar.MyMonthView"
             app:month_view_show_mode="mode_fix"
