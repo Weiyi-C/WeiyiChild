@@ -49,6 +49,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        setAppLanguage();
         setBToast();
         setDatabase();
     }
@@ -121,7 +122,8 @@ public class MyApplication extends Application {
         // 判断当前语言，如与设置不同则修改当前语言以匹配设置语言
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         Configuration configuration = resources.getConfiguration();
-        if (mLocale == configuration.locale) {
+        Locale currentLocale = configuration.getLocales().get(0);
+        if (!mLocale.equals(currentLocale)) {
             configuration.setLocale(mLocale);
             resources.updateConfiguration(configuration, displayMetrics);
         }
