@@ -8,7 +8,6 @@ package cn.zhengweiyi.weiyichild;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,7 +36,7 @@ import cn.zhengweiyi.weiyichild.custom.PickupHistoryRecyclerAdapter;
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.viewmodel.PickupViewModel;
 
-public class PickupActivity extends AppCompatActivity implements PickupHistoryRecyclerAdapter.OnEmptyViewButtonClickListener {
+public class PickupActivity extends BaseActivity implements PickupHistoryRecyclerAdapter.OnEmptyViewButtonClickListener {
 
     private int REQUEST_CODE_SCAN = 111;
     private static final String CODE_KEY = "codeString";

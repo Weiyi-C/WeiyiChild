@@ -6,6 +6,7 @@
 package cn.zhengweiyi.weiyichild;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import com.bravin.btoast.BToast;
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 import cn.zhengweiyi.weiyichild.bean.AppDatabase;
+import cn.zhengweiyi.weiyichild.custom.LocaleHelper;
 import cn.zhengweiyi.weiyichild.bean.Dietary;
 import cn.zhengweiyi.weiyichild.bean.DietaryDao;
 import cn.zhengweiyi.weiyichild.bean.PickupHistory;
@@ -38,6 +40,11 @@ public class MyApplication extends Application {
 
     // 静态单例
     public static MyApplication instance;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.wrap(base));
+    }
 
     @Override
     public void onCreate() {

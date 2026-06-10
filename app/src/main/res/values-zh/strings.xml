@@ -18,7 +18,7 @@
     <string name="grid_text">功能名称</string>
     <string name="list_child">我的孩子</string>
     <string name="list_phone">我的手机</string>
-    <string name="list_setting">系统设置</string>
+    <string name="list_setting">软件设置</string>
     <string name="list_about">关于</string>
     <string name="menu_scanner">扫一扫</string>
     <string name="pickup_pick_up">接孩子</string>
@@ -43,4 +43,35 @@
     <string name="click_calendar_month">再次点击进入年视图</string>
     <string name="coming_soon">敬请期待</string>
     <string name="page_updated">页面已更新</string>
+    <string name="title_activity_settings">设置</string>
+    <!-- 设置菜单 -->
+    <string name="pref_title_language">多语言</string>
+
+    <string name="pref_title_social_recommendations">开启社交推荐</string>
+    <string name="pref_header_general">通用</string>
+    <string name="pref_title_display_name">显示名称</string>
+    <string name="pref_default_display_name">约翰·史密斯</string>
+    <string name="pref_header_data_sync">同步</string>
+    <string name="pref_title_sync_frequency">同步频率</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15分钟</item>
+        <item>30分钟</item>
+        <item>1小时</item>
+        <item>3小时</item>
+        <item>6小时</item>
+        <item>从不</item>
+    </string-array>
+    <string name="pref_title_system_sync_settings">系统同步设置</string>
+    <string name="pref_header_notifications">通知</string>
+    <string name="pref_title_new_message_notifications">新消息通知</string>
+    <string name="pref_title_ringtone">铃声</string>
+    <string name="pref_ringtone_silent">无铃声</string>
+    <string name="pref_title_vibrate">震动</string>
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>总是</item>
+        <item>当可能的时候</item>
+        <item>从不</item>
+    </string-array>
+    <string name="pref_description_social_recommendations">根据历史消息记录推荐联系人</string>
 </resources>

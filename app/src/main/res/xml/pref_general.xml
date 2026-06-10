@@ -1,0 +1,19 @@
+<!--
+  ~ Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
+  ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ListPreference
+        android:defaultValue="-1"
+        android:entries="@array/pref_language_list_titles"
+        android:entryValues="@array/pref_language_list_values"
+        android:key="language_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_language"
+        app:useSimpleSummaryProvider="true" />
+
+</PreferenceScreen>

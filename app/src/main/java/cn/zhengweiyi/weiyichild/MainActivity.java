@@ -12,7 +12,6 @@ import android.provider.Settings;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -39,7 +38,7 @@ import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.fragment.MainFragment;
 import cn.zhengweiyi.weiyichild.fragment.MyFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static final String ARG_SCREEN_WIDTH = "screenWidth";
     private static final String ARG_SCREEN_DENSITY = "screenDensity";

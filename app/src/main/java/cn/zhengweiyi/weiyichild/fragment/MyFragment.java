@@ -21,6 +21,7 @@ import cn.zhengweiyi.weiyichild.AboutActivity;
 import cn.zhengweiyi.weiyichild.MainActivity;
 import cn.zhengweiyi.weiyichild.MyApplication;
 import cn.zhengweiyi.weiyichild.R;
+import cn.zhengweiyi.weiyichild.SettingsActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -111,11 +112,8 @@ public class MyFragment extends Fragment {
                         .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.list_phone))
                         .show();
             } else if (id == R.id.layoutListSetting) {
-                BToast.normal(view.getContext())
-                        .animate(true).animationGravity(BToast.ANIMATION_GRAVITY_TOP)
-                        .target(view).layoutGravity(BToast.LAYOUT_GRAVITY_BOTTOM).tag(MyApplication.CLICK_MESSAGE)
-                        .text(getResources().getString(R.string.click) + " " + getResources().getString(R.string.list_setting))
-                        .show();
+                Intent intentSettint = new Intent(getContext(), SettingsActivity.class);
+                startActivity(intentSettint);
             } else if (id == R.id.layoutListAbout) {
                 Intent intent = new Intent(getContext(), AboutActivity.class);
                 startActivity(intent);

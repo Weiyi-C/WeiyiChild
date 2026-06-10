@@ -8,7 +8,6 @@ package cn.zhengweiyi.weiyichild;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
@@ -23,7 +22,7 @@ import java.util.Objects;
 
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 
-public class CodeActivity extends AppCompatActivity {
+public class CodeActivity extends BaseActivity {
 
     private static final String CODE_KEY = "codeString";
     String codeString;
