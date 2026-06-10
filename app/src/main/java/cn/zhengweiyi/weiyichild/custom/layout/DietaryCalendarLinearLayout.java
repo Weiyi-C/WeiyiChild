@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2019. zhengweiyi.cn all rights reserved
+ * Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
 package cn.zhengweiyi.weiyichild.custom.layout;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 

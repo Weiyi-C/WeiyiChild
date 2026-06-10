@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. zhengweiyi.cn all rights reserved
+ * Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
@@ -8,11 +8,11 @@ package cn.zhengweiyi.weiyichild;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.StringRes;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.StringRes;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -34,7 +34,6 @@ import java.util.Objects;
 import cn.zhengweiyi.weiyichild.custom.DateFormatUtil;
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.fragment.DietaryFragment;
-import cn.zhengweiyi.weiyichild.greenDao.DietaryLab;
 
 public class DietaryActivity extends AppCompatActivity implements
         CalendarView.OnCalendarSelectListener,
@@ -53,7 +52,6 @@ public class DietaryActivity extends AppCompatActivity implements
     private int mYear;                      // 年份
 
     private String selectDate;              // 当前选中日期
-    DietaryLab dietaryLab;                  // 食谱数据库操作类
 
     private TabLayout tab;                  // Tab布局
     private String[] tabTitle;              // Tab标题
@@ -94,12 +92,6 @@ public class DietaryActivity extends AppCompatActivity implements
         for (int i = 0; i < tab.length; i++) {
             tabTitle[i] = getResources().getString(tab[i]);
         }
-
-        // 实例化数据库操作类
-        MyApplication app = (MyApplication) getApplication();
-        // app.initData();
-        dietaryLab = new DietaryLab(app.getDaoSession().getDietaryDao());
-        Log.d("读取数据库", "dietaryDao[1]：" + dietaryLab.getDietaryById(1L));
     }
 
     @SuppressLint("SetTextI18n")

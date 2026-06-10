@@ -4,6 +4,7 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -25,7 +26,7 @@
             android:layout_width="@dimen/image_icon_pickup_history"
             android:layout_height="@dimen/image_icon_pickup_history"
             android:src="@drawable/ic_down_circle_fill"
-            android:tint="@color/themeDark"
+            app:tint="@color/themeDark"
             tools:ignore="ContentDescription" />
 
         <ImageView

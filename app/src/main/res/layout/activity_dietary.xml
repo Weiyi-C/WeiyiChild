@@ -103,7 +103,7 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_calendar"
-                android:tint="#000000" />
+                app:tint="#000000" />
 
             <TextView
                 android:id="@+id/tv_current_day"
@@ -138,7 +138,7 @@
             app:current_day_text_color="@color/themePrimary"
             app:current_month_lunar_text_color="@color/colorTextDefault"
             app:current_month_text_color="@color/colorTextBlack"
-            app:max_year="2020"
+            app:max_year="2030"
             app:min_year="2019"
             app:month_view="cn.zhengweiyi.weiyichild.custom.view.calendar.MyMonthView"
             app:month_view_show_mode="mode_fix"
@@ -167,7 +167,7 @@
             android:orientation="vertical"
             tools:ignore="UnusedAttribute">
 
-            <android.support.design.widget.TabLayout
+            <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
@@ -179,7 +179,7 @@
                 app:tabSelectedTextColor="#333333"
                 app:tabTextColor="#CFCFCF" />
 
-            <android.support.v4.view.ViewPager
+            <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

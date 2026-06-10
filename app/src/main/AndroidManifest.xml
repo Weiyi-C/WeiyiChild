@@ -12,18 +12,16 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SettingsActivity"
+            android:exported="false"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.zhengweiyi.weiyichild.MainActivity" />
-        </activity>
-        <activity android:name=".CodeActivity" />
-        <activity android:name=".PickupActivity" />
-        <activity android:name=".DietaryActivity" />
-        <activity android:name=".AboutActivity" />
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".CodeActivity" android:exported="false" />
+        <activity android:name=".PickupActivity" android:exported="false" />
+        <activity android:name=".DietaryActivity" android:exported="false" />
+        <activity android:name=".AboutActivity" android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

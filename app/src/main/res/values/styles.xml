@@ -6,14 +6,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorTextDefault</item>
         <item name="android:fitsSystemWindows">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -21,12 +19,12 @@
         <item name="windowNoTitle">true</item>
     </style>
     
-    <style name="MyToolbarThemePrimary" parent="ThemeOverlay.AppCompat.Dark">
+    <style name="MyToolbarThemePrimary" parent="ThemeOverlay.MaterialComponents.Dark">
         <item name="colorControlNormal">@color/colorTextLight</item>
         <item name="android:textColor">@color/colorTextLight</item>
     </style>
 
-    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+    <style name="MyCustomTabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabIndicatorColor">?attr/colorAccent</item>
         <item name="tabIndicatorHeight">0dp</item>
         <item name="tabPaddingStart">12dp</item>

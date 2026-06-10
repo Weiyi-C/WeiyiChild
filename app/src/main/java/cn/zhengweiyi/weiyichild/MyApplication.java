@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. zhengweiyi.cn all rights reserved
+ * Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -22,14 +21,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import cn.zhengweiyi.weiyichild.bean.AppDatabase;
 import cn.zhengweiyi.weiyichild.bean.Dietary;
+import cn.zhengweiyi.weiyichild.bean.DietaryDao;
 import cn.zhengweiyi.weiyichild.bean.PickupHistory;
+import cn.zhengweiyi.weiyichild.bean.PickupHistoryDao;
 import cn.zhengweiyi.weiyichild.custom.DateFormatUtil;
 import cn.zhengweiyi.weiyichild.greenDao.DietaryLab;
-import cn.zhengweiyi.weiyichild.greenDao.db.DaoMaster;
-import cn.zhengweiyi.weiyichild.greenDao.db.DaoSession;
-import cn.zhengweiyi.weiyichild.greenDao.db.DietaryDao;
-import cn.zhengweiyi.weiyichild.greenDao.db.PickupHistoryDao;
 
 public class MyApplication extends Application {
 
@@ -38,10 +36,9 @@ public class MyApplication extends Application {
 
     public static final int CLICK_MESSAGE = 1;
 
-    private DaoMaster.DevOpenHelper mHelper;
-    private SQLiteDatabase db;
-    private DaoMaster mDaoMaster;
-    private DaoSession mDaoSession;
+    /** Room 数据库实例 */
+    private AppDatabase appDatabase;
+
     private List<Dietary> dietaryList = new ArrayList<>();
     private List<PickupHistory> pickupHistoryList = new ArrayList<>();
 
@@ -61,25 +58,19 @@ public class MyApplication extends Application {
     }
 
     /**
-     * 设置 GreenDao
+     * 初始化 Room 数据库
      */
     private void setDatabase() {
-        // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。
-        // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。
-        // 所以，应该 TODO 做一层封装，来实现数据库的安全升级。
-        mHelper = new DaoMaster.DevOpenHelper(this, "sport-db", null);
-        db = mHelper.getWritableDatabase();
-        // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。
-        mDaoMaster = new DaoMaster(db);
-        mDaoSession = mDaoMaster.newSession();
+        appDatabase = AppDatabase.getInstance(this);
     }
 
-    public DaoSession getDaoSession() {
-        return mDaoSession;
-    }
-
-    public SQLiteDatabase getDb() {
-        return db;
+    /**
+     * 获取数据库实例
+     *
+     * @return AppDatabase 实例
+     */
+    public AppDatabase getAppDatabase() {
+        return appDatabase;
     }
 
     /**
@@ -141,11 +132,10 @@ public class MyApplication extends Application {
      * TODO 实现服务器读取后修改该方法
      */
     public void initData() {
-        DietaryDao dietaryDao = getDaoSession().getDietaryDao();
-        if (dietaryDao.load(1L) == null) {  //判断数据库是否有数据
-
+        DietaryDao dietaryDao = appDatabase.dietaryDao();
+        if (dietaryDao.loadById(1L) == null) {  // 判断数据库是否有数据
             // 写入数据到数据库
-            dietaryDao.saveInTx(dietaryList);
+            dietaryDao.insertInTx(dietaryList);
         }
     }
 
@@ -153,7 +143,7 @@ public class MyApplication extends Application {
      * 写入接送记录测试数据
      */
     public void initTestDataPickup() {
-        PickupHistoryDao pickupHistoryDao = getDaoSession().getPickupHistoryDao();
+        PickupHistoryDao pickupHistoryDao = appDatabase.pickupHistoryDao();
         Date dateNow = new Date();
         for (int i = 0; i < 3; i++) {
             Calendar calendar = Calendar.getInstance();
@@ -166,17 +156,20 @@ public class MyApplication extends Application {
             PickupHistory pickupHistorySend = new PickupHistory(date, PickupHistory.SEND, "家长姓名", "甄老师");
             pickupHistoryList.add(pickupHistoryPickup);
             pickupHistoryList.add(pickupHistorySend);
-            pickupHistoryDao.saveInTx(pickupHistoryList);
+            pickupHistoryDao.insertInTx(pickupHistoryList);
         }
     }
 
     /**
      * 写入每日食谱测试数据
+     *
+     * @param date 日期字符串（yyyy-MM-dd 格式）
+     * @return 是否成功写入
      */
     public boolean initTestDataDietary(String date) {
         boolean re = false;
         Log.i("DietaryDAO", "插入日期" + date + "的测试数据");
-        DietaryDao dietaryDao = getDaoSession().getDietaryDao();
+        DietaryDao dietaryDao = appDatabase.dietaryDao();
         DietaryLab dietaryLab = new DietaryLab(dietaryDao);
         if (dietaryLab.getDietaryByDate(date).size() == 0) {
             Calendar calendar = Calendar.getInstance();
@@ -203,7 +196,7 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary13);
                     dietaryList.add(dietary14);
                     dietaryList.add(dietary15);
-                    dietaryDao.saveInTx(dietaryList);
+                    dietaryDao.insertInTx(dietaryList);
                     re = true;
                     break;
                 case 3:
@@ -217,7 +210,7 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary22);
                     dietaryList.add(dietary23);
                     dietaryList.add(dietary25);
-                    dietaryDao.saveInTx(dietaryList);
+                    dietaryDao.insertInTx(dietaryList);
                     re = true;
                     break;
                 case 4:
@@ -233,7 +226,7 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary33);
                     dietaryList.add(dietary34);
                     dietaryList.add(dietary35);
-                    dietaryDao.saveInTx(dietaryList);
+                    dietaryDao.insertInTx(dietaryList);
                     re = true;
                     break;
                 case 5:
@@ -249,7 +242,7 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary43);
                     dietaryList.add(dietary44);
                     dietaryList.add(dietary45);
-                    dietaryDao.saveInTx(dietaryList);
+                    dietaryDao.insertInTx(dietaryList);
                     re = true;
                     break;
                 case 6:
@@ -263,7 +256,7 @@ public class MyApplication extends Application {
                     dietaryList.add(dietary52);
                     dietaryList.add(dietary53);
                     dietaryList.add(dietary55);
-                    dietaryDao.saveInTx(dietaryList);
+                    dietaryDao.insertInTx(dietaryList);
                     re = true;
                     break;
                 case 7:
