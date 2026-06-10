@@ -5,10 +5,10 @@
 
 package cn.zhengweiyi.weiyichild;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,9 +16,8 @@ import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
 import cn.zhengweiyi.weiyichild.fragment.GeneralPreferenceFragment;
 import cn.zhengweiyi.weiyichild.viewmodel.SettingsViewModel;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
-    private SettingsViewModel viewModel;
     private int lastLanguageId;
 
     @Override
@@ -28,8 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         StatusBarUtil.setStatusBarMode(this, true, R.color.colorPrimaryDark);
 
-        viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
-        viewModel.applyLanguage();
+        SettingsViewModel viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
         lastLanguageId = viewModel.getCurrentLanguage();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -48,8 +46,9 @@ public class SettingsActivity extends AppCompatActivity {
         viewModel.getLanguageLiveData().observe(this, languageId -> {
             if (languageId != lastLanguageId) {
                 lastLanguageId = languageId;
-                viewModel.applyLanguage();
-                recreate();
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }
