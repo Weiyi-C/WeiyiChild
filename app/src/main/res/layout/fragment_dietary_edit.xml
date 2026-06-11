@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
+  ~ Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
   ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
   -->
 
@@ -17,6 +17,7 @@
         android:layout_weight="1" />
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -26,6 +27,7 @@
 
         <Button
             android:id="@+id/add_dietary_item_button"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/view_spacing"
@@ -35,10 +37,12 @@
             android:paddingEnd="@dimen/button_padding_middle"
             android:paddingBottom="@dimen/button_padding_small"
             android:text="@string/dietary_add_item"
+            android:textColor="@color/colorTextBlack"
             android:textSize="@dimen/text_size_default" />
 
         <Button
             android:id="@+id/add_dietary_button"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/view_spacing"
@@ -48,6 +52,7 @@
             android:paddingEnd="@dimen/button_padding_middle"
             android:paddingBottom="@dimen/button_padding_small"
             android:text="@string/dietary_save"
+            android:textColor="@color/colorTextBlack"
             android:textSize="@dimen/text_size_default" />
     </LinearLayout>
 
