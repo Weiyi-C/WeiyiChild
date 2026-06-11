@@ -48,7 +48,35 @@ public class DietaryViewModel extends AndroidViewModel {
     }
 
     public void loadByDate(String date) {
-        dateLiveData.setValue(date);
+        dateLiveData.postValue(date);
+    }
+
+    /**
+     * 替换指定日期的全部食谱（先删后插）
+     * TODO: 后期可扩展为调用服务器API同步数据
+     */
+    public void saveAllForDate(String date, List<Dietary> items) {
+        executor.execute(() -> {
+            Date mDate = DateFormatUtil.StrToDate(date);
+            dietaryDao.deleteByDate(mDate);
+            for (int i = 0; i < items.size(); i++) {
+                items.get(i).setDate(mDate);
+                items.get(i).setSequence(i);
+            }
+            dietaryDao.insertInTx(items);
+            loadByDate(date);
+        });
+    }
+
+    /**
+     * 删除单条食谱
+     * TODO: 后期可扩展为调用服务器API同步删除
+     */
+    public void deleteDietary(Dietary dietary, String currentDate) {
+        executor.execute(() -> {
+            dietaryDao.delete(dietary);
+            loadByDate(currentDate);
+        });
     }
 
     public void initTestDataDietary(String date) {

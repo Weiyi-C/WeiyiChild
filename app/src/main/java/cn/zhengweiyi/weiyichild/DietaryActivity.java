@@ -32,6 +32,7 @@ import java.util.Objects;
 
 import cn.zhengweiyi.weiyichild.custom.DateFormatUtil;
 import cn.zhengweiyi.weiyichild.custom.StatusBarUtil;
+import cn.zhengweiyi.weiyichild.fragment.DietaryEditFragment;
 import cn.zhengweiyi.weiyichild.fragment.DietaryFragment;
 
 public class DietaryActivity extends BaseActivity implements
@@ -57,6 +58,7 @@ public class DietaryActivity extends BaseActivity implements
     private ViewPager pager;                // TabView Pager
     private List<Fragment> fragmentList;    // Fragment列表
     private DietaryFragment dietaryFragment;// 食谱 Fragment
+    private DietaryEditFragment dietaryEditFragment;    // 食谱编辑 Fragment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +88,7 @@ public class DietaryActivity extends BaseActivity implements
      */
     private void initData() {
         // 设置TabLayout标题
-        int tab[] = {R.string.dietary_list};
+        int tab[] = {R.string.dietary_list, R.string.dietary_list_edit};
         tabTitle = new String[tab.length];
         for (int i = 0; i < tab.length; i++) {
             tabTitle[i] = getResources().getString(tab[i]);
@@ -161,8 +163,10 @@ public class DietaryActivity extends BaseActivity implements
 
         /* 设置fragment适配器TabAdapter */
         dietaryFragment = new DietaryFragment();
+        dietaryEditFragment = new DietaryEditFragment();
         fragmentList = new ArrayList<>();
         fragmentList.add(dietaryFragment);
+        fragmentList.add(dietaryEditFragment);
         pager.setAdapter(new TabAdapter(getSupportFragmentManager(), fragmentList, tabTitle));
 
         /* Tab与ViewPager绑定 */
@@ -228,6 +232,7 @@ public class DietaryActivity extends BaseActivity implements
         mYear = calendar.getYear();
 
         dietaryFragment.changeDate(selectDate);
+        dietaryEditFragment.changeDate(selectDate);
 
         Log.i("onDateSelected", selectDate +
                 " -- 点击：" + isClick + " -- 事件：" + calendar.getScheme());

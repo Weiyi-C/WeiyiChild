@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. zhengweiyi.cn all rights reserved
+  ~ 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/activity_vertical_margin"
+    android:layout_marginTop="2dp"
+    android:layout_marginEnd="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="@dimen/view_spacing_large"
+    android:minHeight="64dp"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/add_dietary_item_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/view_spacing"
+        android:layout_weight="1"
+        android:paddingStart="@dimen/button_padding_middle"
+        android:paddingTop="@dimen/button_padding_middle"
+        android:paddingEnd="@dimen/button_padding_middle"
+        android:paddingBottom="@dimen/button_padding_middle"
+        android:text="@string/dietary_add_item"
+        android:textSize="@dimen/text_size_default" />
+
+    <Button
+        android:id="@+id/add_dietary_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/view_spacing"
+        android:layout_weight="1"
+        android:paddingStart="@dimen/button_padding_middle"
+        android:paddingTop="@dimen/button_padding_middle"
+        android:paddingEnd="@dimen/button_padding_middle"
+        android:paddingBottom="@dimen/button_padding_middle"
+        android:text="@string/dietary_save"
+        android:textSize="@dimen/text_size_default" />
+
+</LinearLayout>

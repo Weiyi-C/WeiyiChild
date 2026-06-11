@@ -49,4 +49,8 @@
     <dimen name="linear_thickness_default">1dp</dimen>
     <dimen name="linear_thickness_bold">2dp</dimen>
 
+    <dimen name="button_padding_small">8dp</dimen>
+    <dimen name="button_padding_middle">16dp</dimen>
+    <dimen name="button_padding_large">24dp</dimen>
+
 </resources>

@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.haibin.calendarview.CalendarLayout;
 
 import cn.zhengweiyi.weiyichild.TabAdapter;
+import cn.zhengweiyi.weiyichild.fragment.DietaryEditFragment;
 import cn.zhengweiyi.weiyichild.fragment.DietaryFragment;
 
 public class DietaryCalendarLinearLayout extends LinearLayout implements CalendarLayout.CalendarScrollView {
@@ -41,7 +42,17 @@ public class DietaryCalendarLinearLayout extends LinearLayout implements Calenda
                 mAdapter = (TabAdapter) viewPager.getAdapter();
             }
         }
-        return mAdapter != null && ((DietaryFragment) mAdapter.getCurFragment()).isScrollTop();
+        return mAdapter != null && isCurFragmentScrollTop();
+    }
+
+    private boolean isCurFragmentScrollTop() {
+        Object fragment = mAdapter.getCurFragment();
+        if (fragment instanceof DietaryFragment) {
+            return ((DietaryFragment) fragment).isScrollTop();
+        } else if (fragment instanceof DietaryEditFragment) {
+            return ((DietaryEditFragment) fragment).isScrollTop();
+        }
+        return true;
     }
 
 }
