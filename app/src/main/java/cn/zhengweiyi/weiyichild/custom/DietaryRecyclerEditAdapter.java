@@ -1,23 +1,28 @@
 /*
- * Copyright (c) 2019. zhengweiyi.cn all rights reserved
+ * Copyright (c) 2019-2026. zhengweiyi.cn all rights reserved
  * 郑维一版权所有，未经授权禁止使用，开源项目请遵守指定的开源协议
  */
 
 package cn.zhengweiyi.weiyichild.custom;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bravin.btoast.BToast;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cn.zhengweiyi.weiyichild.R;
@@ -25,181 +30,214 @@ import cn.zhengweiyi.weiyichild.bean.Dietary;
 
 public class DietaryRecyclerEditAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int EMPTY_VIEW = 0;
     private static final int EMPTY_BUTTON_VIEW = 0;
-    private static final int DIETARY_ADD = 1;
-    private static final int DIETARY_ADD_BUTTON = 2;
+    private static final int EDIT_ITEM_VIEW = 1;
 
-    private Context mContext;
+    private final Context mContext;
     private List<Dietary> mDietaryList;
-    private OnEmptyViewButtonClickListener listener;
+    private OnEmptyViewButtonClickListener emptyListener;
+    private OnItemDeleteListener deleteListener;
 
     public DietaryRecyclerEditAdapter(List<Dietary> dietaryList, Context context) {
-        mDietaryList = dietaryList;
+        mDietaryList = new ArrayList<>(dietaryList);
         mContext = context;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        Log.i("DietaryRecycler", "开始创建ViewHolder");
-        View view;
         if (viewType == EMPTY_BUTTON_VIEW) {
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(
-                    R.layout.recycler_item_null_button, viewGroup, false);
-            Log.i("DietaryRecycler", "创建了一个EmptyButtonViewHolder");
+            View view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.recycler_item_null_button, viewGroup, false);
             return new EmptyButtonViewHolder(view);
-        } else if (viewType == DIETARY_ADD) {
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(
-                    R.layout.recycler_item_dietary, viewGroup, false);
-            Log.i("DietaryRecycler", "创建了一个DietaryViewHolder");
-            return new DietaryViewHolder(view);
         } else {
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(
-                    R.layout.recycler_item_null, viewGroup, false);
-            Log.i("DietaryRecycler", "创建了一个EmptyViewHolder");
-            return new EmptyViewHolder(view);
+            View view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.recycler_item_dietary_add, viewGroup, false);
+            return new EditItemViewHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        if (viewHolder instanceof DietaryViewHolder) {
-            Log.i("DietaryRecycler", "根据视图创建第 " + position + " 个 item");
-            DietaryViewHolder holder = (DietaryViewHolder) viewHolder;
+        if (viewHolder instanceof EditItemViewHolder) {
+            EditItemViewHolder holder = (EditItemViewHolder) viewHolder;
             Dietary dietary = mDietaryList.get(position);
-            holder.dietaryName.setText(dietary.getName());
-            holder.dietaryContent.setText(dietary.getFoods());
-        } else if (viewHolder instanceof EmptyButtonViewHolder) {
-            EmptyButtonViewHolder holder = (EmptyButtonViewHolder) viewHolder;
-            String hintText = mContext.getResources().getString(R.string.recycler_null);
-            String buttonText = mContext.getResources().getString(R.string.button_insert_test_data);
-            holder.nullIcon.setImageResource(R.drawable.ic_alert);
-            holder.nullTextHint.setText(hintText);
-            holder.nullButton.setText(buttonText);
-            holder.nullButton.setOnClickListener(new View.OnClickListener() {
+
+            // 移除旧的 TextWatcher，防止回收复用时触发
+            if (holder.nameWatcher != null) {
+                holder.editName.removeTextChangedListener(holder.nameWatcher);
+            }
+            if (holder.foodsWatcher != null) {
+                holder.editFoods.removeTextChangedListener(holder.foodsWatcher);
+            }
+
+            holder.editName.setText(dietary.getName());
+            holder.editFoods.setText(dietary.getFoods());
+
+            // 餐名 TextWatcher
+            holder.nameWatcher = new TextWatcher() {
                 @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onEmptyViewButtonClick();
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    int pos = holder.getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION && pos < mDietaryList.size()) {
+                        mDietaryList.get(pos).setName(s.toString());
                     }
                 }
+            };
+            // 食物 TextWatcher
+            holder.foodsWatcher = new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    int pos = holder.getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION && pos < mDietaryList.size()) {
+                        mDietaryList.get(pos).setFoods(s.toString());
+                    }
+                }
+            };
+
+            holder.editName.addTextChangedListener(holder.nameWatcher);
+            holder.editFoods.addTextChangedListener(holder.foodsWatcher);
+
+            // 删除按钮
+            holder.btnDelete.setOnClickListener(v -> {
+                int pos = holder.getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION && pos < mDietaryList.size()) {
+                    removeItem(pos);
+                }
             });
-        } else {
-            EmptyViewHolder holder = (EmptyViewHolder) viewHolder;
-            String hintText = mContext.getResources().getString(R.string.recycler_null_error);
-            holder.nullTextHint.setText(hintText);
-            Log.i("RecyclerView", "未获取到安全接送历史记录，返回空数据提示");
+        } else if (viewHolder instanceof EmptyButtonViewHolder) {
+            EmptyButtonViewHolder holder = (EmptyButtonViewHolder) viewHolder;
+            holder.nullIcon.setImageResource(R.drawable.ic_alert);
+            holder.nullTextHint.setText(mContext.getResources().getString(R.string.recycler_null));
+            holder.nullButton.setText(mContext.getResources().getString(R.string.dietary_add_item));
+            holder.nullButton.setOnClickListener(v -> {
+                if (emptyListener != null) {
+                    emptyListener.onEmptyViewButtonClick();
+                }
+            });
         }
     }
 
     @Override
     public int getItemCount() {
-        if (mDietaryList.size() == 0) {
-            Log.i("DietaryRecycler", "没有食谱，返回1个空数据提示");
-            return 1;
-        } else {
-            Log.i("DietaryRecycler", "食谱数量为" + mDietaryList.size());
-            return mDietaryList.size()+1;
-        }
+        return mDietaryList.isEmpty() ? 1 : mDietaryList.size();
     }
 
-    /**
-     * 判断Item类型
-     *
-     * @param position Item位置
-     * @return 返回View标识
-     */
     @Override
     public int getItemViewType(int position) {
-        if (mDietaryList.size() == 0) {
-            Log.i("DietaryRecycler", "第" + position + "项为空视图");
-            return EMPTY_BUTTON_VIEW;
+        return mDietaryList.isEmpty() ? EMPTY_BUTTON_VIEW : EDIT_ITEM_VIEW;
+    }
+
+    /**
+     * 设置食谱数据（来自 LiveData）
+     */
+    public void setDietaryList(List<Dietary> dietaryList) {
+        mDietaryList = new ArrayList<>(dietaryList);
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 添加一个新的空白餐次
+     */
+    public void addNewItem() {
+        boolean wasEmpty = mDietaryList.isEmpty();
+        Dietary dietary = new Dietary(new Date(), mDietaryList.size(), "", "");
+        mDietaryList.add(dietary);
+        if (wasEmpty) {
+            notifyDataSetChanged();
         } else {
-            Log.i("DietaryRecycler", "第" + position + "项位正常视图类型");
-            return DIETARY_ADD;
+            notifyItemInserted(mDietaryList.size() - 1);
         }
     }
 
     /**
-     * 每日食谱正常布局ViewHolder
+     * 删除指定位置的餐次
      */
-    class DietaryViewHolder extends RecyclerView.ViewHolder {
+    public void removeItem(int position) {
+        if (position >= 0 && position < mDietaryList.size()) {
+            Dietary removed = mDietaryList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, mDietaryList.size() - position);
+            if (deleteListener != null) {
+                deleteListener.onItemDeleted(removed, position);
+            }
+        }
+    }
 
-        View dietaryView;
-        TextView dietaryName;
-        TextView dietaryContent;
-        //Context context;
+    /**
+     * 获取当前编辑中的全部食谱数据
+     */
+    public List<Dietary> getAllItems() {
+        return new ArrayList<>(mDietaryList);
+    }
 
-        DietaryViewHolder(@NonNull View itemView) {
+    /**
+     * 空视图按钮点击回调
+     */
+    public interface OnEmptyViewButtonClickListener {
+        void onEmptyViewButtonClick();
+    }
+
+    public void setOnEmptyViewButtonClickListener(OnEmptyViewButtonClickListener listener) {
+        this.emptyListener = listener;
+    }
+
+    /**
+     * 单条删除回调（用于已持久化数据的数据库删除）
+     */
+    public interface OnItemDeleteListener {
+        void onItemDeleted(Dietary dietary, int position);
+    }
+
+    public void setOnItemDeleteListener(OnItemDeleteListener listener) {
+        this.deleteListener = listener;
+    }
+
+    /**
+     * 可编辑食谱项 ViewHolder
+     */
+    static class EditItemViewHolder extends RecyclerView.ViewHolder {
+
+        EditText editName;
+        EditText editFoods;
+        ImageButton btnDelete;
+        TextWatcher nameWatcher;
+        TextWatcher foodsWatcher;
+
+        EditItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            dietaryView = itemView;
-            dietaryName = itemView.findViewById(R.id.dietary_text_name);
-            dietaryContent = itemView.findViewById(R.id.dietary_text_content);
-            //context = itemView.getContext();
+            editName = itemView.findViewById(R.id.dietary_edit_name);
+            editFoods = itemView.findViewById(R.id.dietary_edit_content);
+            btnDelete = itemView.findViewById(R.id.dietary_edit_delete);
         }
     }
 
     /**
-     * 空数据提示ViewHolder
+     * 空数据提示 ViewHolder（带按钮）
      */
-    class EmptyViewHolder extends RecyclerView.ViewHolder {
+    static class EmptyButtonViewHolder extends RecyclerView.ViewHolder {
 
-        View emptyView;
-        ImageView nullIcon;
-        TextView nullTextHint;
-
-        EmptyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            emptyView = itemView;
-            nullIcon = emptyView.findViewById(R.id.recyclerNullIcon);
-            nullTextHint = emptyView.findViewById(R.id.recyclerNullTextHint);
-        }
-    }
-
-    /**
-     * 空数据提示ViewHolder(带Button)
-     */
-    class EmptyButtonViewHolder extends RecyclerView.ViewHolder {
-
-        View emptyButtonView;
         ImageView nullIcon;
         TextView nullTextHint;
         Button nullButton;
 
         EmptyButtonViewHolder(@NonNull View itemView) {
             super(itemView);
-            emptyButtonView = itemView;
-            nullIcon = emptyButtonView.findViewById(R.id.recyclerNullIcon);
-            nullTextHint = emptyButtonView.findViewById(R.id.recyclerNullTextHint);
-            nullButton = emptyButtonView.findViewById(R.id.recyclerNullButton);
+            nullIcon = itemView.findViewById(R.id.recyclerNullIcon);
+            nullTextHint = itemView.findViewById(R.id.recyclerNullTextHint);
+            nullButton = itemView.findViewById(R.id.recyclerNullButton);
         }
-    }
-
-    /**
-     * 空视图按钮点击接口
-     */
-    public interface OnEmptyViewButtonClickListener {
-        void onEmptyViewButtonClick();
-    }
-
-    /**
-     * 设置空布局按钮的点击监听回调接口
-     *
-     * @param listener 回调接口
-     */
-    public void setOnEmptyViewButtonClickListener(OnEmptyViewButtonClickListener listener) {
-        this.listener = listener;
-    }
-
-    // 数据更新
-    public void refreshData(List<Dietary> dietaryList) {
-        mDietaryList.clear();
-        mDietaryList = dietaryList;
-        Log.i("DietaryRecycler", "通知数据更新");
-        notifyDataSetChanged();
-        BToast.success(mContext)
-                .text(R.string.page_updated)
-                .show();
     }
 }

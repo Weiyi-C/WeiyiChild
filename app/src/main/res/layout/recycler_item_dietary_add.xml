@@ -45,4 +45,15 @@
         android:layout_weight="5"
         android:textColor="@color/colorTextBlack" />
 
+    <ImageButton
+        android:id="@+id/dietary_edit_delete"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/view_spacing"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/dietary_delete"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_close" />
+
 </LinearLayout>

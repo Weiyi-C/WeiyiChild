@@ -7,9 +7,11 @@ package cn.zhengweiyi.weiyichild.bean;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.Date;
 import java.util.List;
@@ -63,4 +65,36 @@ public interface DietaryDao {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertInTx(List<Dietary> dietaryList);
+
+    /**
+     * 插入单条食谱（冲突时替换）
+     *
+     * @param dietary 食谱记录
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insert(Dietary dietary);
+
+    /**
+     * 更新食谱
+     *
+     * @param dietary 食谱记录
+     */
+    @Update
+    void update(Dietary dietary);
+
+    /**
+     * 删除食谱
+     *
+     * @param dietary 食谱记录
+     */
+    @Delete
+    void delete(Dietary dietary);
+
+    /**
+     * 删除指定日期的全部食谱
+     *
+     * @param date 日期（时间戳）
+     */
+    @Query("DELETE FROM dietary_list WHERE DATE = :date")
+    void deleteByDate(Date date);
 }

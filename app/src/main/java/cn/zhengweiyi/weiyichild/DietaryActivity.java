@@ -233,6 +233,7 @@ public class DietaryActivity extends AppCompatActivity implements
         mYear = calendar.getYear();
 
         dietaryFragment.changeDate(selectDate);
+        dietaryEditFragment.changeDate(selectDate);
 
         Log.i("onDateSelected", selectDate +
                 " -- 点击：" + isClick + " -- 事件：" + calendar.getScheme());
